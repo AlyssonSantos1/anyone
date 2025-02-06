@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class ManagerController extends Controller
 {
-    public function turn (Request $request){
+    public function turn (Request $request, id $id){
         $Squad = $request->squad;
-        Squad::turn([
+        Squad::edit([
             // "name" =>$request->name_user,
             // "email" =>$request->email_user,
             // "role" =>$request->role_user,
