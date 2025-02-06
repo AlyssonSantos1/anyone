@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('role');
             $table->string('hierarchy');
             $table->string('insertedproject');
-            $table->string('reviews');
+            $table->string('personalreviews');
             $table->timestamps();
         });
     }

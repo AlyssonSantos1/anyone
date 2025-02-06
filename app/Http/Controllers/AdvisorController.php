@@ -6,24 +6,28 @@ use Illuminate\Http\Request;
 
 class AdvisorController extends Controller
 {
-    public function turn (Request $request){
+    public function turn (Request $request, id $id, hierarchy $hierarchy){
         $Squad = $request->squad;
-        Squad::swap([
-            
+        Squad::edit([
+            "name" =>$request->name_user,
             "role" =>$request->role_user,
             "hierarchy" =>$request->hierarchy_user,
             "currentproject" =>$request->currentproject_user
 
         ]);
+        //Funcao para tornar consultor temporario em outro projeto ta o mesmo nome da funcao que no metodo manager
+        //- apenas para referencia a variavel $squad ta errada mas é so o esboco do codigo
+
+        return view('turn to temporary internal advisory role');
     }
 
     public function inside (Request $request){
         $Squad = $request->squad;
-        Squad::internvision([
+        Squad::read([
             
-            // "role" =>$request->role_user,
-            // "hierarchy" =>$request->hierarchy_user,
-            // "currentproject" =>$request->currentproject_user
+           
+            "projectreviews" =>$request->projectreviews_project,
+            "projectname" =>$request->projectname_project
 
         ]);
     }

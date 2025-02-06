@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('numberofmembers');
             $table->string('goals');
             $table->string('description');
-            $table->string('reviews');
+            $table->string('projectreviews');
             $table->timestamps();
         });
     }

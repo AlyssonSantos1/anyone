@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('teammanager');
             $table->string('numberofmembers');
             $table->string('projectfocus');
-            $table->string('reviews');
+            $table->string('reviewsofsquad');
             $table->timestamps();
         });
     }

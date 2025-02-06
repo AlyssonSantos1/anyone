@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function trash (Request $request){
+    public function trash (Request $request, id $id){
         $Squad = $request->squad;
         Squad::delete([
-            // "review" =>$request->review_user,
+            "review" =>$request->review_user,
             
         ]);
         // Funcao que todos os usuarios dos times podem deletar as reviews
@@ -17,28 +17,31 @@ class UserController extends Controller
         return view('Your review has been deleted');
     }
 
-    public function edit (Request $request){
+    public function edit (Request $request, id $id){
         $Squad = $request->squad;
         Squad::edit([
-            // "review" =>$request->review_user,
+            "review" =>$request->review_user,
             
         ]);
 
         return view('Your review has been edited');
+        //edit reviews deles mesmo
     }
     
-    public function avaliation (Request $request){
+    public function avaliation (Request $request, insertedproject $insertedproject){
         $Squad = $request->squad;
-        Squad::create([
-            // "name" =>$request->name_user,
-            // "email" =>$request->email_user,
-            // "role" =>$request->role_user,
-            // "hierarchy" =>$request->hierarchy_user,
-            // "currentproject" =>$request->currentproject_user
-
+        Squad::read([
+            "name" =>$request->name_user,
+            "review" =>$request->review_user,
+            "projectname" =>$request->projectname_user,
+            "reviews" =>$request->reviews_team
+            
         ]);
 
         return view('the reviews has been authorized');
+        // A funcao em que podem ver as avaliacoes dos projetos do time e deles mesmos
     }
+
+
     
 }
