@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    // comitei aqui porque vai precisar relacionamento N pra N e essa parte nao sei fazer
+
+
+
     public function eyes (Request $request){
         $Squad = $request->squad;
         Squad::vision([
@@ -34,6 +38,7 @@ class TeamController extends Controller
 
         return view('New Team has been changed');
     }
+
 }
 
 

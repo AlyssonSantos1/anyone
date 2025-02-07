@@ -18,6 +18,8 @@ class ExecutiveController extends Controller
         ]);
         //This function is add new users
         // adicionar novos usuarios a empresa e so o executivo pode fazer isso por isso o request
+        // aqui vai precisar do if pra saber se a pessoa é um executivo mesma logica if/else
+        // se nao a operacao nao pode ser gfeita e mostra uma mensagem "nao autorizado, so executivos" 
 
         return view('New member has been increase');
     }
@@ -35,6 +37,8 @@ class ExecutiveController extends Controller
         ]);
         //This function is edit the users of the company
         // essa funcao serve pra editar dados do usuario na empresa
+        // aqui vai precisar do if pra saber se a pessoa é um executivo mesma logica if/else
+        // se nao a operacao nao pode ser gfeita e mostra uma mensagem "nao autorizado, so executivos" 
         return view('the member has been edited');
     }
 
@@ -51,7 +55,8 @@ class ExecutiveController extends Controller
         ]);
         //This function create new projects 
         // essa funcao serve pra criar o projeto e so o executivo na hierarquia pode fazer isso por isso a request
-
+        // aqui vai precisar do if pra saber se a pessoa é um executivo mesma logica if/else
+        // se nao a operacao nao pode ser gfeita e mostra uma mensagem "nao autorizado, so executivos" 
         return view('New Project has been created');
     
     }
@@ -65,7 +70,9 @@ class ExecutiveController extends Controller
 
         ]);
         //This function is swap members among the projects
-        // essa funcao pode trocar as funcoes dos usuarios na empresa ou trocar ele de projetos  
+        // essa funcao pode trocar as funcoes dos usuarios na empresa ou trocar ele de projetos 
+        // aqui vai precisar do if pra saber se a pessoa é um executivo mesma logica if/else
+        // se nao a operacao nao pode ser gfeita e mostra uma mensagem "nao autorizado, so executivos" 
 
         return view('The User has been swaped team or role temporary');
     
@@ -81,6 +88,7 @@ class ExecutiveController extends Controller
 
         return view('The Review Has been excluded');
         //funcao que so executivo pode excluir comentarios mas nao podem editar
+        // aqui vai precisar do if pra saber se a pessoa é um executivo mesma logica if/else
     
     }
 
@@ -95,19 +103,10 @@ class ExecutiveController extends Controller
         return view('The Manager are see the reviews ');
     
     }
+    //somente executivos podem ver o nome do autor das reviews
+    // nessa funcao vai precisar da logica do if (se for o executivo consegue ver/se nao) 
+    // "nao autorizado ver author review" nao lembro a estrutura dos if e vou fazer amanha com amente descansada
 
     
-    public function review (Request $request, hierarchy $hierarchy){
-        $Squad = $request->squad;
-        Squad::read([
-            "name" =>$request->name_user,
-            "reviews" =>$request->reviews_project,
-            "projectname" =>$request->projectname_project           
-
-        ]);
-
-        return view('The manager now can see the review author name');
-    }
-    //somente executivos podem ver o nome do autor das reviews
 
 }
