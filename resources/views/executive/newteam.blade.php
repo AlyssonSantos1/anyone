@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,23 +8,31 @@
 <body>
 <form action="{{  route('')  }}" method="POST">
         @csrf
-        <label for="">Name </label>
-        <input type="text" placeholder="Name" name="name_user">
+        <label for="">Name of Project </label>
+        <input type="text" placeholder="projectname" name="projectname_project">
         <br><br>
-        <label for="">E-mail</label>
-        <input type="text" placeholder="email" name="email_user" >
+        <label for="">Manager of the Project</label>
+        <input type="text" placeholder="managername" name="managername_project" >
         <br><br>
-        <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy" name="hierarchy_user">
+        <label for="">Number of Members</label>
+        <input type="text" placeholder="numberofmembers" name="numberofmembers_project">
         <br><br>
-        <label for="">Role</label>
-        <input type="text" placeholder="Role" name="role_user">
+        <label for="">Goals the Project</label>
+        <input type="text" placeholder="goals" name="goals_project">
         <br><br>
-        <label for="">Current Project Working</label>
-        <input type="text" placeholder="currentproject" name="project_user">
+        <label for="">Description</label>
+        <input type="text" placeholder="description" name="description_project">
+        <br><br>
+        <label for="">Reviews</label>
+        <input type="text" placeholder="projectreviews" name="reviews_project">
         <br><br><br>
         <button type="submit">Send</button>
+        <br><br><br><br>
+
+        <a style="padding:15px;background-color:#232323;color:#fff;text-decoration:none;" class="inicio" href="/">INICIO</a>
+
     </form>
+     
     
 </body>
-</html>
+</html> -->

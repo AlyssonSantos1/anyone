@@ -45,12 +45,12 @@ class ExecutiveController extends Controller
     public function newproject (Request $request, hierarchy $hierarchy, id $id){
         $Squad = $request->squad;
         Squad::create([
-            "projectname" =>$request->project_team,
-            "managername" =>$request->managername_team,
-            "numberofmembers" =>$request->numberofmembers_team,
-            "goals" =>$request->goals_team,
-            "description" =>$request->description_team,
-            "reviews" =>$request->reviews_team
+            "projectname" =>$request->projectname_project,
+            "managername" =>$request->managername_project,
+            "numberofmembers" =>$request->numberofmembers_project,
+            "goals" =>$request->goals_project,
+            "description" =>$request->description_project,
+            "reviews" =>$request->reviews_project
 
         ]);
         //This function create new projects 

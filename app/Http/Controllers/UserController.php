@@ -35,11 +35,12 @@ class UserController extends Controller
             "review" =>$request->review_user,
             "projectname" =>$request->projectname_user,
             "reviews" =>$request->reviews_team
-            
+
         ]);
 
         return view('the reviews has been authorized');
         // A funcao em que podem ver as avaliacoes dos projetos do time e deles mesmos
+        
     }
 
 
