@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('hierarchy');
             $table->string('insertedproject');
             $table->string('personalreviews');
-            $table->string('ownerofreview');
+            $table->string('ownerofreview')->name();
 
             $table->timestamps();
         });

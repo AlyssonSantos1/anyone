@@ -7,30 +7,42 @@ use Illuminate\Http\Request;
 class ManagerController extends Controller
 
 {
-    public function turn (Request $request, id $id){
-        $Squad = $request->squad;
-        Squad::edit([
-            "name" =>$request->name_user,
-            "role" =>$request->role_user,
-            "hierarchy" =>$request->hierarchy_user,
-            "currentproject" =>$request->currentproject_user
+    public function swapuser (Request $request){
+        $name = $request->input('name');
+        $hierarchy = $request->input('hierarchy');
 
-        ]);
-        //Funcao para tornar consultor temporario em outro projeto
-        // mesma logica aqui if/else pra saber se é manager ou nao pra autorizar a operacao
+        if($name == 'name' && $hierarchy == 'manager' OR $hierarchy == 'associates'){
+            Squad::edit([
+                "name" =>$request->name_user,
+                "currentproject" =>$request->currentproject_user,
+                "role" =>$request->role_user
+    
+            ]);
 
-        return view('turn to temporary internal advisory role');
+        return 'The $name are swap of the $hierarchy to temporary internal advisor in the $project';
+        
+        }else{
+            return 'Acess Denied, Executive Only';
+        }
+            return view('swap');
+        
+
     }
 
     public function avaliation (Request $request){
-        $Squad = $request->squad;
-        Squad::read([
-            "name" =>$request->name_user,
-            "review" =>$request->review_user,
-            "projectname" =>$request->projectname_user,
-            "reviews" =>$request->reviews_team
-            
-        ]);
+        $name = $request->input('name');
+        $hierarchy = $request->input('hierarchy');
+
+        if($name == 'name' && $hierarchy == 'manager'){
+            Squad::read([
+                "name" =>$request->name_user,
+                "review" =>$request->review_user,
+                "projectname" =>$request->projectname_user,
+                "reviews" =>$request->reviews_team
+                
+            ]);
+        }
+        
 
         return view('the reviews has been authorized');
         // mesma logica aqui if/else pra saber se é manager ou nao pra autorizar a operacao 

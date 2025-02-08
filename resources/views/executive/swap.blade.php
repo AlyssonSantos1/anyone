@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trade the User for Another Project</title>
 </head>
-<!-- <body>
+<body>
 <form action="{{  route  ('',$>$id )  }}" method="POST">
         @csrf
         @method("PUT")
@@ -22,4 +22,4 @@
         <button type="submit">Send</button>
     </form>
 </body>
-</html> -->
+</html>
