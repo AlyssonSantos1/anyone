@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ManagerController extends Controller
 
 {
-    public function turn (Request $request, id $id, hierarchy $hierarchy){
+    public function turn (Request $request, id $id){
         $Squad = $request->squad;
         Squad::edit([
             "name" =>$request->name_user,
@@ -22,7 +22,7 @@ class ManagerController extends Controller
         return view('turn to temporary internal advisory role');
     }
 
-    public function avaliation (Request $request, insertedproject $insertedproject){
+    public function avaliation (Request $request){
         $Squad = $request->squad;
         Squad::read([
             "name" =>$request->name_user,
