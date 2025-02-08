@@ -17,4 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/executive/manager-add',[ExecutiveController::class, 'newmember']);
+Route::post('/executive/manager-add',[ExecutiveController::class, 'newmember'])->name('newmember');
+
 
