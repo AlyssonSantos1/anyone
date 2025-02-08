@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('goals');
             $table->string('description');
             $table->string('projectreviews');
+            $table->string('authorreview');
             $table->timestamps();
         });
     }

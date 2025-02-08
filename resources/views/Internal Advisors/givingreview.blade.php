@@ -11,9 +11,6 @@
         <label for="">TeamReviews</label>
         <input type="text" placeholder="ReviewsofTeam" name="reviewsofsquad" >
         <br><br>
-        <label for="">PersonalReviews</label>
-        <input type="text" placeholder="PersonalReviews" name="personalreviews">
-        <br><br>
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="reviews_project">
         <br><br><br>

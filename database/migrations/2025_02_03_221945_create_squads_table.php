@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('numberofmembers');
             $table->string('projectfocus');
             $table->string('reviewsofsquad');
+            $table->string('nameofwriterreview');
             $table->timestamps();
         });
     }

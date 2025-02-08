@@ -8,8 +8,6 @@
 <body>
     <form action="{{  route('')  }}" method="POST">
         @csrf
-        <label for="">TeamReviews</label>
-        <input type="text" placeholder="ReviewsofTeam" name="reviewsofsquad" >
         <br><br>
         <label for="">PersonalReviews</label>
         <input type="text" placeholder="PersonalReviews" name="personalreviews">
