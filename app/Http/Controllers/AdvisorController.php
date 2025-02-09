@@ -25,7 +25,7 @@ class AdvisorController extends Controller
             return 'No Permission You are not an Internal Advisor';
 
         } 
-        return view('internal');  
+        return view('givingreview');  
     }
 
 
@@ -48,7 +48,7 @@ class AdvisorController extends Controller
             return 'No Permission, You are not an Internal Advisor';
 
         } 
-        return view('eyes');  
+        return view('advisors');  
     }
 
 

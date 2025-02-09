@@ -23,8 +23,29 @@ class AssociatesController extends Controller
         }else{
             return 'Acess Denied, Executive Only';
         }
-            return view('eyes');
+            return view('swap');
         
+
+    }
+
+    public function visiondiamond (Request $request){
+        $name = $request->input('name');
+        $hierarchy = $request->input('hierarchy');
+
+        if($name == 'name' && $hierarchy == 'manager'){
+            Squad::read([
+                "projectreviews" =>$request->projectreviews_project,
+                "personalreviews" =>$request->personalreviews_personal
+                
+            ]);
+            return 'The reviews now can be acess';
+
+        }else{
+            return 'Acess Denied, Only Associates Can see the Reviews';
+        }
+
+        return view('associates');
+
 
     }
 
