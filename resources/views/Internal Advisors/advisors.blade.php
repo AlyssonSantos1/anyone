@@ -6,21 +6,13 @@
     <title>Internal Advisors Space</title>
 </head>
 <body>
-    <form action="{{  route  ('', )  }}" method="POST">
+<form action="{{  route('')  }}" method="POST">
         @csrf
-        @method("PUT")
-            
-        <label for="">Name </label>
-        <input type="text" placeholder="Name" name="name_user">
+        <label for="">TeamReviews</label>
+        <input type="text" placeholder="ReviewsofTeam" name="reviewsofsquad" >
         <br><br>
-        <label for="">Role</label>
-        <input type="text" placeholder="Role" name="role_user">   
-        <br><br>
-        <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy" name="hierarchy_user">
-        <br><br>
-        <label for="">Current Project Working</label>
-        <input type="text" placeholder="currentproject" name="project_user">
+        <label for="">ReviewsofProject</label>
+        <input type="text" placeholder="ReviewsofProject" name="reviews_project">
         <br><br><br>
         <button type="submit">Send</button>
     </form>
