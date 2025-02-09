@@ -6,22 +6,20 @@
     <title>Swap for Temporary Internal Advisor</title>
 </head>
 <body>
-    <form action="{{  route('')  }}" method="POST">
+    <form action="{{  route  ('',$>$id )  }}" method="POST">
         @csrf
+        @method("PUT")
+            
         <label for="">Name </label>
         <input type="text" placeholder="Name" name="name_user">
-        <br><br>
-        <label for="">Role</label>
-        <input type="text" placeholder="Role" name="role_user" >
         <br><br>
         <label for="">Hierarchy</label>
         <input type="text" placeholder="Hierarchy" name="hierarchy_user">
         <br><br>
-        <label for="">Current Project</label>
-        <input type="text" placeholder="CurrentProject" name="currentproject_user">
+        <label for="">Current Role</label>
+        <input type="text" placeholder="current role" name="role_user">
         <br><br><br>
         <button type="submit">Send</button>
     </form>
-    
 </body>
 </html>

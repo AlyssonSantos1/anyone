@@ -17,11 +17,11 @@ class ExecutiveController extends Controller
                 "email" =>$request->email_user,
                 "role" =>$request->role_user,
                 "hierarchy" =>$request->hierarchy_user,
-                "currentproject" =>$request->currentproject_user
+                "currentproject" =>$request->insertedproject_user
     
             ]);
 
-            return 'The operation is authorized you are an Executive';
+            return 'The operation are authorized. You are an Executive';
             
         }else{
 
@@ -107,6 +107,8 @@ class ExecutiveController extends Controller
             return view('sawreview');     
 
     }
+
+    
         
 
         

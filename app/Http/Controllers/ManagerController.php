@@ -24,7 +24,7 @@ class ManagerController extends Controller
         }else{
             return 'Acess Denied, Executive Only';
         }
-            return view('swap');
+            return view('swapadvisors');
         
 
     }

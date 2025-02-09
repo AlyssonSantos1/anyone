@@ -6,7 +6,7 @@
     <title>Trade the User for Another Project</title>
 </head>
 <body>
-<form action="{{  route  ('',$>$id )  }}" method="POST">
+    <form action="{{  route  ('',$>$id )  }}" method="POST">
         @csrf
         @method("PUT")
             
@@ -15,6 +15,9 @@
         <br><br>
         <label for="">Hierarchy</label>
         <input type="text" placeholder="Hierarchy" name="hierarchy_user">
+        <br><br>
+        <label for="">role</label>
+        <input type="text" placeholder="Role" name="role_user">
         <br><br>
         <label for="">Current Project Working</label>
         <input type="text" placeholder="currentproject" name="project_user">

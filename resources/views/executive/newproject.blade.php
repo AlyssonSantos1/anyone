@@ -25,6 +25,9 @@
         <br><br>
         <label for="">Reviews</label>
         <input type="text" placeholder="reviews" name="reviews_team">
+        <br><br>
+        <label for="">Reviews Author</label>
+        <input type="text" placeholder="author" name="authorreview_team">
         <br><br><br>
         <button type="submit">Send</button>
     </form>

@@ -9,7 +9,7 @@
     <form action="{{  route('')  }}" method="POST">
         @csrf
         <label for="">PersonalReviews</label>
-        <input type="text" placeholder="PersonalReviews" name="personalreviews">
+        <input type="text" placeholder="PersonalReviews" name="personalreviews_personal">
         <br><br>
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="reviews_project">

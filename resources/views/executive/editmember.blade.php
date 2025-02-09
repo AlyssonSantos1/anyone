@@ -23,7 +23,7 @@
         <input type="text" placeholder="Role" name="role_user">
         <br><br>
         <label for="">Current Project Working</label>
-        <input type="text" placeholder="currentproject" name="project_user">
+        <input type="text" placeholder="currentproject" name="currentproject_user">
         <br><br><br>
         <button type="submit">Send</button>
     </form>
