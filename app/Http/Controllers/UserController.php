@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function trash (Request $request, id $id){
+    public function trash (Request $request){
         $Squad = $request->squad;
         Squad::delete([
             "review" =>$request->review_user,

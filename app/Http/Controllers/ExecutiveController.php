@@ -83,30 +83,9 @@ class ExecutiveController extends Controller
     
     }
 
-    public function swapuser (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
-
-        if($name == 'name' && $hierarchy == 'manager' OR $hierarchy == 'associates'){
-            Squad::edit([
-                "name" =>$request->name_user,
-                "currentproject" =>$request->currentproject_user,
-                "role" =>$request->role_user
-    
-            ]);
-
-        return 'The $name are swap of the $hierarchy to temporary internal advisor in the $project';
-        
-        }else{
-            return 'Acess Denied, Executive Only';
-        }
-            return view('swap');
-        
-
-    }
 
 
-    public function vision (Request $request, id $id, hierarchy $hierarchy){
+    public function vision (Request $request){
         $name = $request->input('name');
         $hierarchy = $request->input('hierarchy');
 

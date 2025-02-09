@@ -17,7 +17,7 @@
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="reviews_project">
         <br><br><br>
-        <button type="submit">Send</button>
+        <button type="submit">See</button>
     </form>
 </body>
 </html>
