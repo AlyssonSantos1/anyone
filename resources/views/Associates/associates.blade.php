@@ -8,11 +8,14 @@
 <body>
     <form action="{{  route('')  }}" method="POST">
         @csrf
-        <label for="">Reviews of Team Project</label>
-        <input type="text" placeholder="ReviewsofProject" name="projectreviews_project" >
+        <label for="">PersonalReviews</label>
+        <input type="text" placeholder="PersonalReviews" name="personalreviews">
         <br><br>
-        
+        <label for="">ReviewsofProject</label>
+        <input type="text" placeholder="ReviewsofProject" name="reviews_project">
+        <br><br><br>
         <button type="submit">See</button>
     </form>
+
 </body>
 </html>

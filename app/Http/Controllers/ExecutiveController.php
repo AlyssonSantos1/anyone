@@ -28,7 +28,7 @@ class ExecutiveController extends Controller
             return 'No Permission Executive Only';
 
         } 
-        return view('newproject');  
+        return view('newuser');  
 
     }
 

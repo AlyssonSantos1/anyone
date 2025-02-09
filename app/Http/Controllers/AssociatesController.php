@@ -23,7 +23,7 @@ class AssociatesController extends Controller
         }else{
             return 'Acess Denied, Executive Only';
         }
-            return view('swap');
+            return view('edited');
         
 
     }
