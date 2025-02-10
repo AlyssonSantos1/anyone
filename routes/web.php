@@ -31,6 +31,9 @@ Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->
 
 Route::get('/manager/trade-member',[ExecutiveController::class, 'swapuser']);
 Route::post('/manager/trade-member',[ExecutiveController::class, 'swapuser'])->name('trademembers');
+Route::get('/manager/seeallreviews',[ExecutiveController::class, 'avaliation']);
+// Routes Only can acess by Managers in the Company
+
 
 
 
