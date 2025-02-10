@@ -34,11 +34,21 @@ Route::put('/manager/trade-member',[ExecutiveController::class, 'swapuser'])->na
 Route::get('/manager/seeallreviews',[ExecutiveController::class, 'avaliation']);
 // Routes Only can acess by Managers in the Company
 
-
 Route::get('/advisors/give-review',[ExecutiveController::class, 'newreview']);
 Route::post('/advisors/give-review',[ExecutiveController::class, 'newreview'])->name('newestreview');
 Route::get('/advisors/edit-review',[ExecutiveController::class, 'avaliation'])->name('reviewedited');
-//// Routes Only can acess by Advisors in the Company
+// Routes Only can acess by Advisors in the Company
+
+Route::get('/associates/swap-role',[ExecutiveController::class, 'swapuser']);
+Route::post('/associates/swap-role',[ExecutiveController::class, 'swapuser'])->name('tradeforrole');
+Route::get('/advisors/edit-review',[ExecutiveController::class, 'avaliation'])->name('reviewedited');
+// Routes Only can acess by Associates in the Company
+
+Route::get('/user/swap-role',[ExecutiveController::class, 'trash']);
+Route::get('/user/swap-role',[ExecutiveController::class, 'change']);
+Route::put('/user/swap-role',[ExecutiveController::class, 'change'])->name('edited-review');
+// Routes Only can acess by Users in the Company
+
 
 
 

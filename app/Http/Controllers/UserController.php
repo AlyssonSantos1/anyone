@@ -27,7 +27,7 @@ class UserController extends Controller
 
     }
 
-    public function edit (Request $request){
+    public function change (Request $request){
         $member = $request->input('name');
         $member = $request->input('hierarchy');
         if($member == 'name' AND $hierarchy == 'users'){
