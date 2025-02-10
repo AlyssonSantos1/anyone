@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\http\ExecutiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,8 @@ Route::post('/executive/manager-building',[ExecutiveController::class, 'newproje
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->name('vision360');
 // Routes Only can acess by Executives in the Company
 
-Route::get('/manager/trade-member',[ExecutiveController::class, 'swapuser']);
-Route::put('/manager/trade-member',[ExecutiveController::class, 'swapuser'])->name('trademember');
+Route::get('/manager/trade-member/{id}',[ExecutiveController::class, 'swapuser']);
+Route::put('/manager/trade-member/{id}',[ExecutiveController::class, 'swapuser'])->name('trademember');
 Route::get('/manager/seeallreviews',[ExecutiveController::class, 'avaliation']);
 // Routes Only can acess by Managers in the Company
 

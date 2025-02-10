@@ -6,7 +6,7 @@
     <title>Create New Project By Executive Only</title>
 </head>
 <body>
-    <form action="{{  route('')  }}" method="POST">
+    <form action="{{  route('buildproject')  }}" method="POST">
         @csrf
         <label for="">Name of the project </label>
         <input type="text" placeholder="projectname" name="project_team">
