@@ -6,10 +6,9 @@
     <title>Edit the Team Members</title>
 </head>
 <body>
-    <form action="{{  route  ('', )  }}" method="POST">
+    <form action="{{  route  ('memberedited', $member->id )  }}" method="POST">
         @csrf
         @method("PUT")
-            
         <label for="">Name </label>
         <input type="text" placeholder="Name" name="name_user">
         <br><br>
@@ -22,8 +21,11 @@
         <label for="">Role</label>
         <input type="text" placeholder="Role" name="role_user">
         <br><br>
-        <label for="">Current Project Working</label>
-        <input type="text" placeholder="currentproject" name="currentproject_user">
+        <label for="">Inserted Project User</label>
+        <input type="text" placeholder="insertedproject" name="insertedproject_user">
+        <br><br>
+        <label for="">Personal Reviews</label>
+        <input type="text" placeholder="personalreviews" name="personalreviews_user">
         <br><br><br>
         <button type="submit">Send</button>
     </form>

@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 class ExecutiveController extends Controller
 {
     public function newmember (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+        $member = $request->input('name');
+        $member = $request->input('hierarchy');
 
         if ($name == 'name' &&  $hierarchy == 'executive'){
 
-            Squad::create([
+            Member::create([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
                 "role" =>$request->role_user,
                 "hierarchy" =>$request->hierarchy_user,
-                "currentproject" =>$request->insertedproject_user
+                "insertedproject" =>$request->insertedproject_user,
+                "personalreviews" =>$request->personalreviews_user,
+                "ownerofreview" =>$request->ownerofreview_user                
+    
     
             ]);
 
@@ -33,18 +36,19 @@ class ExecutiveController extends Controller
     }
 
     public function edit (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+        $member = $request->input('name');
+        $member = $request->input('hierarchy');
 
-        if ($name == 'name' &&  $hierarchy == 'executive'){
+        if ($member == 'name' &&  $member == 'executive'){
 
-            Squad::edit([
+            Member::edit([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
                 "role" =>$request->role_user,
                 "hierarchy" =>$request->hierarchy_user,
-                "currentproject" =>$request->currentproject_user
-                
+                "insertedproject" =>$request->insertedproject_user,
+                "personalreviews" =>$request->personalreviews_user,
+                "ownerofreview" =>$request->ownerofreview_user                
     
             ]);
 
@@ -60,11 +64,11 @@ class ExecutiveController extends Controller
     }
 
     public function newproject (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+        $project = $request->input('name');
+        $project = $request->input('hierarchy');
 
-        if ($name == 'name' &&  $hierarchy == 'executive'){
-            Squad::create([
+        if ($project == 'name' &&  $project == 'executive'){
+            Project::create([
                 "projectname" =>$request->projectname_project,
                 "managername" =>$request->managername_project,
                 "numberofmembers" =>$request->numberofmembers_project,
@@ -86,10 +90,10 @@ class ExecutiveController extends Controller
 
 
     public function vision (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+        $member = $request->input('name');
+        $member = $request->input('hierarchy');
 
-        if ($name == 'name' && $hierarchy == 'hierarchy'){
+        if ($member == 'name' && $member == 'hierarchy'){
             Squad::read([
                 
                 "nameofwriterreview" =>$request->nameofwriterreview_project,

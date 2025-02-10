@@ -7,8 +7,6 @@
 </head>
 <body>
     <form action="{{  route  ('', )  }}" method="POST">
-        @csrf
-        @method("PUT")
             
         <label for="">Name of the Writer Review of Squad </label>
         <input type="text" placeholder="" name="nameofwriterreview_project">
@@ -19,7 +17,7 @@
         <label for="">The Author of Review Project</label>
         <input type="text" placeholder="" name="authorreview_project">
         <br><br><br>
-        <button type="submit">Send</button>
+        <button type="submit">See All Reviews</button>
     </form>
     
 </body>

@@ -6,7 +6,7 @@
     <title>Executive Screen</title>
 </head>
 <body>
-    <form action="{{  route('')  }}" method="POST">
+    <form action="{{  route('newuser')  }}" method="POST">
         @csrf
         <label for="">Name </label>
         <input type="text" placeholder="Name" name="name_user">
@@ -21,7 +21,10 @@
         <input type="text" placeholder="Role" name="role_user">
         <br><br>
         <label for="">Inserted Project User</label>
-        <input type="text" placeholder="currentproject" name="insertedproject_user">
+        <input type="text" placeholder="insertedproject" name="insertedproject_user">
+        <br><br>
+        <label for="">Personal Reviews</label>
+        <input type="text" placeholder="personalreviews" name="personalreviews_user">
         <br><br><br>
         <button type="submit">Send</button>
     </form>

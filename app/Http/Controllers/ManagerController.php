@@ -36,7 +36,6 @@ class ManagerController extends Controller
 
         if($name == 'name' && $hierarchy == 'manager'){
             Squad::read([
-                "name" =>$request->name_user,
                 "projectreviews" =>$request->projectreviews_project,
                 "reviewsofsquad" =>$request->reviewsofsquad_squad,
                 "personalreviews" =>$request->personalreviews_personal
