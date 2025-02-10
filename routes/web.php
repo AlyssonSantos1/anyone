@@ -30,9 +30,16 @@ Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->
 // Routes Only can acess by Executives in the Company
 
 Route::get('/manager/trade-member',[ExecutiveController::class, 'swapuser']);
-Route::post('/manager/trade-member',[ExecutiveController::class, 'swapuser'])->name('trademembers');
+Route::put('/manager/trade-member',[ExecutiveController::class, 'swapuser'])->name('trademember');
 Route::get('/manager/seeallreviews',[ExecutiveController::class, 'avaliation']);
 // Routes Only can acess by Managers in the Company
+
+
+Route::get('/advisors/give-review',[ExecutiveController::class, 'newreview']);
+Route::post('/advisors/give-review',[ExecutiveController::class, 'newreview'])->name('newestreview');
+Route::get('/advisors/edit-review',[ExecutiveController::class, 'avaliation'])->name('reviewedited');
+//// Routes Only can acess by Advisors in the Company
+
 
 
 

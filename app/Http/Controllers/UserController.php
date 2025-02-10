@@ -7,42 +7,47 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function trash (Request $request){
-        $Squad = $request->squad;
-        Squad::delete([
-            "review" =>$request->review_user,
-            
-        ]);
-        // Funcao que todos os usuarios dos times podem deletar as reviews
+        $member = $request->input('name');
+        $member = $request->input('hierarchy');
+        if($member == 'name' AND $hierarchy == 'users'){
+            Member::delete([
+                "review" =>$request->review_user,
+                
+            ]);
 
-        return view('Your review has been deleted');
+            return "The review was deleted";
+
+        }else{
+
+            return "The review cannot Deleted";
+        }
+
+            return view('users');
+
+
     }
 
-    public function edit (Request $request, id $id){
-        $Squad = $request->squad;
-        Squad::edit([
-            "review" =>$request->review_user,
-            
-        ]);
+    public function edit (Request $request){
+        $member = $request->input('name');
+        $member = $request->input('hierarchy');
+        if($member == 'name' AND $hierarchy == 'users'){
+            Member::edit([
+                "review" =>$request->review_user,
+                
+            ]);
 
-        return view('Your review has been edited');
-        //edit reviews deles mesmo
+            return "The review was deleted";
+
+        }else{
+
+            return "The review cannot Deleted";
+        }
+
+            return view('editedusers');
+            
+
     }
     
-    public function avaliation (Request $request, insertedproject $insertedproject){
-        $Squad = $request->squad;
-        Squad::read([
-            "name" =>$request->name_user,
-            "review" =>$request->review_user,
-            "projectname" =>$request->projectname_user,
-            "reviews" =>$request->reviews_team
-
-        ]);
-
-        return view('the reviews has been authorized');
-        // A funcao em que podem ver as avaliacoes dos projetos do time e deles mesmos
-        
-    }
-
 
     
 }

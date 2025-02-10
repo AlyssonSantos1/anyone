@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 namespace App\Http\Controllers;
 
@@ -12,7 +12,7 @@ class TeamController extends Controller
 
     public function eyes (Request $request){
         $Squad = $request->squad;
-        Squad::vision([
+        Squad::read([
             "name" =>$request->name_user,
             "email" =>$request->email_user,
             "role" =>$request->role_user,
@@ -41,4 +41,4 @@ class TeamController extends Controller
 
 }
 
-
+ -->
