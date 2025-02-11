@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('bridges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('squad_id');
-            $table->foreignId('project_id');
+            $table->foreignId('squad_id')->constrained();
+            $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
     }
