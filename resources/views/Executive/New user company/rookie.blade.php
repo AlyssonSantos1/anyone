@@ -7,7 +7,7 @@
 </head>
 <body>
     <form action="{{  route('newuser')  }}" method="POST">
-
+        @csrf
         <label for="">Name </label>
         <input type="text" placeholder="Name" name="name_user">
         <br><br>

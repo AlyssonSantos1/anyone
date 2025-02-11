@@ -9,6 +9,7 @@ class UserController extends Controller
     public function trash (Request $request){
         $member = $request->input('name');
         $member = $request->input('hierarchy');
+        
         if($member == 'name' AND $hierarchy == 'users'){
             Member::delete([
                 "review" =>$request->review_user,

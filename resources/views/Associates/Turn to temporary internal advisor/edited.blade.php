@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Associates Area</title>
+    <title>Swap for Temporary Internal Advisor</title>
 </head>
 <body>
-    <form action="{{  route  ('',$>$id )  }}" method="POST">
+    <form action="{{  route  ('trademember',$member->id )  }}" method="POST">
         @csrf
         @method("PUT")
             
         <label for="">Name </label>
-        <input type="text" placeholder="Name" name="name_user">
+        <input type="text" placeholder="Name" name="{{$name->name}}">
         <br><br>
         <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy" name="hierarchy_user">
+        <input type="text" placeholder="Hierarchy" name="{{$hierarchy->hierarchy}}">
         <br><br>
         <label for="">Current Role</label>
-        <input type="text" placeholder="current role" name="role_user">
+        <input type="text" placeholder="current role" name="{{$role->role}}">
         <br><br><br>
         <button type="submit">Send</button>
     </form>
-    
-
 </body>
 </html>

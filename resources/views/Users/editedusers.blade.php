@@ -6,7 +6,7 @@
     <title>Users Area</title>
 </head>
 <body>
-    <form action="{{  route  ('',$>$id )  }}" method="POST">
+    <form action="{{  route ('edited-review')   }}" method="POST">
         @csrf
         @method("PUT")
             

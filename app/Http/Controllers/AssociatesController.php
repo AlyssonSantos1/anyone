@@ -44,7 +44,7 @@ class AssociatesController extends Controller
             return 'Acess Denied, Only Associates Can see the Reviews';
         }
 
-        return view('associates');
+        return view('advisor');
 
 
     }

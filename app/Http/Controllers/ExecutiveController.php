@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 class ExecutiveController extends Controller
 {
     public function newmember (Request $request){
-        $member = $request->input('name');
-        $member = $request->input('hierarchy');
+        $request->name_user;
+        $request->hierarchy_user;
+        
 
-        if ($name == 'name' &&  $hierarchy == 'executive'){
+        if ($request == "name" &&  $request == "executive" ){
 
             Member::create([
                 "name" =>$request->name_user,
@@ -20,9 +21,10 @@ class ExecutiveController extends Controller
                 "insertedproject" =>$request->insertedproject_user,
                 "personalreviews" =>$request->personalreviews_user,
                 "ownerofreview" =>$request->ownerofreview_user                
-    
+                
     
             ]);
+           
 
             return 'The operation are authorized. You are an Executive';
             
@@ -31,7 +33,9 @@ class ExecutiveController extends Controller
             return 'No Permission Executive Only';
 
         } 
-        return view('newuser');  
+        return view('newuser');
+        
+    
 
     }
 

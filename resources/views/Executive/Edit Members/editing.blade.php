@@ -7,7 +7,8 @@
 </head>
 <body>
     <form action="{{  route  ('memberedited', $member->id )  }}" method="POST">
-        
+        @csrf
+        @method("PUT")
         <label for="">Name </label>
         <input type="text" placeholder="Name" name="{{$name->name}}">
         <br><br>

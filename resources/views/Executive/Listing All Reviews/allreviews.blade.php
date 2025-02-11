@@ -7,6 +7,7 @@
 </head>
 <body>
     <form action="{{  route  ('', )  }}" method="POST">
+        
         <label for="">Name of the Writer Review of Squad </label>
         <input type="text" placeholder="" name="nameofwriterreview_project">
         <br><br>

@@ -6,11 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{  route('')  }}" method="POST">
-        @csrf
-        <label for="">TeamReviews</label>
-        <input type="text" placeholder="ReviewsofTeam" name="reviewsofsquad" >
-        <br><br>
+    <form action="{{  route('reviewssofaround')  }}" method="POST">
+        
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="reviews_project">
         <br><br><br>
