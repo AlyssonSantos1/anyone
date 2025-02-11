@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\http\ExecutiveController;
-use App\http\AdvisorController;
-use App\http\AssociatesController;
-use App\http\ManagerController;
-use App\http\UserCont;
+use App\Http\ExecutiveController;
+use App\Http\AdvisorController;
+use App\Http\AssociatesController;
+use App\Http\ManagerController;
+use App\Http\UserController;
 
 
 /*
@@ -23,8 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/',[ExecutiveController::class, 'index']);
-// Route of Index
 
 Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
 Route::post('/executive/add-users',[ExecutiveController::class, 'newmember'])->name('newuser');
@@ -34,6 +32,7 @@ Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']
 Route::post('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('buildproject');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->name('vision360');
 // Routes Only can acess by Executives in the Company
+
 
 Route::get('/manager/trade-member/{id}',[ManagerController::class, 'swapuser']);
 Route::put('/manager/trade-member/{id}',[ManagerController::class, 'swapuser'])->name('trademember');
