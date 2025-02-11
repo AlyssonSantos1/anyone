@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\http\ExecutiveController;
+use App\http\AdvisorController;
+use App\http\AssociatesController;
+use App\http\ManagerController;
+use App\http\UserCont;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,24 +35,24 @@ Route::post('/executive/project-build',[ExecutiveController::class, 'newproject'
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->name('vision360');
 // Routes Only can acess by Executives in the Company
 
-Route::get('/manager/trade-member/{id}',[ExecutiveController::class, 'swapuser']);
-Route::put('/manager/trade-member/{id}',[ExecutiveController::class, 'swapuser'])->name('trademember');
-Route::get('/manager/seeallreviews',[ExecutiveController::class, 'avaliation']);
+Route::get('/manager/trade-member/{id}',[ManagerController::class, 'swapuser']);
+Route::put('/manager/trade-member/{id}',[ManagerController::class, 'swapuser'])->name('trademember');
+Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation']);
 // Routes Only can acess by Managers in the Company
 
-Route::get('/advisors/give-review',[ExecutiveController::class, 'newreview']);
-Route::post('/advisors/give-review',[ExecutiveController::class, 'newreview'])->name('newestreview');
-Route::get('/advisors/edit-review',[ExecutiveController::class, 'avaliation'])->name('reviewedited');
+Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
+Route::post('/advisors/give-review',[AdvisorController::class, 'newreview'])->name('newestreview');
+Route::get('/advisors/edit-review',[AdvisorController::class, 'avaliation'])->name('reviewedited');
 // Routes Only can acess by Advisors in the Company
 
-Route::get('/associates/swap-role',[ExecutiveController::class, 'swapuser']);
-Route::post('/associates/swap-role',[ExecutiveController::class, 'swapuser'])->name('tradeforrole');
-Route::get('/advisors/edit-review',[ExecutiveController::class, 'avaliation'])->name('reviewedited');
+Route::get('/associates/swap-role',[AssociatesController::class, 'swapuser']);
+Route::post('/associates/swap-role',[AssociatesController::class, 'swapuser'])->name('tradeforrole');
+Route::get('/advisors/edit-review',[AssociatesController::class, 'avaliation'])->name('reviewedited');
 // Routes Only can acess by Associates in the Company
 
-Route::get('/user/swap-role',[ExecutiveController::class, 'trash']);
-Route::get('/user/swap-role',[ExecutiveController::class, 'change']);
-Route::put('/user/swap-role',[ExecutiveController::class, 'change'])->name('edited-review');
+Route::get('/user/swap-role',[UserController::class, 'trash']);
+Route::get('/user/swap-role',[UserController::class, 'change']);
+Route::put('/user/swap-role',[Usercontroller::class, 'change'])->name('edited-review');
 // Routes Only can acess by Users in the Company
 
 
