@@ -8,9 +8,9 @@
 <body>
     <h1>Welcome to the Professional Syndicate</h1>
     <label for="">Select the Options Down</label>
-    <input type="button" placeholder ="" name="name" >
+    <input type="button" placeholder ="Enter Here" name="" >
     <br>
-    <label for="">E-mail</label>
+    <label for=""></label>
     <input type="text"  placeholder = "E-mail"  name="email" >
     <br>
     

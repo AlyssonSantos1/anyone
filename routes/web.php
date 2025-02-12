@@ -25,18 +25,18 @@ Route::get('/', function () {
 
 
 Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
-Route::post('/executive/add-users',[ExecutiveController::class, 'newmember'])->name('newuser');
+Route::post('/executive/add-users',[ExecutiveController::class, 'sucess'])->name('newuser');
 Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'edit']);
-Route::put('/executive/members-edited/{id}',[ExecutiveController::class, 'edit'])->name('memberedited');
+Route::put('/executive/members-edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
-Route::post('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('buildproject');
+Route::post('/executive/project-build',[ExecutiveController::class, 'building'])->name('buildproject');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->name('vision360');
 // Routes Only can acess by Executives in the Company
 
 
 Route::get('/manager/trade-member/{id}',[ManagerController::class, 'swapuser']);
-Route::put('/manager/trade-member/{id}',[ManagerController::class, 'swapuser'])->name('trademember');
-Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation']);
+Route::put('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('trademember');
+Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation'])->name('eachreview');
 // Routes Only can acess by Managers in the Company
 
 Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
@@ -55,7 +55,7 @@ Route::get('/user/delete-review',[UserController::class, 'trash']);
 Route::get('/user/edit-review',[UserController::class, 'change']);
 Route::put('/user/edited-review',[Usercontroller::class, 'change'])->name('edited-review');
 // Routes Only can acess by Users in the Company
-Route::get('/advisors/edit-review',[AssociatesController::class, 'avaliation'])->name('reviewedited')
+
 
 
 

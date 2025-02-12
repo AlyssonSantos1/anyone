@@ -29,6 +29,11 @@ class ManagerController extends Controller
 
     }
 
+    public function traded(Request $request, id $id){
+        $member = Member::findorFail($id);
+        return view('swapmembers', compact('member'));
+    }
+
 
     public function avaliation (Request $request){
         $name = $request->input('name');
@@ -47,8 +52,12 @@ class ManagerController extends Controller
             return 'Acess Denied, Manager Only Authorized to do';
         }
 
-        return view('associates');
-
+        return view('seeallreviews');
 
     }
+
+    public function thanks(){
+        return view('seeallreviews');
+    }
+    
 }

@@ -33,9 +33,13 @@ class ExecutiveController extends Controller
             return 'No Permission Executive Only';
 
         } 
-        return view('newuser');
-        
+        return view('newuser');     
+
+    }
+
     
+    public function sucess (){
+        return view('rookie');
 
     }
 
@@ -67,6 +71,11 @@ class ExecutiveController extends Controller
         return view('editmember');
     }
 
+    public function changed(request $request, id $id){
+        $member = Member::findorFail($id);
+        return view('changeduser', compact('member'));
+    }
+
     public function newproject (Request $request){
         $project = $request->input('name');
         $project = $request->input('hierarchy');
@@ -87,8 +96,12 @@ class ExecutiveController extends Controller
     }else{
         return 'Acess Denied, Executive Only';
     }
-        return view('newproject');
+        return view('building');
     
+    }
+
+    public function congrats (){
+        return view('newproject');
     }
 
 
