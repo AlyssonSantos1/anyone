@@ -26,10 +26,10 @@ Route::get('/', function () {
 
 Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
 Route::post('/executive/added',[ExecutiveController::class, 'sucess'])->name('newuser');
-Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'edition']);
-Route::put('/executive/members-edit/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
-Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
-Route::post('/executive/project-build',[ExecutiveController::class, 'building'])->name('buildproject');
+Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'changed']);
+Route::put('/executive/members-edit/{id}',[ExecutiveController::class, 'edition'])->name('memberedited');
+Route::get('/executive/project-build',[ExecutiveController::class, 'congrats']);
+Route::post('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('projectcreated');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->name('vision360');
 // Routes Only can acess by Executives in the Company
 

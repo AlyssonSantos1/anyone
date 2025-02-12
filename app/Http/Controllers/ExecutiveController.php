@@ -52,7 +52,7 @@ class ExecutiveController extends Controller
         
     }
 
-    public function edition (Request $request, id $id){
+    public function edition (Request $request, int $id){
         {
         $member = Member::findorFail($id);
         return view('Executive.EditMembers.editmember');     
@@ -62,7 +62,7 @@ class ExecutiveController extends Controller
         
     
 
-    public function changed(request $request){
+    public function changed(Request $request, int $id){
 
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
@@ -91,11 +91,21 @@ class ExecutiveController extends Controller
     }        
     }
 
-    public function newproject (Request $request){
-       
+    public function newproject (Request $request)
+       {
+        return view('Executive.BuildNewProjects.newproject');
+       }
+    
+
+    public function congrats (Request $request){
+
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user; 
+            $hierarchy_user = $request->hierarchy_user;           
+
+            
+            if ($hierarchy_user === 'executive'){
+            
             Project::create([
                 "projectname" =>$request->projectname_project,
                 "managername" =>$request->managername_project,
@@ -105,27 +115,31 @@ class ExecutiveController extends Controller
                 "reviews" =>$request->reviews_project
     
             ]);  
+        }
             
-            return 'New Project has been created';
+            return 'The Project has been created';
         
-    }else{
-        return 'Acess Denied, Executive Only';
-    }
-        return view('building');
-    
-    }
+        } else {
 
-    public function congrats (){
-        return view('newproject');
+            return 'Acess Denied, Executive Only';
+            
+        }  
+
+        
     }
 
 
 
     public function vision (Request $request){
-        $member = $request->input('name');
-        $member = $request->input('hierarchy');
 
-        if ($member == 'name' && $member == 'hierarchy'){
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
+            
+
+            
+            if ($hierarchy_user === 'executive'){
+            
             Squad::read([
                 
                 "nameofwriterreview" =>$request->nameofwriterreview_project,
@@ -140,7 +154,8 @@ class ExecutiveController extends Controller
         }else{
             return 'Acess Denied, Executive Only';
         }
-            return view('sawreview');     
+            return view('allreviews');   
+        }
 
     }
 
