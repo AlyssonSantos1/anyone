@@ -6,8 +6,7 @@
     <title>Executive Screen</title>
 </head>
 
-<body>
-   
+<body>   
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Member;
 
 use Illuminate\Http\Request;
 
@@ -46,14 +47,28 @@ class ExecutiveController extends Controller
             return 'No Permission. Executive Only';
         }
 
+        //create finish here
+
         
     }
 
-    public function edit (Request $request){
-        $member = $request->input('name');
-        $member = $request->input('hierarchy');
+    public function edition (Request $request, id $id){
+        {
+        $member = Member::findorFail($id);
+        return view('Executive.EditMembers.editmember');     
+        } 
+      
+    }
+        
+    
 
-        if ($member == 'name' &&  $member == 'executive'){
+    public function changed(request $request){
+
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
+
+            if ($hierarchy_user === 'executive'){
 
             Member::edit([
                 "name" =>$request->name_user,
@@ -71,22 +86,16 @@ class ExecutiveController extends Controller
         }else{
 
             return 'No Permission to edit, Executive Only';
-
-        }          
         
-        return view('editmember');
-    }
-
-    public function changed(request $request, id $id){
-        $member = Member::findorFail($id);
-        return view('changeduser', compact('member'));
+        }  
+    }        
     }
 
     public function newproject (Request $request){
-        $project = $request->input('name');
-        $project = $request->input('hierarchy');
-
-        if ($project == 'name' &&  $project == 'executive'){
+       
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user; 
             Project::create([
                 "projectname" =>$request->projectname_project,
                 "managername" =>$request->managername_project,
