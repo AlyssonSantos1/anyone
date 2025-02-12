@@ -39,11 +39,11 @@ class ExecutiveController extends Controller
             ]);
            
         }
-            return redirect()->route('newuser')->with('sucess', 'The user is created!');
+            return 'The user is created!';
             
         } else {
 
-            return back()->with('error', 'No Permission. Executive Only');
+            return 'No Permission. Executive Only';
         }
 
         
