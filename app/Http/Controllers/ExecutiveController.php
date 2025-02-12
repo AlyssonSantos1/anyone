@@ -6,18 +6,16 @@ use Illuminate\Http\Request;
 
 class ExecutiveController extends Controller
 {
-    public function newmember (Request $request){
-        $request->name_user;
-        $request->hierarchy_user;
-
+    public function newmember (Request $request){      
         
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
+            
 
-        if ($request->has('name') && $request->has('executive') == '') {
-
-            // $member = new Member();
-            // $member->name = $request->input('name');
-            // $member->hierarchy = $request->input('hierarchy');
-            // $team->save();
+            
+            if ($hierarchy_user === 'executive'){
+            
 
             Member::create([
                 "name" =>$request->name_user,
@@ -31,18 +29,18 @@ class ExecutiveController extends Controller
     
             ]);
            
-
-            return 'The operation are authorized. You are an Executive';
             
-        }else{
+            return redirect('The operation are authorized. You are an Executive')->route('newmember') ;
+            
+        } else {
 
-            return 'No Permission Executive Only';
+            return back()->with('error', 'No Permission. Executive Only');
+        }
 
-        } 
-        return view('newuser');     
+            return view('newuser');
+        }
 
     }
-
     
     public function sucess (){
         return view('rookie');

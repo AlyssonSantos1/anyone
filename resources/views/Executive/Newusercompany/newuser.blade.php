@@ -6,13 +6,13 @@
     <title>Executive Screen</title>
 </head>
 <body>
-    <form action="{{  route('newuser')  }}" method="POST">
+    <form action="{{  route('newmember')  }}" method="POST">
         @csrf
         <label for="">Name </label>
-        <input type="text" placeholder="Name" name="name_user">
+        <input type="text" placeholder="Enter your name" name="name_user">
         <br><br>
         <label for="">E-mail</label>
-        <input type="text" placeholder="email" name="email_user" >
+        <input type="text" placeholder="Enter your hierarchy" name="email_user" >
         <br><br>
         <label for="">Hierarchy</label>
         <input type="text" placeholder="Hierarchy" name="hierarchy_user">

@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 
 Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
-Route::post('/executive/add-users',[ExecutiveController::class, 'sucess'])->name('newuser');
+Route::post('/executive/added',[ExecutiveController::class, 'sucess'])->name('newuser');
 Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'edit']);
 Route::put('/executive/members-edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
