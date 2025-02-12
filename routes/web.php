@@ -40,9 +40,9 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation'])->n
 // Routes Only can acess by Managers in the Company
 
 Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
-Route::post('/advisors/give-review',[AdvisorController::class, 'newreview'])->name('newestreview');
+Route::post('/advisors/give-review',[AdvisorController::class, 'newest'])->name('newestreview');
 Route::get('/advisors/review-team',[AdvisorController::class, 'pyramids']);
-Route::post('/advisors/reviews',[AdvisorController::class, 'pyramids'])->name('reviewssofaround');
+Route::post('/advisors/reviews',[AdvisorController::class, 'bird'])->name('reviewssofaround');
 // Routes Only can acess by Advisors in the Company
 
 Route::get('/associates/swap-role',[AssociatesController::class, 'swapuser']);

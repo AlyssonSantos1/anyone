@@ -9,9 +9,15 @@ class ExecutiveController extends Controller
     public function newmember (Request $request){
         $request->name_user;
         $request->hierarchy_user;
+
         
 
-        if ($request == "name" &&  $request == "executive" ){
+        if ($request->has('name') && $request->has('executive') == '') {
+
+            // $member = new Member();
+            // $member->name = $request->input('name');
+            // $member->hierarchy = $request->input('hierarchy');
+            // $team->save();
 
             Member::create([
                 "name" =>$request->name_user,

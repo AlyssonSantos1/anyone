@@ -28,6 +28,10 @@ class AdvisorController extends Controller
         return view('givereview');  
     }
 
+    public function newest (){
+        return view('givingreviews');
+    }
+
 
     public function pyramids (Request $request){
         $name = $request->input('name');
@@ -49,6 +53,10 @@ class AdvisorController extends Controller
 
         } 
         return view('projectreviews');  
+    }
+
+    public function bird(){
+        return view('acomplished');
     }
 
 

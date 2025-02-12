@@ -28,6 +28,12 @@ class AssociatesController extends Controller
 
     }
 
+    public function greatest(request $request, int $id){
+        $member = Member::findorFail($id);
+        return view('associates');
+
+    }
+
     public function visiondiamond (Request $request){
         $name = $request->input('name');
         $hierarchy = $request->input('hierarchy');
@@ -47,6 +53,10 @@ class AssociatesController extends Controller
         return view('advisor');
 
 
+    }
+
+    public function swan(){
+        return view('garden');
     }
 
 
