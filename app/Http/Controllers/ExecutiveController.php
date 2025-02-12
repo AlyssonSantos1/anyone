@@ -6,8 +6,17 @@ use Illuminate\Http\Request;
 
 class ExecutiveController extends Controller
 {
-    public function newmember (Request $request){      
-        
+    public function newmember (Request $request)      
+    {
+        return view('Executive.Newusercompany.newuser');
+
+    }
+
+
+    
+    public function sucess (Request $request){
+
+
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
             $hierarchy_user = $request->hierarchy_user;
@@ -29,22 +38,15 @@ class ExecutiveController extends Controller
     
             ]);
            
-            
-            return redirect('The operation are authorized. You are an Executive')->route('newmember') ;
+        }
+            return redirect()->route('newuser')->with('sucess', 'The user is created!');
             
         } else {
 
             return back()->with('error', 'No Permission. Executive Only');
         }
 
-            return view('newuser');
-        }
-
-    }
-    
-    public function sucess (){
-        return view('rookie');
-
+        
     }
 
     public function edit (Request $request){
