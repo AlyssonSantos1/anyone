@@ -6,7 +6,7 @@
     <title>Swap for Temporary Internal Advisor</title>
 </head>
 <body>
-    <form action="{{  route  ('trademember',$member->id )  }}" method="POST">
+    <form action="{{  route  ('tradetoadvisor',$member->id )  }}" method="POST">
         @csrf
         @method("PUT")
             

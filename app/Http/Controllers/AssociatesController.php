@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 class AssociatesController extends Controller
 {
-    public function swapuser (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+    public function swapuser (Request $request, int $id){
+        
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
 
-        if($name == 'name' && $hierarchy == 'manager' OR $hierarchy == 'associates'){
+            if ($hierarchy_user === 'associates'){
             Squad::edit([
                 "name" =>$request->name_user,
                 "currentproject" =>$request->currentproject_user,
@@ -23,13 +25,14 @@ class AssociatesController extends Controller
         }else{
             return 'Acess Denied, Executive Only';
         }
-            return view('edited');
+        
+    }
         
 
     }
 
     public function greatest(request $request, int $id){
-        $member = Member::findorFail($id);
+        $squad = Squad::findorFail($id);
         return view('associates');
 
     }
