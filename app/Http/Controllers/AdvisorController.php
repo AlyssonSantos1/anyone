@@ -6,30 +6,32 @@ use Illuminate\Http\Request;
 
 class AdvisorController extends Controller
 {
-    public function newreview (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+    public function newreview (Request $request)
+    {
+        return view('InternalAdvisors.WriteReview.givereviews');
+    }
 
-        if ($name == 'name' &&  $hierarchy == 'InternalAdvisor'){
+    public function newest (){  
+
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
+            
+            if ($hierarchy_user === 'InternalAdvisor'){
 
             Squad::create([
                 
                 "projectreviews" =>$request->projectreviews_project
     
             ]);
-
+        }
             return 'Write the Review of Project';
             
         }else{
 
             return 'No Permission You are not an Internal Advisor';
 
-        } 
-        return view('givereview');  
-    }
-
-    public function newest (){
-        return view('givingreviews');
+        }
     }
 
 

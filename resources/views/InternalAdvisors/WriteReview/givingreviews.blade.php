@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{  route('newestreview')  }}" method="POST">
+    <form action="{{  route('wrote')  }}" method="POST">
         
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="reviews_project">

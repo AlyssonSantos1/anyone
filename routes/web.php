@@ -30,7 +30,7 @@ Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'changed'
 Route::put('/executive/members-edit/{id}',[ExecutiveController::class, 'edition'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'congrats']);
 Route::post('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('projectcreated');
-Route::get('/executive/see-everything',[ExecutiveController::class, 'vision'])->name('vision360');
+Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
 // Routes Only can acess by Executives in the Company
 
 
@@ -40,7 +40,7 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation'])->n
 // Routes Only can acess by Managers in the Company
 
 Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
-Route::post('/advisors/give-review',[AdvisorController::class, 'newest'])->name('newestreview');
+Route::post('/advisors/give-review',[AdvisorController::class, 'newest'])->name('wrote');
 Route::get('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 Route::post('/advisors/reviews',[AdvisorController::class, 'bird'])->name('reviewssofaround');
 // Routes Only can acess by Advisors in the Company

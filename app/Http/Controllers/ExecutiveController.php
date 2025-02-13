@@ -93,7 +93,8 @@ class ExecutiveController extends Controller
 
     public function newproject (Request $request)
        {
-        return view('Executive.BuildNewProjects.newproject');
+        $squads = Squadall();
+        return view('Executive.BuildNewProjects.newproject', compact('squads'));
        }
     
 
