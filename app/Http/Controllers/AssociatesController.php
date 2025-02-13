@@ -37,29 +37,31 @@ class AssociatesController extends Controller
 
     }
 
-    public function visiondiamond (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+    public function glasses (Request $request){
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
 
-        if($name == 'name' && $hierarchy == 'manager'){
+            if ($hierarchy_user === 'Associates'){
             Squad::read([
                 "projectreviews" =>$request->projectreviews_project,
                 "personalreviews" =>$request->personalreviews_personal
                 
             ]);
+        }
             return 'The reviews now can be acess';
 
         }else{
+
             return 'Acess Denied, Only Associates Can see the Reviews';
+            
         }
-
-        return view('advisor');
-
+    
 
     }
 
-    public function swan(){
-        return view('garden');
+    public function swan(Request $request){
+        return view('Associates.ProjectThemselves.advisors2');
     }
 
 

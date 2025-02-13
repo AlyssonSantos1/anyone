@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function trash (Request $request){
-        $member = $request->input('name');
-        $member = $request->input('hierarchy');
-        
-        if($member == 'name' AND $hierarchy == 'users'){
+    public function turndown (Request $request){
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
+
+            if ($hierarchy_user === 'Users'){
             Member::delete([
                 "review" =>$request->review_user,
                 
             ]);
-
+        }
             return "The review was deleted";
 
         }else{
@@ -23,29 +24,36 @@ class UserController extends Controller
             return "The review cannot Deleted";
         }
 
-            return view('users');
-
-
     }
 
+
+    public function trash(Request $request){
+        return view('Users.Exclusion.deleteusers');
+    }
+
+
     public function change (Request $request){
-        $member = $request->input('name');
-        $member = $request->input('hierarchy');
-        if($member == 'name' AND $hierarchy == 'users'){
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
+
+            if ($hierarchy_user === 'Users'){
             Member::edit([
                 "review" =>$request->review_user,
                 
             ]);
-
-            return "The review was deleted";
+        }
+            return "The review was edited";
 
         }else{
 
-            return "The review cannot Deleted";
+            return "The review cannot Edit";
         }
+    }
 
-            return view('editedusers');
-            
+    public function edited (Request $request, int $id){
+        $member = Member::findorFail($id);
+        return view('Users.EditUser.deleteusers');            
 
     }
     

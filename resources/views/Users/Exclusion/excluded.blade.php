@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users Space</title>
+    <title>Users Area</title>
 </head>
 <body>
-    <form action="{{  route ('edited-review')   }}" method="POST">
+    <form action="{{  route ('Deleted')   }}" method="POST">
         @csrf
-        <label for=""> Review made by yourself</label>
+        @method("PUT")
+            
+        <label for=""> Edited Review Yourself</label>
         <input type="text" placeholder="Yourself Reviews" name="review_user">
         <br><br><br>
-        <button type="submit">Eyes</button>
+        <button type="submit">Delete</button>
     </form>
+    
+
 </body>
 </html>

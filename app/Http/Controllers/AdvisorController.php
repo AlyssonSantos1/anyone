@@ -11,7 +11,7 @@ class AdvisorController extends Controller
         return view('InternalAdvisors.WriteReview.givereviews');
     }
 
-    public function newest (){  
+    public function newest (Request $request){  
 
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
@@ -24,10 +24,11 @@ class AdvisorController extends Controller
                 "projectreviews" =>$request->projectreviews_project
     
             ]);
+        
         }
-            return 'Write the Review of Project';
+            return 'The Review is Writed';
             
-        }else{
+        } else {
 
             return 'No Permission You are not an Internal Advisor';
 
@@ -60,10 +61,6 @@ class AdvisorController extends Controller
         
     }
 
-    public function bird()
-    {
-        return view('InternalAdvisors.seereviews.projectreview');
-    }
 
     
 

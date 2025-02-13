@@ -6,14 +6,14 @@
     <title>Users Area</title>
 </head>
 <body>
-    <form action="{{  route ('edited-review')   }}" method="POST">
+    <form action="{{  route ('Deleted')   }}" method="POST">
         @csrf
         @method("PUT")
             
         <label for=""> Edited Review Yourself</label>
         <input type="text" placeholder="Yourself Reviews" name="review_user">
         <br><br><br>
-        <button type="submit">Vision</button>
+        <button type="submit">Delete</button>
     </form>
     
 

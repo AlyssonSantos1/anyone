@@ -7,7 +7,7 @@
 </head>
 <body>
     <form action="{{  route('reviewssofaround')  }}" method="POST">
-        
+        @csrf
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="reviews_project">
         <br><br><br>
