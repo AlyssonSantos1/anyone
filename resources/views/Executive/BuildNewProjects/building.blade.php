@@ -6,21 +6,16 @@
     <title>Create New Project By Executive Only</title>
 </head>
 <body>
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
+    
     <form action="{{  route('projectcreated')  }}" method="POST">
         @csrf
         <label for="">Select the project</label>
         <select name="project" id="project">
             @foreach($squads as $squad)
-            <option value="{{$project->id}}"></option>
+            <option value="{{$squad->id}}"></option>
             @endforeach
         </select>
+        <br><br>
         
         <label for="">Name of the project </label>
         <input type="text" placeholder="projectname" name="project_team" require>

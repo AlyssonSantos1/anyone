@@ -36,10 +36,11 @@ class AdvisorController extends Controller
 
 
     public function pyramids (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
 
-        if ($name == 'name' &&  $hierarchy == 'InternalAdvisor'){
+            if ($hierarchy_user === 'executive'){
 
             Squad::read([
                 
@@ -53,14 +54,16 @@ class AdvisorController extends Controller
 
             return 'No Permission, You are not an Internal Advisor';
 
-        } 
-        return view('projectreviews');  
+            }
+        }
+        
     }
 
-    public function bird(){
+    public function bird()
+    {
         return view('acomplished');
     }
 
-
+    
 
 }

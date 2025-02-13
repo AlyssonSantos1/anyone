@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('role');
             $table->string('hierarchy');
-            $table->string('insertedproject');
-            $table->string('personalreviews');
-            $table->string('ownerofreview')->name();
+            $table->string('insertedproject')->nullable();
+            $table->string('personalreviews')->nullable();
+            $table->string('ownerofreview')->nullable();
 
             $table->timestamps();
         });

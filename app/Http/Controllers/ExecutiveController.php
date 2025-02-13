@@ -12,8 +12,6 @@ class ExecutiveController extends Controller
         return view('Executive.Newusercompany.newuser');
 
     }
-
-
     
     public function sucess (Request $request){
 
@@ -21,11 +19,8 @@ class ExecutiveController extends Controller
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
             $hierarchy_user = $request->hierarchy_user;
-            
 
-            
             if ($hierarchy_user === 'executive'){
-            
 
             Member::create([
                 "name" =>$request->name_user,
@@ -93,7 +88,7 @@ class ExecutiveController extends Controller
 
     public function newproject (Request $request)
        {
-        $squads = Squadall();
+        $squads = Squad::all();
         return view('Executive.BuildNewProjects.newproject', compact('squads'));
        }
     
