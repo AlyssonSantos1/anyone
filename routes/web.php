@@ -6,6 +6,7 @@ use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\AssociatesController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 
 /*
@@ -22,6 +23,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 
 Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
