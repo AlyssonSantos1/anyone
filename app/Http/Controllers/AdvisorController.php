@@ -49,7 +49,7 @@ class AdvisorController extends Controller
                 "projectreviews" =>$request->projectreviews_project
     
             ]);
-
+        }
             return 'See the Review of Project';
             
         }else{
@@ -59,9 +59,15 @@ class AdvisorController extends Controller
             }
         }
         
-    }
+
+        public function target(Request $request)
+        {
+            return view('InternalAdvisors.seereviews.projectreview');
+        }
+        
+}
 
 
     
 
-}
+

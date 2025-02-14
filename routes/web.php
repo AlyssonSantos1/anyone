@@ -41,11 +41,12 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation'])->n
 
 Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
 Route::post('/advisors/give-review',[AdvisorController::class, 'newest'])->name('wrote');
-Route::get('/advisors/review-team',[AdvisorController::class, 'bird']);
+Route::get('/advisors/review-team',[AdvisorController::class, 'pyramids']);
+Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('everything');
 // Routes Only can acess by Advisors in the Company
 
-Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'greatest']);
-Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser'])->name('tradetoadvisor');
+Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser']);
+Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'greatest'])->name('tradetoadvisor');
 Route::get('/associates/review-team',[AssociatesController::class, 'swan']);
 Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewssofaround');
 // Routes Only can acess by Associates in the Company

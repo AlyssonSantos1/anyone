@@ -19,10 +19,10 @@ class AssociatesController extends Controller
                 "role" =>$request->role_user
     
             ]);
-
-        return 'The $name are swap of the $hierarchy to temporary internal advisor in the $project';
         
-        }else{
+        return 'The member are swap of the hierarchy to temporary internal advisor in the project';
+        
+        } else {
             return 'Acess Denied, Executive Only';
         }
         
@@ -31,10 +31,9 @@ class AssociatesController extends Controller
 
     }
 
-    public function greatest(request $request, int $id){
-        $squad = Squad::findorFail($id);
-        return view('associates');
-
+    public function gratest(Request $request, id $id){
+        $member = Member::findorFail($id);
+        return view('swapmembers', compact('member'));
     }
 
     public function glasses (Request $request){

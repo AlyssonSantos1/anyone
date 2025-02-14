@@ -6,8 +6,8 @@
     <title>Executive Space of Vision</title>
 </head>
 <body>
-    <form action="{{  route  ('', )  }}" method="POST">
-            
+    <form action="{{  route  ('everything')  }}" method="GET">
+        
         <label for="">Name of the Writer Review of Squad </label>
         <input type="text" placeholder="" name="nameofwriterreview_project">
         <br><br>
