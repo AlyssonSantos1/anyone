@@ -6,17 +6,10 @@
     <title>Professional Syndicate</title>
 </head>
 <body>
-    <h1>Welcome to the Professional Syndicate</h1>
-    <label for="">Select the Options Down</label>
-    <input type="button" placeholder ="Enter Here" name="" >
-    <br>
-    <label for=""></label>
-    <input type="text"  placeholder = "E-mail"  name="email" >
-    <br>
-    
-    <button type="submit">Send</button>
-
-    
-    
+    <h1>Professional Syndicate System</h1>
+    <br><br><br>
+    <label for="">Enter to system click Below</label>
+    <br><br>
+    <input type="button" value="ClickHere">
 </body>
 </html>
