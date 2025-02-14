@@ -25,6 +25,22 @@ Route::get('/', function () {
 });
 
 
+Route::get('/login', [UserController::class, 'loginform'])->name('login');
+//Login Route
+
+Route::post('/login', [UserController::class, 'loginok'])->name('loginsucess');
+
+//Routes for another roles and hierarchys 
+Route::get('/executive', [UserController::class, 'showExecutive'])->name('executivearea');
+Route::get('/manager', [UserController::class, 'showManager'])->name('Manager');
+Route::get('/internaladvisor', [UserController::class, 'showAssociates'])->name('Advisor');
+Route::get('/associates', [UserController::class, 'showInternalAdvisors'])->name('Associates');
+Route::get('/manager', [UserController::class, 'showDefault'])->name('Users');
+
+
+
+
+
 
 
 Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
