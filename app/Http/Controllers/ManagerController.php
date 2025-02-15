@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Squad;
 use App\Http\Member;
+
 
 
 class ManagerController extends Controller
@@ -14,23 +14,32 @@ class ManagerController extends Controller
         $name = $request->input('name');
         $hierarchy = $request->input('hierarchy');
 
-        if($name == 'name' && $hierarchy == 'manager' OR $hierarchy == 'associates'){
-            Squad::edit([
-                "reviewsofsquad" =>$request->reviewofsquad_squad,
-                "projectreviews" =>$request->projectreviews_projects,
-                "role" =>$request->role_user
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
+
+            if ($hierarchy_user === 'manager'){
+            Member::edit([
+
+                "hierarchy" =>$request->hierarchy_user,
+                "role" =>$request->role_user,
+                "insertedproject" =>$request->insertedproject_user,
     
             ]);
 
-        return 'The $name are swap of the $hierarchy to temporary internal advisor in the $project';
         
-        }else{
-            return 'Acess Denied, Executive Only';
-        }
-            return view('swapadvisors');
+            return 'The Manager or Associate turn to temporary internal advisor in the project';
         
+        } else {
 
+            return 'The Swap are not auhorized';
+
+        }
     }
+      
+    }
+
+    
 
     public function traded(Request $request, id $id){
         $member = Member::findorFail($id);
