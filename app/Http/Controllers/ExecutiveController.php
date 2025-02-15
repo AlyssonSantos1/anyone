@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Member;
+use App\Models\Project;
+use App\Models\Squad;
 
 use Illuminate\Http\Request;
 
@@ -75,7 +77,7 @@ class ExecutiveController extends Controller
                 "ownerofreview" =>$request->ownerofreview_user                
     
             ]);
-
+        }
             return 'The Member has been edited';
 
         }else{
@@ -83,13 +85,13 @@ class ExecutiveController extends Controller
             return 'No Permission to edit, Executive Only';
         
         }  
-    }        
+           
     }
 
     public function newproject (Request $request)
        {
-        $squads = Squad::all();
-        return view('Executive.BuildNewProjects.newproject', compact('squads'));
+        $project = Project::all();
+        return view('Executive.BuildNewProjects.newproject', compact('project'));
        }
     
 
@@ -97,8 +99,8 @@ class ExecutiveController extends Controller
 
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;           
-
+            $hierarchy_user = $request->hierarchy_user;         
+            $project = Project::all();
             
             if ($hierarchy_user === 'executive'){
             
@@ -108,7 +110,8 @@ class ExecutiveController extends Controller
                 "numberofmembers" =>$request->numberofmembers_project,
                 "goals" =>$request->goals_project,
                 "description" =>$request->description_project,
-                "reviews" =>$request->reviews_project
+                "reviews" =>$request->reviews_project,
+                "authorreview" =>$request->auhtorreview_project
     
             ]);  
         }

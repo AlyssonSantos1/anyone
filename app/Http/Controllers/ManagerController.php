@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Squad;
+use App\Http\Member;
+
 
 class ManagerController extends Controller
 

@@ -17,7 +17,7 @@
         @csrf
         <label for="">Select the project</label>
         <select name="project" id="project">
-            @foreach($squads as $squad)
+            @foreach($project as $project)
             <option value="{{$project->id}}"></option>
             @endforeach
         </select>

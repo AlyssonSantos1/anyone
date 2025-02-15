@@ -25,17 +25,17 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [UserController::class, 'loginform'])->name('login');
+Route::get('/login', [LoginController::class, 'loginform'])->name('login');
 //Login Route
 
-Route::post('/login', [UserController::class, 'loginok'])->name('loginsucess');
+Route::post('/login', [LoginController::class, 'loginok'])->name('loginsucess');
 
 //Routes for another roles and hierarchys 
-Route::get('/executive', [UserController::class, 'showExecutive'])->name('executivearea');
-Route::get('/manager', [UserController::class, 'showManager'])->name('Manager');
-Route::get('/internaladvisor', [UserController::class, 'showAssociates'])->name('Advisor');
-Route::get('/associates', [UserController::class, 'showInternalAdvisors'])->name('Associates');
-Route::get('/manager', [UserController::class, 'showDefault'])->name('Users');
+Route::get('/executive', [LoginController::class, 'showExecutive'])->name('executivearea');
+Route::get('/manager', [LoginController::class, 'showManager'])->name('Manager');
+Route::get('/internaladvisor', [LoginController::class, 'showAssociates'])->name('Advisor');
+Route::get('/associates', [LoginController::class, 'showInternalAdvisors'])->name('Associates');
+Route::get('/manager', [LoginController::class, 'showDefault'])->name('Users');
 
 
 
@@ -47,8 +47,8 @@ Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
 Route::post('/executive/added',[ExecutiveController::class, 'sucess'])->name('newuser');
 Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'changed']);
 Route::put('/executive/members-edit/{id}',[ExecutiveController::class, 'edition'])->name('memberedited');
-Route::get('/executive/project-build',[ExecutiveController::class, 'congrats']);
-Route::post('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('projectcreated');
+Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
+Route::post('/executive/project-build',[ExecutiveController::class, 'congrats'])->name('projectcreated');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
 // Routes Only can acess by Executives in the Company
 
