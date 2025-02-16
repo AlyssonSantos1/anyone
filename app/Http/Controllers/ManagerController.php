@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Member;
+use App\Http\Squad;
+use App\Http\Project;
 
 
 
@@ -36,7 +38,7 @@ class ManagerController extends Controller
 
         }
     }
-      
+
     }
 
     
@@ -48,10 +50,11 @@ class ManagerController extends Controller
 
 
     public function avaliation (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+            $name_user = $request->name_user;
+            $hierarchy_user = $request->hierarchy_user;
 
-        if($name == 'name' && $hierarchy == 'manager'){
+            if ($hierarchy_user === 'manager'){
             Squad::read([
                 "projectreviews" =>$request->projectreviews_project,
                 "reviewsofsquad" =>$request->reviewsofsquad_squad,
@@ -60,11 +63,12 @@ class ManagerController extends Controller
             ]);
             return 'The reviews now can be acess';
 
-        }else{
+        } else {
+
             return 'Acess Denied, Manager Only Authorized to do';
         }
 
-        return view('seeallreviews');
+    }
 
     }
 

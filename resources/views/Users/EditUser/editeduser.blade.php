@@ -9,8 +9,8 @@
     <form action="{{  route ('edited-review')   }}" method="POST">
         @csrf
         @method("PUT")
-        <label for=""> Review made by yourself</label>
-        <input type="text" placeholder="Yourself Reviews" name="review_user">
+        <label for=""> Edit yourself Review</label>
+        <input type="text" placeholder="Yourself Reviews" name="personalreviews_user">
         <br><br><br>
         <button type="submit">Edit User</button>
     </form>

@@ -8,10 +8,10 @@
 <body>
     <h1>Login</h1>
 
-    @if($error->any)
+    @if($member->any)
         <div>
             <ul>
-                @foreach($error->all() as $error)
+                @foreach($member->all() as $member)
                 <li>{{  $error  }}</li>
                 @endforeach
             </ul>

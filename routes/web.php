@@ -55,7 +55,8 @@ Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
 
 Route::get('/manager/trade-member/{id}',[ManagerController::class, 'swapuser']);
 Route::put('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('trademember');
-Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation'])->name('eachreview');
+Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation']);
+
 // Routes Only can acess by Managers in the Company
 
 Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
@@ -70,10 +71,10 @@ Route::get('/associates/review-team',[AssociatesController::class, 'swan']);
 Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewssofaround');
 // Routes Only can acess by Associates in the Company
 
-Route::get('/user/delete-review',[UserController::class, 'turndown']);
-Route::put('/user/edited-review',[Usercontroller::class, 'trash'])->name('Deleted');
-Route::get('/user/edit-review',[UserController::class, 'change']);
-Route::put('/user/edited-review',[Usercontroller::class, 'edited'])->name('edited-review');
+Route::get('/user/delete-review/',[UserController::class, 'trash']);
+Route::put('/user/delete-review',[Usercontroller::class, 'turndown'])->name('Deleted');
+Route::get('/user/edit-review/{id}',[UserController::class, 'edited']);
+Route::put('/user/edited-review/{id}',[Usercontroller::class, 'change'])->name('edited-review');
 // Routes Only can acess by Users in the Company
 
 

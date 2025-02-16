@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Models\Member;
-
 
 
 use Illuminate\Http\Request;
+use App\Http\Model\Member;
+
+
+
+
+
 
 class LoginController extends Controller
 {
@@ -22,7 +26,7 @@ class LoginController extends Controller
             'email' => 'required|email'
         ]);
 
-        $Member = member::where('email', $validated['email'])->where('email', $validated['email'])->first();
+        $member = member::where('email', $validated['email'])->where('email', $validated['email'])->first();
     
         if(!$member){
         

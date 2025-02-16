@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Project;
+use App\Http\Member;
+use App\Http\Squad;
+
+
+
 
 class AdvisorController extends Controller
 {
@@ -19,11 +25,12 @@ class AdvisorController extends Controller
             
             if ($hierarchy_user === 'InternalAdvisor'){
 
-            Squad::create([
+            Member::create([
                 
                 "projectreviews" =>$request->projectreviews_project
     
             ]);
+        
         
         }
             return 'The Review is Writed';
@@ -34,6 +41,7 @@ class AdvisorController extends Controller
 
         }
     }
+    
 
 
     public function pyramids (Request $request){

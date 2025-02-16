@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Member;
+use App\Http\Project;
+
 
 class AssociatesController extends Controller
 {
@@ -13,7 +16,7 @@ class AssociatesController extends Controller
             $hierarchy_user = $request->hierarchy_user;
 
             if ($hierarchy_user === 'associates'){
-            Squad::edit([
+            Member::edit([
                 "name" =>$request->name_user,
                 "currentproject" =>$request->currentproject_user,
                 "role" =>$request->role_user
@@ -23,7 +26,9 @@ class AssociatesController extends Controller
         return 'The member are swap of the hierarchy to temporary internal advisor in the project';
         
         } else {
+
             return 'Acess Denied, Executive Only';
+
         }
         
     }
@@ -31,7 +36,7 @@ class AssociatesController extends Controller
 
     }
 
-    public function gratest(Request $request, id $id){
+    public function map (Request $request){
         $member = Member::findorFail($id);
         return view('swapmembers', compact('member'));
     }
@@ -42,7 +47,7 @@ class AssociatesController extends Controller
             $hierarchy_user = $request->hierarchy_user;
 
             if ($hierarchy_user === 'Associates'){
-            Squad::read([
+            Member::read([
                 "projectreviews" =>$request->projectreviews_project,
                 "personalreviews" =>$request->personalreviews_personal
                 
