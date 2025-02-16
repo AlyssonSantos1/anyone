@@ -6,11 +6,11 @@
     <title>Users Space</title>
 </head>
 <body>
-    <form action="{{  route ('edited-review')   }}" method="POST">
+    <form action="{{  route ('editedbyuser')   }}" method="POST">
         @csrf
         @method("PUT")
         <label for=""> Edit yourself Review</label>
-        <input type="text" placeholder="Yourself Reviews" name="review_user">
+        <input type="text" placeholder="Yourself Reviews" name="personalreviews_user">
         <br><br><br>
         <button type="submit">Edit User</button>
     </form>

@@ -16,13 +16,13 @@ class UserController extends Controller
 
             if ($hierarchy_user === 'Users'){
             Member::delete([
-                "review" =>$request->review_user,
+                "personalreviews" =>$request->personalreviews_user,
                 
             ]);
         }
             return "The review was deleted";
 
-        }else{
+        } else {
 
             return "The review cannot Deleted";
         }
@@ -48,7 +48,7 @@ class UserController extends Controller
         }
             return "The review was edited";
 
-        }else{
+        } else {
 
             return "The review cannot Edit";
         }

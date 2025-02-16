@@ -8,17 +8,17 @@
 <body>
     <h1>Login</h1>
 
-    @if($member->any)
+    @if($errors->any)
         <div>
             <ul>
-                @foreach($member->all() as $member)
+                @foreach($errors->all() as $error)
                 <li>{{  $error  }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
 
-    <form action="{{ route('login.sent') }}">
+    <form action="{{ route('loginsucess') }}" method="POST">
         @csrf
         <label for="name">Name</label>
         <input type="text" name="name" required>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Http\Model\Member;
+use App\Models\Member;
 
 
 
@@ -16,26 +16,27 @@ class LoginController extends Controller
 
     public function loginform (Request $request)
     {
-        return view('login');
+        return view('Login.Login');
     }
 
     public function loginok (Request $request)
     {
+        
         $validated = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email'
         ]);
 
-        $member = member::where('email', $validated['email'])->where('email', $validated['email'])->first();
+        $member = Member::where('email', $validated['email'])->first();
     
         if(!$member){
         
             return 'The user not found';        
         }   
 
-        session::put('member', $Member);
+        session()->put('member', $member);
 
-        switch($Member->role)
+        switch($member->role)
         {
         case 'Executive':
             return 'You are an Executive, Acess Authorized!';
@@ -58,27 +59,27 @@ class LoginController extends Controller
 
     public function showExecutive()
     {
-        return view('OnlyExecutiveWorkSpace');
+        return view('Login.Login.blade.php');
     }
 
     public function showManager()
     {
-        return view('OnlyManagerWorkSpace');
+        return view('Login.Manager.blade.php');
     }
 
     public function showAssociates()
     {
-        return view('OnlyAssociatesrWorkSpace');
+        return view('Login.Associates.blade.php');
     }
 
     public function showInternalAdvisors()
     {
-        return view('OnlyInternalAdvisorsWorkSpace');
+        return view('Login.InternalAdvisors.blade.php');
     }
 
     public function showDefault()
     {
-        return view('UsersWorkspace');
+        return view('Login.Users.blade.php');
     }
 
 
