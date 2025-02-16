@@ -9,22 +9,23 @@ use Illuminate\Http\Request;
 
 class ExecutiveController extends Controller
 {
-    public function newmember (Request $request)      
+    public function index (Request $request)      
     {
         return view('Executive.Newusercompany.newuser');
 
     }
     
-    public function sucess (Request $request){
+    public function store (Request $request){
 
 
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
             $hierarchy_user = $request->hierarchy_user;
+            
 
             if ($hierarchy_user === 'executive'){
 
-            Member::create([
+            $newMember = Member::create([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
                 "role" =>$request->role_user,
@@ -37,7 +38,7 @@ class ExecutiveController extends Controller
             ]);
            
         }
-            return 'The user is created!';
+            return response()->json($newMember,201);
             
         } else {
 
@@ -102,7 +103,7 @@ class ExecutiveController extends Controller
             $hierarchy_user = $request->hierarchy_user;         
             $project = Project::all();
             
-            if ($hierarchy_user === 'executive'){
+            if (strtolower($hierarchy_user === 'executive')){
             
             Project::create([
                 "projectname" =>$request->projectname_project,

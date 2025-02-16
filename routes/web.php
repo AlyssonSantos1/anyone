@@ -37,6 +37,7 @@ Route::get('/manager', [LoginController::class, 'showManager'])->name('Manager')
 Route::get('/internaladvisor', [LoginController::class, 'showAssociates'])->name('Advisor');
 Route::get('/associates', [LoginController::class, 'showInternalAdvisors'])->name('Associates');
 Route::get('/manager', [LoginController::class, 'showDefault'])->name('Users');
+//the End
 
 
 
@@ -44,8 +45,8 @@ Route::get('/manager', [LoginController::class, 'showDefault'])->name('Users');
 
 
 
-Route::get('/executive/add-users',[ExecutiveController::class, 'newmember']);
-Route::post('/executive/added',[ExecutiveController::class, 'sucess'])->name('newuser');
+Route::get('/executive/add-users',[ExecutiveController::class, 'index']);
+Route::post('/executive/added',[ExecutiveController::class, 'store'])->name('newuser');
 Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'changed']);
 Route::put('/executive/members-edit/{id}',[ExecutiveController::class, 'edition'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);

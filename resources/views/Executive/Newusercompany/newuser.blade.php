@@ -16,7 +16,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    <form action="{{  route('newuser')  }}" method="POST">
+    <form action="/executives" method="POST">
         @csrf
 
         <label for="">Name </label>
