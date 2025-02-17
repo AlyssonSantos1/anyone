@@ -16,11 +16,6 @@ class ExecutiveController extends Controller
     
     public function store (Request $request){
 
-        if (session()->has('hierarchy') && session()->filled('hierarchy') === 'executive');
-            
-
-            if ($hierarchy_user === 'executive'){
-
             Member::create([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
@@ -28,27 +23,24 @@ class ExecutiveController extends Controller
                 "hierarchy" =>$request->hierarchy_user,
                 "insertedproject" =>$request->insertedproject_user,
                 "personalreviews" =>$request->personalreviews_user,
-                "ownerofreview" =>$request->ownerofreview_user                
+                "ownerofreview" =>$request->ownerofreview_user, 
+                "squad_id" =>$request->squad_id          
                 
     
             ]);
            
-        
-            return 'The User Has been created';
     
+            return 'The User Has been created';
             
-        } else {
-
-            return 'You cannnot create new user, you are not an executive';
-        }
-
+            
+    
      
     }
 
     public function edition (Request $request, int $id){
         {
         $member = Member::findorFail($id);
-        return view('Executive.EditMembers.editmember');     
+        return view('Executive.EditMembers.changeduser', compact('member'));     
         } 
       
     }
@@ -56,31 +48,24 @@ class ExecutiveController extends Controller
     
 
     public function changed(Request $request, int $id){
+            $member = Member::findorFail($id);
 
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;
-
-            if ($hierarchy_user === 'executive'){
-
-            Member::edit([
+            $member->update([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
                 "role" =>$request->role_user,
                 "hierarchy" =>$request->hierarchy_user,
                 "insertedproject" =>$request->insertedproject_user,
                 "personalreviews" =>$request->personalreviews_user,
-                "ownerofreview" =>$request->ownerofreview_user                
+                "ownerofreview" =>$request->ownerofreview_user,
+                "squad_id" =>$request->squad_id              
     
             ]);
-        }
+        
             return 'The Member has been edited';
 
-        }else{
-
-            return 'No Permission to edit, Executive Only';
         
-        }  
+        
            
     }
 

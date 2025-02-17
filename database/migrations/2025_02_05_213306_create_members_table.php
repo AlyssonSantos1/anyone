@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('insertedproject')->nullable();
             $table->string('personalreviews')->nullable();
             $table->string('ownerofreview')->nullable();
-            $table->foreignIdFor(Squad::class);
+            $table->foreignIdFor(Squad::class)->nullable();
             $table->timestamps();
         });
     }

@@ -26,30 +26,14 @@ Route::get('/', function () {
 
 
 Route::get('/login', [LoginController::class, 'loginform'])->name('login');
-//Login Route
-
 Route::post('/login', [LoginController::class, 'loginok'])->name('loginsucess');
-
-
-//Routes for another roles and hierarchys 
-Route::get('/executive', [LoginController::class, 'showExecutive'])->name('executivearea');
-Route::get('/manager', [LoginController::class, 'showManager'])->name('Manager');
-Route::get('/internaladvisor', [LoginController::class, 'showAssociates'])->name('Advisor');
-Route::get('/associates', [LoginController::class, 'showInternalAdvisors'])->name('Associates');
-Route::get('/manager', [LoginController::class, 'showDefault'])->name('Users');
-//the End
-
-
 
 
 
 Route::get('/executives/create',[ExecutiveController::class, 'create']);
 Route::post('/executives',[ExecutiveController::class, 'store']);
-
-// Route::get('/executive/add-users',[ExecutiveController::class, 'create']);
-// Route::post('/executive/added',[ExecutiveController::class, 'store']);
-Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'changed']);
-Route::put('/executive/members-edit/{id}',[ExecutiveController::class, 'edition'])->name('memberedited');
+Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
+Route::put('/executive/edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
 Route::post('/executive/project-build',[ExecutiveController::class, 'congrats'])->name('projectcreated');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
