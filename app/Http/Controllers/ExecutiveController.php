@@ -1,9 +1,12 @@
 <?php
 
+
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Member;
 use App\Models\Project;
 use App\Models\Squad;
+
 
 use Illuminate\Http\Request;
 
@@ -15,6 +18,13 @@ class ExecutiveController extends Controller
     }
     
     public function store (Request $request){
+
+        $user = Member::where('email', $request->email_user)->first();
+
+        if (Gate::denies('executive',auth()->user())){
+
+            abort(403, 'Dont Have Any permission to make this action');
+        }
 
             Member::create([
                 "name" =>$request->name_user,
