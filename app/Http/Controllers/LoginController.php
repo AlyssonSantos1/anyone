@@ -31,10 +31,10 @@ class LoginController extends Controller
     
         if(!$member){
         
-            return 'The user not found';        
+            return to_route('login')->with('message', 'The user not found');       
         }   
 
-        session()->put('member', $member);
+        session(['hierarchy' =>$member->hierarchy]);
 
         switch($member->role)
         {

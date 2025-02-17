@@ -18,6 +18,24 @@
         </div>
     @endif
 
+   
+    @session('message')
+    <div style="
+        padding: 15px; 
+        margin: 10px 0; 
+        border: 1px solid #f5c2c7; 
+        border-radius: 5px; 
+        background-color: #f8d7da; 
+        color: #842029;
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+    ">
+        <strong>{{ $value }}</strong>
+    </div>
+
+    @endsession
+
     <form action="{{ route('loginsucess') }}" method="POST">
         @csrf
         <label for="name">Name</label>

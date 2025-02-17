@@ -13,12 +13,14 @@ class UserController extends Controller
         if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
             $name_user = $request->name_user;
             $hierarchy_user = $request->hierarchy_user;
+            
 
             if ($hierarchy_user === 'Users'){
             Member::delete([
                 "personalreviews" =>$request->personalreviews_user,
                 
             ]);
+            dd($hierarchy_user);
         }
             return "The review was deleted";
 

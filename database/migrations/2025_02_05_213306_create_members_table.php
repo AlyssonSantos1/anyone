@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Squad;
 
 return new class extends Migration
 {
@@ -13,7 +14,6 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('squad_id');
             $table->string('name');
             $table->string('email');
             $table->string('role');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('insertedproject')->nullable();
             $table->string('personalreviews')->nullable();
             $table->string('ownerofreview')->nullable();
-
+            $table->foreignIdFor(Squad::class);
             $table->timestamps();
         });
     }

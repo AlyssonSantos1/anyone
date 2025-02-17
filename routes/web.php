@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [LoginController::class, 'loginform']);
+Route::get('/login', [LoginController::class, 'loginform'])->name('login');
 //Login Route
 
 Route::post('/login', [LoginController::class, 'loginok'])->name('loginsucess');
@@ -43,10 +43,11 @@ Route::get('/manager', [LoginController::class, 'showDefault'])->name('Users');
 
 
 
+Route::get('/executives/create',[ExecutiveController::class, 'create']);
+Route::post('/executives',[ExecutiveController::class, 'store']);
 
-
-Route::get('/executive/add-users',[ExecutiveController::class, 'index']);
-Route::post('/executive/added',[ExecutiveController::class, 'store'])->name('newuser');
+// Route::get('/executive/add-users',[ExecutiveController::class, 'create']);
+// Route::post('/executive/added',[ExecutiveController::class, 'store']);
 Route::get('/executive/members-edit/{id}',[ExecutiveController::class, 'changed']);
 Route::put('/executive/members-edit/{id}',[ExecutiveController::class, 'edition'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);

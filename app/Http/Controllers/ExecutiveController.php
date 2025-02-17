@@ -9,23 +9,19 @@ use Illuminate\Http\Request;
 
 class ExecutiveController extends Controller
 {
-    public function index (Request $request)      
+    public function create (Request $request)      
     {
         return view('Executive.Newusercompany.newuser');
-
     }
     
     public function store (Request $request){
 
-
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;
+        if (session()->has('hierarchy') && session()->filled('hierarchy') === 'executive');
             
 
             if ($hierarchy_user === 'executive'){
 
-            $newMember = Member::create([
+            Member::create([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
                 "role" =>$request->role_user,
@@ -37,17 +33,16 @@ class ExecutiveController extends Controller
     
             ]);
            
-        }
-            return response()->json($newMember,201);
+        
+            return 'The User Has been created';
+    
             
         } else {
 
-            return 'No Permission. Executive Only';
+            return 'You cannnot create new user, you are not an executive';
         }
 
-        //create finish here
-
-        
+     
     }
 
     public function edition (Request $request, int $id){
