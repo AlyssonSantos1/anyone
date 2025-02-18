@@ -2,13 +2,12 @@
 
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Gate;
 use App\Models\Member;
 use App\Models\Project;
 use App\Models\Squad;
-
-
 use Illuminate\Http\Request;
+
+
 
 class ExecutiveController extends Controller
 {
@@ -19,12 +18,14 @@ class ExecutiveController extends Controller
     
     public function store (Request $request){
 
-        $user = Member::where('email', $request->email_user)->first();
+        if (session()->has('hierarchy') && session('hierarchy') === 'executive');
 
-        if (Gate::denies('executive',auth()->user())){
+        // $user = Member::where('email', $request->email_user)->first();
 
-            abort(403, 'Dont Have Any permission to make this action');
-        }
+        // if (Gate::denies('executive',auth()->user())){
+
+        //     abort(403, 'Dont Have Any permission to make this action');
+        // }
 
             Member::create([
                 "name" =>$request->name_user,
@@ -41,9 +42,6 @@ class ExecutiveController extends Controller
            
     
             return 'The User Has been created';
-            
-            
-    
      
     }
 
@@ -59,6 +57,8 @@ class ExecutiveController extends Controller
 
     public function changed(Request $request, int $id){
             $member = Member::findorFail($id);
+
+            if (session()->has('hierarchy') && session('hierarchy') === 'executive');
 
             $member->update([
                 "name" =>$request->name_user,
@@ -79,44 +79,35 @@ class ExecutiveController extends Controller
            
     }
 
-    public function newproject (Request $request)
+    public function newproject (Request $request){
        {
         $project = Project::all();
         return view('Executive.BuildNewProjects.newproject', compact('project'));
        }
-    
+    }
 
     public function congrats (Request $request){
 
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;         
-            $project = Project::all();
-            
-            if (strtolower($hierarchy_user === 'executive')){
-            
+
             Project::create([
                 "projectname" =>$request->projectname_project,
-                "managername" =>$request->managername_project,
+                "manager" =>$request->manager_project,
                 "numberofmembers" =>$request->numberofmembers_project,
                 "goals" =>$request->goals_project,
                 "description" =>$request->description_project,
                 "reviews" =>$request->reviews_project,
                 "authorreview" =>$request->auhtorreview_project
     
-            ]);  
-        }
+            ]);         
             
             return 'The Project has been created';
-        
-        } else {
-
-            return 'Acess Denied, Executive Only';
             
-        }  
+    }
+        
+       
 
         
-    }
+    
 
 
 

@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +36,7 @@
 
     @endsession
 
-    <form action="{{ route('loginsucess') }}" method="POST">
+    <form action="{{ route('sucess') }}" method="POST">
         @csrf
         <label for="name">Name</label>
         <input type="text" name="name" required>
@@ -49,4 +49,4 @@
         
     </form>
 </body>
-</html> -->
+</html>

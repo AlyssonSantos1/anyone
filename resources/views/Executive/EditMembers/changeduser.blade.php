@@ -6,32 +6,6 @@
     <title>Edit the Team Members</title>
 </head>
 <body>
-
-    <!-- <form action="{{  route  ('memberedited', $member->id)  }}" method="POST">
-        @csrf
-        @method("PUT")
-        <label for="">Name </label>
-        <input type="text" placeholder="Enter your name" name="{{$member->name}}" require>
-        <br><br>
-        <label for="">E-mail</label>
-        <input type="text" placeholder="Enter your hierarchy" name="{{$member->email}}" require>
-        <br><br>
-        <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy" name="{{$member->hierarchy}}" require>
-        <br><br>
-        <label for="">Role</label>
-        <input type="text" placeholder="Role" name="{{$member->role}}" require>
-        <br><br>
-        <label for="">Inserted Project User</label>
-        <input type="text" placeholder="insertedproject" name="{{$member->insertedproject}}"require>
-        <br><br>
-        <label for="">Personal Reviews</label>
-        <input type="text" placeholder="personalreviews" name="{{$member->personalreviews}}" require>
-        <br><br><br>
-        <button type="submit">Send</button>
-        
-    </form> -->
-
     <form action="{{ route('memberedited', $member->id) }}" method="POST">
     @csrf
     @method("PUT")

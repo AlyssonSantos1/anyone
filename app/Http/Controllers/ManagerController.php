@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Member;
-use App\Http\Squad;
+use App\Models\Member;
+use App\Models\Squad;
 use App\Http\Project;
 
 
@@ -12,16 +12,10 @@ use App\Http\Project;
 class ManagerController extends Controller
 
 {
-    public function swapuser (Request $request){
-        $name = $request->input('name');
-        $hierarchy = $request->input('hierarchy');
+    public function swapuser (Request $request, int $id){
+        $member = Member::findorFail($id);
 
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;
-
-            if ($hierarchy_user === 'manager'){
-            Member::edit([
+            $member->update([
 
                 "hierarchy" =>$request->hierarchy_user,
                 "role" =>$request->role_user,
@@ -32,29 +26,21 @@ class ManagerController extends Controller
         
             return 'The Manager or Associate turn to temporary internal advisor in the project';
         
-        } else {
-
-            return 'The Swap are not auhorized';
-
-        }
-    }
+        
+    
 
     }
 
     
 
-    public function traded(Request $request, id $id){
+    public function traded(Request $request, int $id){
         $member = Member::findorFail($id);
-        return view('swapmembers', compact('member'));
+        return view('Managers.Traded.swapadvisors', compact('member'));
     }
 
 
     public function avaliation (Request $request){
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;
-
-            if ($hierarchy_user === 'manager'){
+            
             Squad::read([
                 "projectreviews" =>$request->projectreviews_project,
                 "reviewsofsquad" =>$request->reviewsofsquad_squad,
@@ -63,17 +49,14 @@ class ManagerController extends Controller
             ]);
             return 'The reviews now can be acess';
 
-        } else {
-
-            return 'Acess Denied, Manager Only Authorized to do';
-        }
+        
 
     }
 
-    }
+    
 
     public function thanks(){
-        return view('seeallreviews');
+        return view('Vision.Managers.allreviews');
     }
     
 }

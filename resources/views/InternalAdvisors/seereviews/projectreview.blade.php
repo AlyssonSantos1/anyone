@@ -6,11 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{  route('reviewssofaround')  }}" method="POST">
+    
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
+    <form action="{{  route('wrote')  }}" method="POST">
         @csrf
         <label for="">ReviewsofProject</label>
-        <input type="text" placeholder="ReviewsofProject" name="reviews_project">
+        <input type="text" placeholder="ReviewsofProject" name="projectreviews_project" required>
         <br><br><br>
+        <button type="submit">Send</button>
         
     </form>
 </body>

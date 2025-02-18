@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('projectname');
             $table->string('associate');
-            $table->string('managername');
+            $table->string('manager');
             $table->string('numberofmembers');
             $table->string('goals');
             $table->string('description');
-            $table->string('projectreviews');
+            $table->string('projectreviews')->nullable();
             $table->string('authorreview');
             $table->timestamps();
         });

@@ -1,91 +1,57 @@
-<!-- <?php
+<?php
 
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use App\Models\Member;
 
 
-
-
-
-
 class LoginController extends Controller
 {
-
-    public function loginform (Request $request)
+    
+    public function loginform()
     {
-        return view('Login.Login');
+        return view('Login');  
     }
 
-    public function loginok (Request $request)
+   
+    public function loginok(Request $request)
     {
         
         $validated = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email'
+            'email' => 'required|email',
         ]);
 
-        $member = Member::where('email', $validated['email'])->first();
-    
-        if(!$member){
-        
-            return to_route('login')->with('message', 'The user not found');       
-        }   
+      
+        $member = Member::where('email', $validated['email'])
+                        ->where('name', $validated['name'])
+                        ->first();
 
-        session(['hierarchy' =>$member->hierarchy]);
-
-        switch($member->role)
-        {
-        case 'Executive':
-            return 'You are an Executive, Acess Authorized!';
-
-        case 'InternalAdvisor':
-            return 'You are an Internal Advisor, Acess Authorized';
-
-        case 'Manager':
-            return 'You are a Manager, Acess Authorized';
-
-        case 'Associates':
-            return 'You are an Associate, Acess Authorized';
-
-        case 'User':
-            return 'You are a User, Acess Authorized';
-
+       
+        if (!$member) {
+            return back()->with('message', 'The Member Not Found');
         }
+
+        
+        session(['role' => $member->role]);
+        session(['hierarchy' => $member->hierarchy]);
+
+        
+        switch ($member->role) {
+            case 'Executive':
+                return redirect()->route('Executive.Newusercompany.newuser');
+            case 'InternalAdvisor':
+                return redirect()->route('create-user');
+            case 'Manager':
+                return redirect()->route('manager-dashboard');
+            case 'Associates':
+                return redirect()->route('associates-dashboard');
+            case 'User':
+                return redirect()->route('user-dashboard');
+            default:
+                return redirect()->route('login')->with('message', 'Acesso não permitido');
+        }
+    }
+
     
-    }
-
-    public function showExecutive()
-    {
-        return view('Login.Login.blade.php');
-    }
-
-    public function showManager()
-    {
-        return view('Login.Manager.blade.php');
-    }
-
-    public function showAssociates()
-    {
-        return view('Login.Associates.blade.php');
-    }
-
-    public function showInternalAdvisors()
-    {
-        return view('Login.InternalAdvisors.blade.php');
-    }
-
-    public function showDefault()
-    {
-        return view('Login.Users.blade.php');
-    }
-
-
-
-
-
 }
-
- -->

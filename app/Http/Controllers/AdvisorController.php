@@ -3,68 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Project;
-use App\Http\Member;
-use App\Http\Squad;
+use App\Models\Project;
+use App\Models\Member;
+
 
 
 
 
 class AdvisorController extends Controller
 {
+
+    // if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+        //     $name_user = $request->name_user;
+        //     $hierarchy_user = $request->hierarchy_user;
+            
+        //     if ($hierarchy_user === 'InternalAdvisor'){
     public function newreview (Request $request)
     {
         return view('InternalAdvisors.WriteReview.givereviews');
     }
 
     public function newest (Request $request){  
-
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;
-            
-            if ($hierarchy_user === 'InternalAdvisor'){
-
-            Member::create([
-                
+           
+            Project::create([                
                 "projectreviews" =>$request->projectreviews_project
     
             ]);
         
         
-        }
+        
             return 'The Review is Writed';
             
-        } else {
-
-            return 'No Permission You are not an Internal Advisor';
-
-        }
+        
     }
     
 
 
     public function pyramids (Request $request){
 
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;
+        // if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
+        //     $name_user = $request->name_user;
+        //     $hierarchy_user = $request->hierarchy_user;
 
-            if ($hierarchy_user === 'InternalAdvisor'){
+        //     if ($hierarchy_user === 'InternalAdvisor'){
 
             Squad::read([
                 
                 "projectreviews" =>$request->projectreviews_project
     
             ]);
-        }
+        
             return 'See the Review of Project';
             
-        }else{
-
-            return 'No Permission, You are not an Internal Advisor';
-
-            }
+        
         }
         
 

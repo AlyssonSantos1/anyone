@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ExecutiveController;
 use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\AssociatesController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController;
+// use App\Http\Controllers\LoginController;
 
 
 /*
@@ -25,8 +26,15 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [LoginController::class, 'loginform'])->name('login');
-Route::post('/login', [LoginController::class, 'loginok'])->name('loginsucess');
+Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('sucess');
+
+// Route::get('/create-user', function(){
+//     if (session('role') !== 'Executive'){
+//         return redirect()->route('login')->with('message', 'Restricted Acess');
+//     }
+//     return view('Executive.Newusercompany.newuser');
+// });
 
 
 
@@ -35,20 +43,21 @@ Route::post('/executives',[ExecutiveController::class, 'store']);
 Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
 Route::put('/executive/edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
-Route::post('/executive/project-build',[ExecutiveController::class, 'congrats'])->name('projectcreated');
+Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
 // Routes Only can acess by Executives in the Company
 
 
-Route::get('/manager/trade-member/{id}',[ManagerController::class, 'swapuser']);
-Route::put('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('trademember');
-Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation']);
+Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded']);
+Route::put('/manager/traded/{id}',[ManagerController::class, 'swapuser'])->name('trademember');
+Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation']);//incomplete
+
 // Routes Only can acess by Managers in the Company
 
-Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
-Route::post('/advisors/give-review',[AdvisorController::class, 'newest'])->name('wrote');
+Route::get('/advisors/give-review',[AdvisorController::class, 'newest']);
+Route::post('/advisors/gave',[AdvisorController::class, 'newreview'])->name('wrote');//incomplete
 Route::get('/advisors/review-team',[AdvisorController::class, 'pyramids']);
-Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('everything');
+Route::post('/advisors/review-team',[AdvisorController::class, 'target'])->name('everything');
 // Routes Only can acess by Advisors in the Company
 
 Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser']);
