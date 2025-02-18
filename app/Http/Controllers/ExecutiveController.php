@@ -58,8 +58,6 @@ class ExecutiveController extends Controller
     public function changed(Request $request, int $id){
             $member = Member::findorFail($id);
 
-            if (session()->has('hierarchy') && session('hierarchy') === 'executive');
-
             $member->update([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
