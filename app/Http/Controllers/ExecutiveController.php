@@ -18,15 +18,6 @@ class ExecutiveController extends Controller
     
     public function store (Request $request){
 
-        if (session()->has('hierarchy') && session('hierarchy') === 'executive');
-
-        // $user = Member::where('email', $request->email_user)->first();
-
-        // if (Gate::denies('executive',auth()->user())){
-
-        //     abort(403, 'Dont Have Any permission to make this action');
-        // }
-
             Member::create([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,

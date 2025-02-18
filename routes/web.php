@@ -26,25 +26,28 @@ Route::get('/', function () {
 });
 
 
+//login
 Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('sucess');
 
-// Route::get('/create-user', function(){
-//     if (session('role') !== 'Executive'){
-//         return redirect()->route('login')->with('message', 'Restricted Acess');
-//     }
-//     return view('Executive.Newusercompany.newuser');
-// });
 
-
-
-Route::get('/executives/create',[ExecutiveController::class, 'create']);
+//authenticate with middleware
+Route::group(['middleware' =>['executive']], function(){
+    Route::get('/executives/create',[ExecutiveController::class, 'create']);
 Route::post('/executives',[ExecutiveController::class, 'store']);
 Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
 Route::put('/executive/edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
 Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
+});
+// Route::get('/executives/create',[ExecutiveController::class, 'create']);
+// Route::post('/executives',[ExecutiveController::class, 'store']);
+// Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
+// Route::put('/executive/edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
+// Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
+// Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
+// Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
 // Routes Only can acess by Executives in the Company
 
 

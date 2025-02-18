@@ -13,7 +13,8 @@ class LoginController extends Controller
         return view('AuthLogin.Login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
 
         $request->validate([
             'name' => 'required',
@@ -24,18 +25,18 @@ class LoginController extends Controller
                         ->where('email', $request->email)
                         ->first();
 
-        if($member){
+        if ($member) {
             session(['user_id' => $member->id, 'hierarchy' => $member->hierarchy]);
 
-            if($member->hierarchy === 'executive')
-            return view('Executive.Newusercompany.newuser');
-        }
-            return view('Executive.Newusercompany.newuser');
+            \Log::info('User logged in with hierarchy: ' . session('hierarchy'));
 
-            return 'User not found';
-
+            if($member->hierarchy === 'executive'){       
+            return view('Executive.Newusercompany.newuser');
+            }
         }
-        
-        
+        return 'User not Found';
     }
+}
+        
+
 
