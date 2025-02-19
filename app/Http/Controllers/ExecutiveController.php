@@ -18,10 +18,10 @@ class ExecutiveController extends Controller
     
     public function store (Request $request){
 
-        if (!session()->has('hierarchy')|| strtolower(session('hierarchy')) !== 'Executive'){
+        // if (!session()->has('hierarchy')|| strcasecmp(session('hierarchy')) !== '0'){
 
-            abort(403, 'Acess Denied');
-        }
+        //     abort(403, 'Acess Denied');
+        // }
 
         // $user = Member::where('email', $request->email_user)->first();
 

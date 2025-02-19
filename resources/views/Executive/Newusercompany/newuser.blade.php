@@ -25,17 +25,20 @@
         <label for="">E-mail</label>
         <input type="text" placeholder="Enter your hierarchy" name="email_user" required>
         <br><br>
-        <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy" name="hierarchy_user" required>
-        <br><br>
         <label for="">Role</label>
         <input type="text" placeholder="Role" name="role_user" required>
+        <br><br>
+        <label for="">Hierarchy</label>
+        <input type="text" placeholder="Hierarchy" name="hierarchy_user" required>
         <br><br>
         <label for="">Inserted Project User</label>
         <input type="text" placeholder="insertedproject" name="insertedproject_user" required>
         <br><br>
         <label for="">Personal Reviews</label>
         <input type="text" placeholder="personalreviews" name="personalreviews_user" required>
+        <br><br>
+        <label for="">Owner of Review</label>
+        <input type="text" placeholder="ownerofreview" name="ownerofreview_user" required>
         <br><br>
         <label for="">Squad</label>
         <input type="text" placeholder="Squadid" name="squad_id" required>

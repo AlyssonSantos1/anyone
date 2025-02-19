@@ -30,7 +30,9 @@ class LoginController extends Controller
 
             \Log::info('User logged in with hierarchy: ' . session('hierarchy'));
 
-            if(strcasecmp($member->hierarchy, 'executive') === 0){       
+            $allowedHierarchies = ['executive', 'Manager', 'InternalAdvisor', 'Associate', 'User'];
+
+            if (in_array(strtolower($member->hierarchy), array_map('strtolower', $allowedHierarchies))){       
             return view('Welcome');
             }
             

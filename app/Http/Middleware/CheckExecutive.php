@@ -18,7 +18,7 @@ class CheckExecutive
         //check the hierarchy
         \Log::info('checking hierarchy in session: ' .session('hierarchy'));
         
-        if (!session()->has('hierarchy') || strcasecmp(session('hierarchy'), 'executive') !== '0'){
+        if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'executive'){
             abort(403, 'Acess Denied');
 
         }
