@@ -54,15 +54,15 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation']);//
 
 // Routes Only can acess by Managers in the Company
 
-Route::group(['middleware' =>['advisor']], function(){
-Route::get('/advisors/give-review',[AdvisorController::class, 'newest']);
-Route::post('/advisors/gave',[AdvisorController::class, 'newreview'])->name('wrote');//incomplete
-Route::get('/advisors/review-team',[AdvisorController::class, 'pyramids']);
-Route::post('/advisors/review-team',[AdvisorController::class, 'target'])->name('everything');
+Route::group(['middleware' =>['internaladvisor']], function(){
+Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
+Route::post('/advisors/gave',[AdvisorController::class, 'newest'])->name('wrote');//incomplete
+Route::get('/advisors/review-team',[AdvisorController::class, 'target']);
+Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids'])->name('everything');
 // Routes Only can acess by Advisors in the Company
 });
 
-Route::group(['middleware' =>['Associates']], function(){
+Route::group(['middleware' =>['associates']], function(){
 Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser']);
 Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'greatest'])->name('tradetoadvisor');
 Route::get('/associates/review-team',[AssociatesController::class, 'swan']);

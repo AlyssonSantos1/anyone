@@ -19,7 +19,7 @@ class CheckInternalAdvisors
         
         \Log::info('checking hierarchy in session: ' .session('hierarchy'));
         
-        if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'internalAdvisors'){
+        if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'internaladvisor'){
             abort(403, 'Acess Denied');
 
         }

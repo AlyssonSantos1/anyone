@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Member;
+use App\Models\Squad;
 
 
 
@@ -13,11 +14,6 @@ use App\Models\Member;
 class AdvisorController extends Controller
 {
 
-    // if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-        //     $name_user = $request->name_user;
-        //     $hierarchy_user = $request->hierarchy_user;
-            
-        //     if ($hierarchy_user === 'InternalAdvisor'){
     public function newreview (Request $request)
     {
         return view('InternalAdvisors.WriteReview.givereviews');
@@ -40,12 +36,6 @@ class AdvisorController extends Controller
 
 
     public function pyramids (Request $request){
-
-        // if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-        //     $name_user = $request->name_user;
-        //     $hierarchy_user = $request->hierarchy_user;
-
-        //     if ($hierarchy_user === 'InternalAdvisor'){
 
             Squad::read([
                 

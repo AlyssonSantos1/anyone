@@ -17,19 +17,6 @@ class ExecutiveController extends Controller
     }
     
     public function store (Request $request){
-
-        // if (!session()->has('hierarchy')|| strcasecmp(session('hierarchy')) !== '0'){
-
-        //     abort(403, 'Acess Denied');
-        // }
-
-        // $user = Member::where('email', $request->email_user)->first();
-
-        // if (Gate::denies('executive',auth()->user())){
-
-        //     abort(403, 'Dont Have Any permission to make this action');
-        // }
-
             Member::create([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
@@ -60,13 +47,6 @@ class ExecutiveController extends Controller
 
     public function changed(Request $request, int $id){
             $member = Member::findorFail($id);
-
-            // if (!session()->has('hierarchy')|| strcasecmp(session('hierarchy')) !== '0'){
-
-            //     abort(403, 'Acess Denied');
-            // }
-    
-
             $member->update([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
@@ -120,14 +100,7 @@ class ExecutiveController extends Controller
 
     public function vision (Request $request){
 
-        if ($request->has('name_user') && $request->has('hierarchy_user') && $request->filled('name_user') && $request->filled('hierarchy_user')){
-            $name_user = $request->name_user;
-            $hierarchy_user = $request->hierarchy_user;
-            
-
-            
-            if ($hierarchy_user === 'executive'){
-            
+    
             Squad::read([
                 
                 "nameofwriterreview" =>$request->nameofwriterreview_project,
@@ -138,12 +111,6 @@ class ExecutiveController extends Controller
             ]);
 
             return "The views now can be viewed";
-
-        }else{
-            return 'Acess Denied, Executive Only';
-        }
-            return view('allreviews');   
-        }
 
     }
 
