@@ -70,8 +70,8 @@ class Kernel extends HttpKernel
         'executive' => \App\Http\Middleware\CheckExecutive::class,
         'manager' => \App\Http\Middleware\CheckManager::class,
         'internaladvisor' => \App\Http\Middleware\CheckInternalAdvisors::class,
-        'associates' => \App\Http\Middleware\CheckAssociates::class,
-        'users' => \App\Http\Middleware\CheckUsers::class,
+        'associate' => \App\Http\Middleware\CheckAssociates::class,
+        'user' => \App\Http\Middleware\CheckUsers::class,
 
     ];
 }

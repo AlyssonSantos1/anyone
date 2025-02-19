@@ -62,15 +62,15 @@ Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids'])->nam
 // Routes Only can acess by Advisors in the Company
 });
 
-Route::group(['middleware' =>['associates']], function(){
-Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser']);
-Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'greatest'])->name('tradetoadvisor');
+Route::group(['middleware' =>['associate']], function(){
+Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'map']);
+Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser'])->name('tradetoadvisor');
 Route::get('/associates/review-team',[AssociatesController::class, 'swan']);
 Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewssofaround');
 });
 // Routes Only can acess by Associates in the Company
 
-Route::group(['middleware' =>['managers']], function(){
+Route::group(['middleware' =>['user']], function(){
 Route::get('/user/delete-review/',[UserController::class, 'trash']);
 Route::put('/user/delete-review',[Usercontroller::class, 'turndown'])->name('Deleted');
 Route::get('/user/edit-review/{id}',[UserController::class, 'edited']);

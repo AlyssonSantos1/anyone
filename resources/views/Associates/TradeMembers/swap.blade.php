@@ -11,13 +11,13 @@
         @method("PUT")
             
         <label for="">Name </label>
-        <input type="text" placeholder="Name" name="{{$name->name}}">
+        <input type="text" placeholder="Name"  value="{{ old('name_user', $member->name) }}" required>
         <br><br>
         <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy" name="{{$hierarchy->hierarchy}}">
+        <input type="text" placeholder="Hierarchy"  value="{{ old('hiearchy_user', $member->hiearchy) }}" required>
         <br><br>
         <label for="">Current Role</label>
-        <input type="text" placeholder="current role" name="{{$role->role}}">
+        <input type="text" placeholder="current role"  value="{{ old('role_user', $member->role) }}" required>
         <br><br><br>
         <button type="submit">Send</button>
     </form>
