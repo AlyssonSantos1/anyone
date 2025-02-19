@@ -18,6 +18,18 @@ class ExecutiveController extends Controller
     
     public function store (Request $request){
 
+        if (!session()->has('hierarchy')|| strtolower(session('hierarchy')) !== 'Executive'){
+
+            abort(403, 'Acess Denied');
+        }
+
+        // $user = Member::where('email', $request->email_user)->first();
+
+        // if (Gate::denies('executive',auth()->user())){
+
+        //     abort(403, 'Dont Have Any permission to make this action');
+        // }
+
             Member::create([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
@@ -48,6 +60,12 @@ class ExecutiveController extends Controller
 
     public function changed(Request $request, int $id){
             $member = Member::findorFail($id);
+
+            // if (!session()->has('hierarchy')|| strcasecmp(session('hierarchy')) !== '0'){
+
+            //     abort(403, 'Acess Denied');
+            // }
+    
 
             $member->update([
                 "name" =>$request->name_user,

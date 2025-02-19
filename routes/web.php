@@ -22,7 +22,10 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(!session()->has('user_id')) {
+        return redirect()->route('login');
+    }
+    return redirect()->route('welcome');
 });
 
 

@@ -30,9 +30,10 @@ class LoginController extends Controller
 
             \Log::info('User logged in with hierarchy: ' . session('hierarchy'));
 
-            if($member->hierarchy === 'executive'){       
-            return view('Executive.Newusercompany.newuser');
+            if(strcasecmp($member->hierarchy, 'executive') === 0){       
+            return view('Welcome');
             }
+            
         }
         return 'User not Found';
     }

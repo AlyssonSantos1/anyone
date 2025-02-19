@@ -6,10 +6,7 @@
     <title>Professional Syndicate</title>
 </head>
 <body>
-    <h1>Professional Syndicate System</h1>
-    <br><br><br>
-    <label for="">Enter to system click Below</label>
-    <br><br>
-    <input type="button" value="ClickHere">
+    <h1>Welcome to the Syndicate System </h1>
+    <p>You are an authenticator user!</p>
 </body>
 </html>
