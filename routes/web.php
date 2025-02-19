@@ -44,39 +44,38 @@ Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']
 Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
 });
-// Route::get('/executives/create',[ExecutiveController::class, 'create']);
-// Route::post('/executives',[ExecutiveController::class, 'store']);
-// Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
-// Route::put('/executive/edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
-// Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
-// Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
-// Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
-// Routes Only can acess by Executives in the Company
 
 
+Route::group(['middleware' =>['manager']], function(){
 Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded']);
 Route::put('/manager/traded/{id}',[ManagerController::class, 'swapuser'])->name('trademember');
 Route::get('/manager/seeallreviews',[ManagerController::class, 'avaliation']);//incomplete
+});
 
 // Routes Only can acess by Managers in the Company
 
+Route::group(['middleware' =>['advisor']], function(){
 Route::get('/advisors/give-review',[AdvisorController::class, 'newest']);
 Route::post('/advisors/gave',[AdvisorController::class, 'newreview'])->name('wrote');//incomplete
 Route::get('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 Route::post('/advisors/review-team',[AdvisorController::class, 'target'])->name('everything');
 // Routes Only can acess by Advisors in the Company
+});
 
+Route::group(['middleware' =>['Associates']], function(){
 Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser']);
 Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'greatest'])->name('tradetoadvisor');
 Route::get('/associates/review-team',[AssociatesController::class, 'swan']);
 Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewssofaround');
+});
 // Routes Only can acess by Associates in the Company
 
-
+Route::group(['middleware' =>['managers']], function(){
 Route::get('/user/delete-review/',[UserController::class, 'trash']);
 Route::put('/user/delete-review',[Usercontroller::class, 'turndown'])->name('Deleted');
 Route::get('/user/edit-review/{id}',[UserController::class, 'edited']);
 Route::put('/user/edited-review/{id}',[Usercontroller::class, 'change'])->name('editedbyuser');
+});
 // Routes Only can acess by Users in the Company
 
 

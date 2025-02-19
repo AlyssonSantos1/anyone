@@ -6,19 +6,19 @@ use Closure;
 use Illuminate\Http\Request;
 
 
-class CheckExecutive
+class CheckAssociates
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+
     public function handle(Request $request, Closure $next)
     {
-        
         \Log::info('checking hierarchy in session: ' .session('hierarchy'));
         
-        if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'executive'){
+        if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'associate'){
             abort(403, 'Acess Denied');
 
         }

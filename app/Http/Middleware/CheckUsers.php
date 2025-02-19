@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-
-class CheckExecutive
+class CheckUsers
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class CheckExecutive
         
         \Log::info('checking hierarchy in session: ' .session('hierarchy'));
         
-        if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'executive'){
+        if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'user'){
             abort(403, 'Acess Denied');
 
         }
