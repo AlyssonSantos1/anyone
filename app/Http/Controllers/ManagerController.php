@@ -14,9 +14,7 @@ class ManagerController extends Controller
 {
     public function swapuser (Request $request, int $id){
         $member = Member::findorFail($id);
-
             $member->update([
-
                 "hierarchy" =>$request->hierarchy_user,
                 "role" =>$request->role_user,
                 "insertedproject" =>$request->insertedproject_user,
@@ -24,10 +22,7 @@ class ManagerController extends Controller
             ]);
 
         
-            return 'The Manager or Associate turn to temporary internal advisor in the project';
-        
-        
-    
+        return 'The Manager or Associate turn to temporary internal advisor in the project';
 
     }
 
@@ -39,8 +34,7 @@ class ManagerController extends Controller
     }
 
 
-    public function avaliation (Request $request){
-            
+    public function avaliation (Request $request){            
             Squad::read([
                 "projectreviews" =>$request->projectreviews_project,
                 "reviewsofsquad" =>$request->reviewsofsquad_squad,
@@ -48,8 +42,6 @@ class ManagerController extends Controller
                 
             ]);
             return 'The reviews now can be acess';
-
-        
 
     }
 

@@ -8,16 +8,13 @@
 <body>
     <form action="{{  route  ('everything')  }}" method="GET">
         
-        <label for="">Name of the Writer Review of Squad </label>
-        <input type="text" placeholder="" name="nameofwriterreview_project">
+        <label for="">Name </label>
+        <input type="text" placeholder="Enter your name" name="name_user" required>
         <br><br>
-        <label for="">Owner the Review of Members</label>
-        <input type="text" placeholder="" name="ownerofreview_project">
-        <br><br>
-        <label for="">The Author of Review Project</label>
-        <input type="text" placeholder="" name="authorreview_project">
+        <label for="">Reviews Author</label>
+        <input type="text" placeholder="author" name="authorreview_team" required>
         <br><br><br>
-        <button type="submit">See All Reviews</button>
+        
     </form>
     
 </body>
