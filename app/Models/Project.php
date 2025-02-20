@@ -9,7 +9,8 @@ class project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["projectname", "associate", "managername", "numberofmembers", "goals", "description", "projectreviews", "authorreview", ];
+    protected $fillable = ["projectname", "managername", "numberofmembers", "goals", "description", "projectreviews", "authorreview", ];
+
 
     public function user(): BelongsTo
     {

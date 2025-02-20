@@ -73,7 +73,17 @@ class ExecutiveController extends Controller
        }
     }
 
-    public function congrats (Request $request){
+    public function congrats (Request $request){            
+        $request->validate([
+            'projectname_project' => 'required|string',
+            'manager_project' => 'required|string',
+            'numberofmembers_project' => 'required|string',
+            'goals_project' => 'required|string',
+            'description_project' => 'required|string',
+            'reviews_project' => 'nullable|string',
+            'authorreview_project' => 'nullable|string',
+        
+        ]);
 
 
             Project::create([
@@ -83,12 +93,30 @@ class ExecutiveController extends Controller
                 "goals" =>$request->goals_project,
                 "description" =>$request->description_project,
                 "reviews" =>$request->reviews_project,
-                "authorreview" =>$request->auhtorreview_project
+                "authorreview" =>$request->authorreview_project
     
             ]);         
             
             return 'The Project has been created';
             
+    }
+
+    public function catch (Request $request, int $id){
+
+        Project::find([
+            "projectname" =>$request->projectname_project,
+                "manager" =>$request->manager_project,
+                "numberofmembers" =>$request->numberofmembers_project,
+                "goals" =>$request->goals_project,
+                "description" =>$request->description_project,
+                "reviews" =>$request->reviews_project,
+                "authorreview" =>$request->authorreview_project
+
+        ]);
+    }
+
+    public function locked (Request $request, int $id){
+        return view('Executive.binocular.restrict');
     }
         
        

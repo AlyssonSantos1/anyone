@@ -39,10 +39,11 @@ Route::group(['middleware' =>['executive']], function(){
     Route::get('/executives/create',[ExecutiveController::class, 'create']);
 Route::post('/executives',[ExecutiveController::class, 'store']);
 Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
-Route::put('/executive/edited/{id}',[ExecutiveController::class, 'changed'])->name('memberedited');
+Route::put('/executive/edited/',[ExecutiveController::class, 'changed']);
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
 Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
 Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
+Route::get('executive/glass/{id}',[ExecutiveController::class, 'catch']);
 });
 
 

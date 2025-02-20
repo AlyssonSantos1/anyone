@@ -13,7 +13,7 @@
     @if(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
-    <form action="{{  ('created')  }}" method="POST">
+    <form action="{{  route('created')  }}" method="POST">
         @csrf
         <label for="">Select the project</label>
         <select name="project" id="project">
@@ -23,25 +23,25 @@
         </select>
         
         <label for="">Name of the project </label>
-        <input type="text" placeholder="projectname" name="projectname_project" required>
+        <input type="text" placeholder="projectname" name="projectname_team" required>
         <br><br>
-        <label for="">managerofproject</label>
-        <input type="text" placeholder="managername" name="manager_project"  required>
+        <label for="">E-managerofproject</label>
+        <input type="text" placeholder="managername" name="managername_team"  required>
         <br><br>
         <label for="">Numberofmembers</label>
-        <input type="text" placeholder="numberofmembers" name="numberofmembers_project" required>
+        <input type="text" placeholder="numberofmembers" name="numberofmembers_team" required>
         <br><br>
         <label for="">Goals</label>
-        <input type="text" placeholder="goals" name="goals_project" required>
+        <input type="text" placeholder="goals" name="goals_team" required>
         <br><br>
         <label for="">Description</label>
-        <input type="text" placeholder="description" name="description_project" required>
+        <input type="text" placeholder="description" name="description_team" required>
         <br><br>
         <label for="">Reviews</label>
-        <input type="text" placeholder="reviews" name="reviews_project" required>
+        <input type="text" placeholder="reviews" name="reviews_team" required>
         <br><br>
         <label for="">Reviews Author</label>
-        <input type="text" placeholder="authorreview" name="authorreview_project" required>
+        <input type="text" placeholder="author" name="authorreview_team" required>
         <br><br><br>
         <button type="submit">Send</button>
     </form>
