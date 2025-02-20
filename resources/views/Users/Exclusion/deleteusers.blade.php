@@ -11,7 +11,7 @@
         @method("PUT")
             
         <label for=""> Delete Review Yourself</label>
-        <input type="text" placeholder="Yourself Reviews" name="review_user">
+        <input type="text" placeholder="Yourself Reviews" name="personalreviews_user">
         <br><br><br>
         <button type="submit">Delete</button>
     </form>

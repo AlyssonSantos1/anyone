@@ -11,8 +11,8 @@
         <label for="">PersonalReviews</label>
         <input type="text" placeholder="personalreviews" name="personalreviews_user" >
         <br><br>
-        <label for="">ReviewsofProject</label>
-        <input type="text" placeholder="ReviewsofProject" name="reviews_project">
+        <label for="">ReviewsofTeam</label>
+        <input type="text" placeholder="ReviewsofTeam" name="aaaa">
         <br><br><br>
         <button type="submit">Send</button>
     </form>

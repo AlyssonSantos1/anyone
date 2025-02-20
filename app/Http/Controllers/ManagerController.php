@@ -34,21 +34,20 @@ class ManagerController extends Controller
     }
 
 
-    public function avaliation (Request $request){            
-            Squad::read([
-                "projectreviews" =>$request->projectreviews_project,
-                "reviewsofsquad" =>$request->reviewsofsquad_squad,
-                "personalreviews" =>$request->personalreviews_personal
-                
-            ]);
-            return 'The reviews now can be acess';
+    public function catch (Request $request){
+       
+        Member::find([
+            "reviews" =>$request->reviews_project,
+            "personalreviews" =>$request->personalreviews_personal
+            
+        ]);
 
+    }
+
+    public function found (Request $request){
+        return view('Managers.Vision.allreviews');
     }
 
     
 
-    public function thanks(){
-        return view('Vision.Managers.allreviews');
-    }
-    
 }
