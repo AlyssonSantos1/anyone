@@ -119,26 +119,41 @@ class ExecutiveController extends Controller
         return view('Executive.binocular.restrict');
     }
         
-       
 
+    public function getReviewAuthors ($squad_id)
+        {
+
+            $squad = Squad::find($squad_id);
+            
+            
+            if (!$squad) {
+
+                return response()->json(['message' => 'Squad not found'], 404);
+
+            }
+
+            $project = $squad->projects;
+                
+            $author = [];
+
+            foreach ($projects as $project) {
+
+                $reviews = $project->reviews;
+
+            foreach ($reviews as $review) {
+                $author[] = [
+                    'projectname' => $project->projectname, 
+                    'authorreview' => $review->user->name,    
+                    'author_id' => $review->author->id,    
+
+                ];
+            
+            }
+        }
         
-    
+        return response()->json($authorreview);
 
-
-
-    public function vision (Request $request){
-
-    
-            Squad::read([
-                
-                "nameofwriterreview" =>$request->nameofwriterreview_project,
-                "ownerofreview" =>$request->ownerofreview_project,
-                "authorreview" =>$request->authorreview_project
-                
-    
-            ]);
-
-            return "The views now can be viewed";
+        }  
 
     }
 
@@ -147,4 +162,3 @@ class ExecutiveController extends Controller
 
         
 
-}

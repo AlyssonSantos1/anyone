@@ -42,8 +42,8 @@ Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
 Route::put('/executive/edited/',[ExecutiveController::class, 'changed']);
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
 Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
-Route::get('/executive/see-everything',[ExecutiveController::class, 'vision']);
-Route::get('executive/glass/{id}',[ExecutiveController::class, 'catch']);
+Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'getReviewAuthors']);
+
 });
 
 
