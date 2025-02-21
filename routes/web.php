@@ -30,6 +30,14 @@ Route::get('/', function () {
 
 
 //login
+
+Route::get('/executive-dashboard', [LoginController::class, 'executiveDashboard'])->name('executive.dashboard');
+Route::get('/manager-dashboard', [LoginController::class, 'managerDashboard'])->name('manager.dashboard');
+Route::get('/internaladvisor-dashboard', [LoginController::class, 'internalAdvisorDashboard'])->name('internaladvisor.dashboard');
+Route::get('/associate-dashboard', [LoginController::class, 'associateDashboard'])->name('associate.dashboard');
+Route::get('/user-dashboard', [LoginController::class, 'userDashboard'])->name('user.dashboard');
+//
+
 Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('sucess');
 

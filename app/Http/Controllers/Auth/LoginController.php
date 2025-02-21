@@ -25,19 +25,28 @@ class LoginController extends Controller
                         ->where('email', $request->email)
                         ->first();
 
-        if ($member) {
-            session(['user_id' => $member->id, 'hierarchy' => $member->hierarchy]);
+    if ($member) {
+        session(['user_id' => $member->id, 'hierarchy' => $member->hierarchy]);
+        \Log::info('User logged in with hierarchy: ' . session('hierarchy'));
 
-            \Log::info('User logged in with hierarchy: ' . session('hierarchy'));
-
-            $allowedHierarchies = ['executive', 'Manager', 'InternalAdvisor', 'Associate', 'User'];
-
-            if (in_array(strtolower($member->hierarchy), array_map('strtolower', $allowedHierarchies))){       
-            return view('Welcome');
+        
+        switch (strtolower($member->hierarchy)) {
+            case 'executive':
+                return view('Executive.loginexecutive'); 
+            case 'internaladvisor':
+                return view('InternalAdvisors.loginadvsior');
+            case 'manager':
+                return view('Managers.loginmanager');
+            case 'associates':
+                return view('Associates.loginassociates');
+            case 'user':
+                return view('Users.loginuser');
+            default:
+                return 'Acess Denied';
             }
-            
         }
-        return 'User not Found';
+    
+            return 'User not found';
     }
 }
         
