@@ -29,7 +29,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('sucess');
 //login
+
+
 
 Route::get('/executive-dashboard', [LoginController::class, 'executiveDashboard'])->name('executive.dashboard');
 Route::get('/manager-dashboard', [LoginController::class, 'managerDashboard'])->name('manager.dashboard');
@@ -38,15 +42,11 @@ Route::get('/associate-dashboard', [LoginController::class, 'associateDashboard'
 Route::get('/user-dashboard', [LoginController::class, 'userDashboard'])->name('user.dashboard');
 //
 
-Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('sucess');
-
-
 //authenticate with middleware
 Route::group(['middleware' =>['executive']], function(){
-    Route::get('/executives/create',[ExecutiveController::class, 'create']);
+Route::get('/executives/create',[ExecutiveController::class, 'create'])->name('executive.create');
 Route::post('/executives',[ExecutiveController::class, 'store']);
-Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition']);
+Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition'])->name('executive.editing');
 Route::put('/executive/edited/',[ExecutiveController::class, 'changed']);
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
 Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
