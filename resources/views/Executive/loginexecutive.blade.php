@@ -15,6 +15,7 @@
 
     <form action="{{ route('executive.editing', ['id' =>1]) }}" method="get">
         <button type="submit">Edit Executive</button>
+        
     </form>
 
     <form action="{{ route('executive.building') }}" method="get">
