@@ -13,7 +13,7 @@
     @if(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
-    <form action="{{  ('created')  }}" method="POST">
+    <form action="{{  ('executive.project-build')  }}" method="POST">
         @csrf
         <label for="">Select the project</label>
         <select name="project" id="project">

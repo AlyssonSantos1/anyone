@@ -10,25 +10,20 @@
 
    
     <form action="{{ route('executive.create') }}" method="get">
-        <button type="submit">Create New Executive</button>
+        <button type="submit">Create New User</button>
     </form>
 
-    <form action="{{ route('executive.editing', ['id' =>1]) }}" method="get">
-        <button type="submit">Edit Executive</button>
-        
+    <form action="{{ route('executive.editing', ['id' => 1]) }}" method="get">
+    <button type="submit">Edit User</button>
     </form>
 
-    <form action="{{ route('executive.building') }}" method="get">
-        <button type="submit">Build New Project</button>
+    <form action="{{ route('executive.project-build') }}" method="get">
+    <button type="submit">Build New Project</button>
     </form>
 
-    <form action="{{ route('executive.review',['id' =>1]) }}" method="get">
-        <button type="submit">Review Authors</button>
+    <form action="{{ route('executive.review-authors', ['squad_id' => 1]) }}" method="get">
+    <button type="submit">See Authors</button>
     </form>
-
-    <form action="{{ route('created') }}" method="post">
-        @csrf
-        <button type="submit">Confirm Executive Creation</button>
-    </form>
+   
 </body>
 </html>

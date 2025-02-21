@@ -48,9 +48,9 @@ Route::get('/executives/create',[ExecutiveController::class, 'create'])->name('e
 Route::post('/executives',[ExecutiveController::class, 'store']);
 Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition'])->name('executive.editing');
 Route::put('/executive/edited/',[ExecutiveController::class, 'changed']);
-Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']);
+Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive.project-build');
 Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
-Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'getReviewAuthors']);
+Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
 
 });
 

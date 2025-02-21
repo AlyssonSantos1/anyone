@@ -6,7 +6,7 @@
     <title>Edit the Team Members</title>
 </head>
 <body>
-    <form action="{{ route('memberedited', $member->id) }}" method="POST">
+    <form action="{{ route('executive.editing', $member->id) }}" method="POST">
     @csrf
     @method("PUT")
 
