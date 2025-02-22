@@ -10,7 +10,7 @@
         @csrf
         @method("PUT")            
         <label for=""> Delete Review Yourself</label>
-        <input type="text" placeholder="Yourself Reviews" name="personalreviews_user" value="{{ old('personalreviews_user', auth()->user()->personalreviews) }}">
+        <input type="text" placeholder="Yourself Reviews" name="personalreviews_user" >
         <br><br><br>
         <button type="submit">Delete</button>
     </form>
