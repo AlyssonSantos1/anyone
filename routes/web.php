@@ -28,21 +28,20 @@ Route::get('/', function () {
     return redirect()->route('welcome');
 });
 
-
+//Login authenticator 
 Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('sucess');
-//login
-
-
-
 Route::get('/executive-dashboard', [LoginController::class, 'executiveDashboard'])->name('executive.dashboard');
 Route::get('/manager-dashboard', [LoginController::class, 'managerDashboard'])->name('manager.dashboard');
 Route::get('/internaladvisor-dashboard', [LoginController::class, 'internalAdvisorDashboard'])->name('internaladvisor.dashboard');
 Route::get('/associate-dashboard', [LoginController::class, 'associateDashboard'])->name('associate.dashboard');
 Route::get('/user-dashboard', [LoginController::class, 'userDashboard'])->name('user.dashboard');
-//
+//End of Login
 
-//authenticate with middleware
+
+
+
+//Executives routesauthenticate with middleware
 Route::group(['middleware' =>['executive']], function(){
 Route::get('/executives/create',[ExecutiveController::class, 'create'])->name('executive.create');
 Route::post('/executives',[ExecutiveController::class, 'store']);
@@ -51,42 +50,45 @@ Route::put('/executive/edited/',[ExecutiveController::class, 'changed']);
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive.project-build');
 Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
 Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
-
 });
+//End of Executive
 
-
+// Managers Route
 Route::group(['middleware' =>['manager']], function(){
-Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded']);
+Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('manager-swap');
 Route::put('/manager/traded/{id}',[ManagerController::class, 'swapuser'])->name('trademember');
-Route::get('/manager/seeallreviews',[ManagerController::class, 'catch']);
-Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('everything');
+Route::get('/manager/seeallreviews',[ManagerController::class, 'catch'])->name('manager-all');
+Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('manager-all');
 });
+//End of Managers Area 
 
-// Routes Only can acess by Managers in the Company
-
+// Routes by Internal Advisorss can acess by  in the Company
 Route::group(['middleware' =>['internaladvisor']], function(){
-Route::get('/advisors/give-review',[AdvisorController::class, 'newreview']);
+Route::get('/advisors/give-review',[AdvisorController::class, 'newreview'])->name('gave-review');
 Route::post('/advisors/gave',[AdvisorController::class, 'newest'])->name('wrote');
-Route::get('/advisors/review-team',[AdvisorController::class, 'target']);
-Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids'])->name('everything');
-// Routes Only can acess by Advisors in the Company
+Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('see-review');
+Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 });
+// End of Internal Advisors Space
 
+
+// Routes Only can acess by Associates in the Company
 Route::group(['middleware' =>['associate']], function(){
-Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'map']);
+Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'map'])->name('tradetoadv');
 Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser'])->name('tradetoadvisor');
-Route::get('/associates/review-team',[AssociatesController::class, 'swan']);
+Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('reviewtheirteam');
 Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewssofaround');
 });
-// Routes Only can acess by Associates in the Company
+// End of associates area
 
+// user default space
 Route::group(['middleware' =>['user']], function(){
 Route::get('/user/delete-review/',[UserController::class, 'trash']);
 Route::put('/user/delete-review',[Usercontroller::class, 'turndown'])->name('Deleted');
 Route::get('/user/edit-review/',[UserController::class, 'edited']);
 Route::put('/user/edited-review/',[Usercontroller::class, 'change'])->name('editedbyuser');
 });
-// Routes Only can acess by Users in the Company
+// End of users space
 
 
 
