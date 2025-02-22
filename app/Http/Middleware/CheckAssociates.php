@@ -16,6 +16,8 @@ class CheckAssociates
 
     public function handle(Request $request, Closure $next)
     {
+        $hiearchy = strtolower(session('hierarchy'));
+
         \Log::info('checking hierarchy in session: ' .session('hierarchy'));
         
         if (!session()->has('hierarchy') || strtolower(session('hierarchy')) !== 'associate'){
