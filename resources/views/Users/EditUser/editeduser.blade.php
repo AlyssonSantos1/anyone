@@ -6,12 +6,12 @@
     <title>Users Space</title>
 </head>
 <body>
-    <form action="{{  route ('editing-review')   }}" method="POST">
+    <form action="{{ route ('editing-review', $member->id )}}" method="POST">
         @csrf
         @method("PUT")
-        <label for=""> Edit yourself Review</label>
-        <input type="text" placeholder="Yourself Reviews" name="personalreviews_user">
-        <br><br><br>
+        <label for="">Personal Reviews</label>
+        <input type="text" placeholder="Personal Reviews" name="personalreviews_user" value="{{ old('personalreviews_user', $member->personalreviews) }}" required>
+        <br><br>
         <button type="submit">Edit User</button>
     </form>
 </body>

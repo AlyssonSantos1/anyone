@@ -100,24 +100,6 @@ class ExecutiveController extends Controller
             return 'The Project has been created';
             
     }
-
-    // public function catch (Request $request, int $id){
-
-    //     Project::find([
-    //         "projectname" =>$request->projectname_project,
-    //             "manager" =>$request->manager_project,
-    //             "numberofmembers" =>$request->numberofmembers_project,
-    //             "goals" =>$request->goals_project,
-    //             "description" =>$request->description_project,
-    //             "reviews" =>$request->reviews_project,
-    //             "authorreview" =>$request->authorreview_project
-    //             //
-    //     ]);
-    // }
-
-    // public function locked (Request $request, int $id){
-    //     return view('Executive.binocular.restrict');
-    // }
         
 
     public function getReviewAuthors ($squad_id)

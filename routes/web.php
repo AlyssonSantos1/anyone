@@ -85,8 +85,8 @@ Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->nam
 Route::group(['middleware' =>['user']], function(){
 Route::get('/user/delete-review/',[UserController::class, 'trash'])->name('delete-user');
 Route::put('/user/delete-review',[Usercontroller::class, 'turndown'])->name('Deleted');
-Route::get('/user/edit-review/',[UserController::class, 'edited'])->name('editing-review');
-Route::put('/user/edited-review/',[Usercontroller::class, 'change'])->name('editedbyuser');
+Route::get('/user/edit-review/{id}',[UserController::class, 'edited'])->name('editing-review');
+Route::put('/user/edited-review/{id}',[Usercontroller::class, 'change'])->name('editedbyuser');
 });
 // End of users space
 

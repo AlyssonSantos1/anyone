@@ -13,7 +13,7 @@
         <button type="submit">Delete Review of their user</button>
     </form>
 
-    <form action="{{  route('editing-review') }}" method="get">
+    <form action="{{  route('editing-review', ['id' => 5]) }}" method="get">
     <button type="submit">Edit the Review User</button>
     </form>
     
