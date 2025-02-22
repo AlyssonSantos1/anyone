@@ -6,19 +6,12 @@
     <title>Users Area</title>
 </head>
 <body>
-    <form action="{{  route ('Deleted')   }}" method="POST">
+    <form action="{{  route ('delete-user')   }}" method="POST">
         @csrf
-        @method("PUT")
-            
+        @method("PUT")            
         <label for=""> Delete Review Yourself</label>
-        @if(auth()->check())
         <input type="text" placeholder="Yourself Reviews" name="personalreviews_user" value="{{ old('personalreviews_user', auth()->user()->personalreviews) }}">
-        @else
-        <p>Você precisa estar autenticado para excluir sua review.</p>
-        @endif
         <br><br><br>
-
-
         <button type="submit">Delete</button>
     </form>
     

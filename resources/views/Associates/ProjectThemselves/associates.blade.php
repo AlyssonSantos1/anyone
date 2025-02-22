@@ -6,7 +6,7 @@
     <title>Internal Advisors Space</title>
 </head>
 <body>
-    <form action="{{  route('reviewssofaround')  }}" method="POST">
+    <form action="{{  route('catch-review')  }}" method="POST">
         @csrf
         <label for="">PersonalReviews</label>
         <input type="text" placeholder="personalreviews" name="personalreviews_user">

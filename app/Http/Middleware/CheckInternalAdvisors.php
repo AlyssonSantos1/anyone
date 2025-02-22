@@ -16,6 +16,7 @@ class CheckInternalAdvisors
 
     public function handle(Request $request, Closure $next)
     {
+        $hierarchy = strtolower(session('hierarchy'));
         
         \Log::info('checking hierarchy in session: ' .session('hierarchy'));
         

@@ -76,16 +76,16 @@ Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 Route::group(['middleware' =>['associate']], function(){
 Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'map'])->name('tradetoadv');
 Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser'])->name('tradetoadvisor');
-Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('reviewtheirteam');
-Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewssofaround');
+Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('catch-review');
+Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewtheirteam');;
 });
 // End of associates area
 
 // user default space
 Route::group(['middleware' =>['user']], function(){
-Route::get('/user/delete-review/',[UserController::class, 'trash']);
+Route::get('/user/delete-review/',[UserController::class, 'trash'])->name('delete-user');
 Route::put('/user/delete-review',[Usercontroller::class, 'turndown'])->name('Deleted');
-Route::get('/user/edit-review/',[UserController::class, 'edited']);
+Route::get('/user/edit-review/',[UserController::class, 'edited'])->name('editing-review');
 Route::put('/user/edited-review/',[Usercontroller::class, 'change'])->name('editedbyuser');
 });
 // End of users space

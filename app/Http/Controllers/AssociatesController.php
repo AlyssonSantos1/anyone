@@ -32,7 +32,7 @@ class AssociatesController extends Controller
 
     public function glasses (Request $request){
        
-            Member::read([
+            Member::find([
                 "reviews" =>$request->reviews_project,
                 "personalreviews" =>$request->personalreviews_personal
                 

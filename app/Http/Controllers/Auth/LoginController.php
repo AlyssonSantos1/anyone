@@ -37,7 +37,7 @@ class LoginController extends Controller
                 return view('InternalAdvisors.loginadvsior');
             case 'manager':
                 return view('Managers.loginmanager');
-            case 'associates':
+            case 'associate':
                 return view('Associates.loginassociates');
             case 'user':
                 return view('Users.loginuser');
