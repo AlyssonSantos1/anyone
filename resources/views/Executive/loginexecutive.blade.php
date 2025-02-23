@@ -17,7 +17,7 @@
     <button type="submit">Edit User</button>
     </form>
 
-    <form action="{{ route('executive.project-build') }}" method="get">
+    <form action="{{ route('executive-build') }}" method="get">
     <button type="submit">Build New Project</button>
     </form>
 

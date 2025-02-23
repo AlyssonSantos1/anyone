@@ -14,20 +14,29 @@ use App\Models\Squad;
 class AdvisorController extends Controller
 {
 
-    public function newreview (Request $request)
+    public function newreview (int $id)
     {
-        return view('InternalAdvisors.WriteReview.givereviews');
+        $project = Project::find($id);
+
+        if ($project){
+            return view('InternalAdvisors.WriteReview.givereviews', compact('project'));
+        }
+       return 'Project not found';
     }
 
 
-    public function newest (Request $request){  
-
-            Project::create([                
-                "reviews" =>$request->reviews_project,
-    
-            ]);
+    public function newest (Request $request){ 
+        $project = Project::find($request->project_id);
         
-            return 'The Review is Writed';
+        if ($project) {
+            $project->update([
+                "reviews" =>$request->reviews_project
+            ]);
+            
+        }
+
+        
+        return 'The Review is Writed';
 
     }
 

@@ -6,21 +6,21 @@
     <title>Create New Project By Executive Only</title>
 </head>
 <body>
-    @if(session('success'))
+    <!-- @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     @if(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
-    <form action="{{  ('executive.project-build')  }}" method="POST">
-        @csrf
+    @endif -->
+    <form action="/executive-build" method="POST">
+        <!-- @csrf
         <label for="">Select the project</label>
         <select name="project" id="project">
             @foreach($project as $project)
             <option value="{{$project->id}}"></option>
             @endforeach
-        </select>
+        </select> -->
         
         <label for="">Name of the project </label>
         <input type="text" placeholder="projectname" name="projectname_project" required>

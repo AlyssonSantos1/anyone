@@ -9,7 +9,7 @@
     <h1>You are an Internal Advisor </h1>
    
 
-    <form action="{{  route('gave-review')  }}" method="get">
+    <form action="{{  route('gave-review', ['id' => 1])  }}" method="get">
         <button type="submit">Give Review</button>
     </form>
 

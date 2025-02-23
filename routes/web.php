@@ -47,8 +47,8 @@ Route::get('/executives/create',[ExecutiveController::class, 'create'])->name('e
 Route::post('/executives',[ExecutiveController::class, 'store']);
 Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition'])->name('executive.editing');
 Route::put('/executive/edited/',[ExecutiveController::class, 'changed']);
-Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive.project-build');
-Route::post('/executive/created',[ExecutiveController::class, 'congrats'])->name('created');
+Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive-build');
+Route::post('/executive-build',[ExecutiveController::class, 'congrats']);
 Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
 });
 //End of Executive
@@ -64,8 +64,8 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('
 
 // Routes by Internal Advisorss can acess by  in the Company
 Route::group(['middleware' =>['internaladvisor']], function(){
-Route::get('/advisors/give-review',[AdvisorController::class, 'newreview'])->name('gave-review');
-Route::post('/advisors/gave',[AdvisorController::class, 'newest']);
+Route::get('/advisors/give-review/{id}',[AdvisorController::class, 'newreview'])->name('gave-review');
+Route::post('/advisors',[AdvisorController::class, 'newest']);
 Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('see-review');
 Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 });
