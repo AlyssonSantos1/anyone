@@ -13,7 +13,7 @@
         <button type="submit">Give Review</button>
     </form>
 
-    <form action="{{  route('see-review') }}" method="get">
+    <form action="{{  route('see-review', ['id' => 1]) }}" method="get">
     <button type="submit">See the review's of the Team</button>
     </form>
     

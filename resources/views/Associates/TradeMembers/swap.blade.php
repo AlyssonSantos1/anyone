@@ -6,19 +6,17 @@
     <title>Swap for Temporary Internal Advisor</title>
 </head>
 <body>
-    <form action="{{  route  ('tradetoadvisor',$member->id )  }}" method="POST">
+    <form action="/traded/{{ $member->id }}" method="POST">
         @csrf
         @method("PUT")
             
         <label for="">Name </label>
-        <input type="text" placeholder="Name"  value="{{ old('name_user', $member->name) }}" required>
+        <input type="text" placeholder="Name" name="name_user" value="{{ old('name_user', $member->name) }}" required>
         <br><br>
+
         <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy"  value="{{ old('hiearchy_user', $member->hiearchy) }}" required>
+        <input type="text" placeholder="Hierarchy"  name="hierarchy_user" value="{{ old('currentproject_user', $member->currentproject) }}" required>
         <br><br>
-        <label for="">Current Role</label>
-        <input type="text" placeholder="current role"  value="{{ old('role_user', $member->role) }}" required>
-        <br><br><br>
         <button type="submit">Send</button>
     </form>
 </body>

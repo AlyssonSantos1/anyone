@@ -15,6 +15,7 @@ class project extends Model
     public function reviews(): BelongsTo
     {
         return $this->hasMany(Review::class);
+        
     }
 
     public function squads(): Hasmany

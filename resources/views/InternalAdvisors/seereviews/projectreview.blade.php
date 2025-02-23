@@ -15,7 +15,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    <form action="{{  route('see-review')  }}" method="POST">
+    <form action="/see/{{ $project->id }}" method="POST">
         @csrf
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="projectreviews_project" required>

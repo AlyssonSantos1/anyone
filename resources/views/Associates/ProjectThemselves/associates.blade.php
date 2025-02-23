@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,4 +18,16 @@
     </form>
     
 </body>
-</html>
+</html> -->
+
+<form action="{{ route('reviewtheirteam') }}" method="POST">
+    @csrf
+    <label for="">Project ID</label>
+    <input type="text" name="project_id" value="{{ old('project_id') }}" required>
+    <br><br>
+
+    <label for="">User ID</label>
+    <input type="text" name="user_id" value="{{ old('user_id') }}" required>
+    <br><br>
+
+</form>

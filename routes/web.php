@@ -66,8 +66,8 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('
 Route::group(['middleware' =>['internaladvisor']], function(){
 Route::get('/advisors/give-review/{id}',[AdvisorController::class, 'newreview'])->name('gave-review');
 Route::post('/advisors/{id}',[AdvisorController::class, 'newest']);
-Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('see-review');
-Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids']);
+Route::get('/advisors/review-team/{id}',[AdvisorController::class, 'target'])->name('see-review');
+Route::post('/see/{id}',[AdvisorController::class, 'pyramids']);
 });
 // End of Internal Advisors Space
 
@@ -75,9 +75,9 @@ Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 // Routes Only can acess by Associates in the Company
 Route::group(['middleware' =>['associate']], function(){
 Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'map'])->name('tradetoadv');
-Route::post('/associates/swap-role/{id}',[AssociatesController::class, 'swapuser'])->name('tradetoadvisor');
+Route::put('/traded/{id}',[AssociatesController::class, 'swapuser']);
 Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('catch-review');
-Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewtheirteam');;
+Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewtheirteam');
 });
 // End of associates area
 

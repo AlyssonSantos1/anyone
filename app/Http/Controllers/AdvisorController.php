@@ -44,23 +44,24 @@ class AdvisorController extends Controller
     
 
 
-    public function pyramids (Request $request){
-
-            Squad::read([
-                
-                "projectreviews" =>$request->projectreviews_project
-    
+    public function pyramids (Request $request, int $id){
+        $project = Project::find($id);
+        
+            Project::find([
+                "reviews" =>$request->reviews_project
             ]);
-        
-            return 'See the Review of Project';
             
-        
         }
         
 
-        public function target(Request $request)
+        public function target(int $id)
         {
-            return view('InternalAdvisors.seereviews.projectreview');
+            $project = Project::find($id);
+
+            if ($project){
+                return view('InternalAdvisors.seereviews.projectreview', compact('project'));
+            }
+            return 'Project not found';
         }
         
 }
