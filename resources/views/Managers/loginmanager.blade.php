@@ -9,7 +9,7 @@
     <h1>You are a Manager </h1>
    
 
-    <form action="{{ route('manager-swap', ['id' =>1]) }}" method="get">
+    <form action="{{ route('temporarytrade', ['id' =>1]) }}" method="get">
         <button type="submit">Swap User to Internal Advisor</button>
     </form>
 

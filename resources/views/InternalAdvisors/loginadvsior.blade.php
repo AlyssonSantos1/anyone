@@ -10,7 +10,7 @@
    
 
     <form action="{{  route('gave-review')  }}" method="get">
-        <button type="submit">Swap User to Internal Advisor</button>
+        <button type="submit">Give Review</button>
     </form>
 
     <form action="{{  route('see-review') }}" method="get">

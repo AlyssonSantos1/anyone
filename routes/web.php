@@ -55,8 +55,8 @@ Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'g
 
 // Managers Route
 Route::group(['middleware' =>['manager']], function(){
-Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('manager-swap');
-Route::put('/manager/traded/{id}',[ManagerController::class, 'swapuser'])->name('trademember');
+Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('temporarytrade');
+Route::put('/manager/traded/{id}',[ManagerController::class, 'trading']);
 Route::get('/manager/seeallreviews',[ManagerController::class, 'catch'])->name('manager-all');
 Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('manager-all');
 });
@@ -65,7 +65,7 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('
 // Routes by Internal Advisorss can acess by  in the Company
 Route::group(['middleware' =>['internaladvisor']], function(){
 Route::get('/advisors/give-review',[AdvisorController::class, 'newreview'])->name('gave-review');
-Route::post('/advisors/gave',[AdvisorController::class, 'newest'])->name('wrote');
+Route::post('/advisors/gave',[AdvisorController::class, 'newest'])->name('created-review');
 Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('see-review');
 Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 });

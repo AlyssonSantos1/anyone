@@ -15,7 +15,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    <form action="{{  route('wrote')  }}" method="POST">
+    <form action="{{  route('see-review')  }}" method="POST">
         @csrf
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="projectreviews_project" required>

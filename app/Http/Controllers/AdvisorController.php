@@ -19,19 +19,24 @@ class AdvisorController extends Controller
         return view('InternalAdvisors.WriteReview.givereviews');
     }
 
+
     public function newest (Request $request){  
-           
+        $request->validate([
+
+            'projectreviews' => 'nullable|string',
+
+        ]);
+
             Project::create([                
-                "projectreviews" =>$request->projectreviews_project
+                "reviews" =>$request->reviews_project,
     
             ]);
         
-        
-        
             return 'The Review is Writed';
-            
-        
+
     }
+
+
     
 
 

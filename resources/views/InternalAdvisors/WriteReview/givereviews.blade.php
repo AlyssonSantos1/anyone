@@ -6,12 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{  route('wrote')  }}" method="POST">
-        @csrf
-        <label for="">ReviewsofProject</label>
-        <input type="text" placeholder="ReviewsofProject" name="projectreviews_project" required>
-        <br><br><br>
-        <button type="submit">Send</button>
-    </form>
+    <form action="{{ route('gave-review') }}" method="POST">
+    @csrf
+    <input type="text" placeholder="projectreviews" name="projectreviews_project" required>  
+    <button type="submit">Send Review</button>
+</form>
+
 </body>
 </html>
