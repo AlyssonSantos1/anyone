@@ -6,11 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- <form action="/advisors/gave" method="POST">
-    @csrf
-    <input type="text" placeholder="Write your review" name="reviews_project" required>  
-    <button type="submit">Send</button> -->
-    <form action="/advisors" method="POST">
+    
+    <form action="/advisors/{{ $project->id }}" method="POST">
     @csrf
     <input type="hidden" name="project_id" value="{{ $project->id }}">
     <br><br>

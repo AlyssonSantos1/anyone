@@ -25,8 +25,8 @@ class AdvisorController extends Controller
     }
 
 
-    public function newest (Request $request){ 
-        $project = Project::find($request->project_id);
+    public function newest (Request $request, int $id){ 
+        $project = Project::find($id);
         
         if ($project) {
             $project->update([
