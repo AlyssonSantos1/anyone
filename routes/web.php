@@ -65,7 +65,7 @@ Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('
 // Routes by Internal Advisorss can acess by  in the Company
 Route::group(['middleware' =>['internaladvisor']], function(){
 Route::get('/advisors/give-review',[AdvisorController::class, 'newreview'])->name('gave-review');
-Route::post('/advisors/gave',[AdvisorController::class, 'newest'])->name('created-review');
+Route::post('/advisors/gave',[AdvisorController::class, 'newest']);
 Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('see-review');
 Route::post('/advisors/review-team',[AdvisorController::class, 'pyramids']);
 });

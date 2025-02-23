@@ -21,11 +21,6 @@ class AdvisorController extends Controller
 
 
     public function newest (Request $request){  
-        $request->validate([
-
-            'projectreviews' => 'nullable|string',
-
-        ]);
 
             Project::create([                
                 "reviews" =>$request->reviews_project,
