@@ -6,22 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
-    @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
-
-    <form action="/see/{{ $project->id }}" method="POST">
-        @csrf
-        <label for="">ReviewsofProject</label>
-        <input type="text" placeholder="ReviewsofProject" name="projectreviews_project" required>
-        <br><br><br>
-        
-        
+    <form action="{{ route('see-review', ['projectId' => 3]) }}" method="POST">
+     
+        <div>
+            <h3>Project Reviews: </h3>
+            <p>{{ $projectReviews ? $projectReviews : 'No project reviews'}} </p>
+        </div>
     </form>
+
 </body>
 </html>

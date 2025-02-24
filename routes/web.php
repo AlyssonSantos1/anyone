@@ -58,7 +58,6 @@ Route::group(['middleware' =>['manager']], function(){
 Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('temporarytrade');
 Route::put('/trade/{id}',[ManagerController::class, 'trading']);
 Route::get('/seeallreviews/{projectId}/{userId}',[ManagerController::class, 'catch'])->name('manager-all');
-
 });
 //End of Managers Area 
 
@@ -66,8 +65,8 @@ Route::get('/seeallreviews/{projectId}/{userId}',[ManagerController::class, 'cat
 Route::group(['middleware' =>['internaladvisor']], function(){
 Route::get('/advisors/give-review/{id}',[AdvisorController::class, 'newreview'])->name('gave-review');
 Route::post('/advisors/{id}',[AdvisorController::class, 'newest']);
-Route::get('/advisors/review-team/{id}',[AdvisorController::class, 'target'])->name('see-review');
-Route::post('/see/{id}',[AdvisorController::class, 'pyramids']);
+Route::get('/advisors/review-team/{projectId}',[AdvisorController::class, 'target'])->name('see-review');
+// Route::post('/see/{id}',[AdvisorController::class, 'pyramids']);
 });
 // End of Internal Advisors Space
 
