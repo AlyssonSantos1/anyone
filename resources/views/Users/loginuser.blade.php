@@ -9,7 +9,7 @@
     <h1>Welcome to the Syndicate System </h1>
     <p>You are an User </p>
 
-    <form action="{{  route('delete-user')  }}" method="get">
+    <form action="{{ route('delete-review', ['id' => 6]) }}" method="get">
         <button type="submit">Delete Review of their user</button>
     </form>
 

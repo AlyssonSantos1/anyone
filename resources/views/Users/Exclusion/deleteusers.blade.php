@@ -6,11 +6,11 @@
     <title>Users Area</title>
 </head>
 <body>
-    <form action="{{  route ('delete-user')   }}" method="POST">
+    <form action="/deleted/{{ $member->id }}" method="POST">
         @csrf
         @method("PUT")            
         <label for=""> Delete Review Yourself</label>
-        <input type="text" placeholder="Yourself Reviews" name="personalreviews_user" >
+        <input type="text" placeholder="ID" name="id_user" value="{{ old('personalreviews_user', $member->personalreviews) }}" required>
         <br><br><br>
         <button type="submit">Delete</button>
     </form>

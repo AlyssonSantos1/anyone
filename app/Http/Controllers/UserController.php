@@ -14,21 +14,25 @@ use App\Models\Squad;
 
 class UserController extends Controller
 {
-    public function turndown (Request $request){        
-        
-        Member::delete([
-                "personalreviews" => $request->personalreviews_user
+    public function turndown (Request $request, int $id){
+        $member =  Member::findorFail($id);     
 
-            ]);
+        $hierarchy = $request->input('hierarchy_user') ?: null;
 
-            return 'The personal review has been Deleted';
-            
+            $member->update([
+                "personalreviews" => null
     
+            ]);        
+
+        return 'The Personal Reviews Are deleted';
+
     }
 
 
-    public function trash(Request $request){       
-        return view('Users.Exclusion.deleteusers');
+    public function trash(Request $request, int $id){  
+        $member = Member::findorFail($id);
+        // return view('Associates.TradeMembers.swap', compact('member'));     
+        return view('Users.Exclusion.deleteusers', compact('member'));
     }
 
 
