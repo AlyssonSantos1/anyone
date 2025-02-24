@@ -39,9 +39,9 @@ class ManagerController extends Controller
         $projectReviews = Project::where('id', $projectId)->first(['projectreviews']);
 
 
-        $personalReviews =  $personalReviews ? $personalReviews->personalreviews : null;
-        $teamReviews = $teamReviews ? $teamReviews->teamreviews : null;
-        $projectReviews = $projectReviews ? $projectReviews->projectreviews : null;
+        $personalReviews =  $personalReviews ? $personalReviews->personalreviews : 'No personal Reviews';
+        $teamReviews = $teamReviews ? $teamReviews->reviewsofsquad : 'No team Reviews';
+        $projectReviews = $projectReviews ? $projectReviews->projectreviews : 'No project reviews';
 
         return view('Managers.Vision.allreviews',[
            'personalReviews' => $personalReviews,

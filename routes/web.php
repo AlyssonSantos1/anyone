@@ -49,7 +49,7 @@ Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition'])->n
 Route::put('/edit/{id}',[ExecutiveController::class, 'changed']);
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive-build');
 Route::post('/executive-build',[ExecutiveController::class, 'congrats']);
-Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
+Route::get('executive/{squad_id}/{project_id}',[ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
 });
 //End of Executive
 
