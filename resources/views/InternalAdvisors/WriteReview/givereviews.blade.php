@@ -7,30 +7,13 @@
 </head>
 <body>
     
-    <form action="/advisors/{{ $project->id }}" method="POST">
+    <form action="{{ route('done-it', ['projectId' => 3]) }}" method="POST">
     @csrf
-    <input type="hidden" name="project_id" value="{{ $project->id }}">
-    <br><br>
     <div>
-        <label for="projectname">Project Name:</label>
-        <input type="text" name="projectname" value="{{ $project->projectname }}" disabled>
+        <label for="review">Review:</label>
+        <textarea id="review" name="review" required>Write the Review Here</textarea>
     </div>
-    <br><br>
-    <div>
-        <label for="numberofmembers">Number of Members:</label>
-        <input type="text" name="numberofmembers" value="{{ $project->numberofmembers }}" disabled>
-    </div>
-    <br><br>
-    <!-- Outros campos obrigatórios podem ser exibidos aqui, mas como são apenas de leitura, pode deixá-los desabilitados -->
-    <div>
-        <label for="reviews_project">Write your Review:</label>
-        <textarea name="reviews_project" id="reviews_project" rows="4" placeholder="Enter your review" required></textarea>
-    </div>
-
     <button type="submit">Submit Review</button>
-</form>
-
-</form>
-
+    </form>
 </body>
 </html>

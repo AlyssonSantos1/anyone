@@ -14,65 +14,48 @@ use App\Models\Squad;
 class AdvisorController extends Controller
 {
 
-    public function newreview (int $id)
+    public function newreview ($projectId)
     {
-        $project = Project::find($id);
+        $project = Project::find($projectId);
 
-        if ($project){
-            return view('InternalAdvisors.WriteReview.givereviews', compact('project'));
+        if (!$project){
+            return 'Project not Found!';
         }
-       return 'Project not found';
+       return view('InternalAdvisors.WriteReview.givereviews', compact('project'));
     }
 
 
-    public function newest (Request $request, int $id){ 
-        $project = Project::find($id);
+    public function newest (Request $request, int $projectId){ 
         
-        if ($project) {
-            $project->update([
-                "reviews" =>$request->reviews_project
-            ]);
-            
-        }
+        $request->validate([
+            'review' => 'required|string|max:800'
+        ]);
+        
+        $project = Project::find($projectId);
 
-        
+        $existingReviews = $project->projectReviews ?? '';
+        $newReview = $existingReviews . "\n" . $request->review;
+
+        $project->projectReviews = $newReview;
+        $project->save();
+
         return 'The Review is Writed';
 
     }
 
-
-    
-
-
-    // public function pyramids (Request $request, int $id){
-    //     $project = Project::find($id);
+    public function target(Request $request, int $projectId)
+    {
         
-    //         Project::find([
-    //             "reviews" =>$request->reviews_project
-    //         ]);
+        $projectReviews = Project::where('id', $projectId)->first(['projectreviews']);
+
+        $projectReviews = $projectReviews ? $projectReviews->projectreviews : 'No project reviews';
+
+        return view('InternalAdvisors.seereviews.projectreview',[
+            'projectReviews' => $projectReviews
             
-    //     }
-        
+        ]);
 
-        public function target(Request $request, int $projectId)
-        {
-           
-            $projectReviews = Project::where('id', $projectId)->first(['projectreviews']);
-    
-            $projectReviews = $projectReviews ? $projectReviews->projectreviews : 'No project reviews';
-    
-            return view('InternalAdvisors.seereviews.projectreview',[
-                'projectReviews' => $projectReviews
-                
-            ]);
-
-            // $project = Project::find($id);
-
-            // if ($project){
-            //     return view('InternalAdvisors.seereviews.projectreview', compact('project'));
-            // }
-            // return 'Project not found';
-        }
+    }
         
 }
 

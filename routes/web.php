@@ -63,10 +63,9 @@ Route::get('/seeallreviews/{projectId}/{userId}',[ManagerController::class, 'cat
 
 // Routes by Internal Advisorss can acess by  in the Company
 Route::group(['middleware' =>['internaladvisor']], function(){
-Route::get('/advisors/give-review/{id}',[AdvisorController::class, 'newreview'])->name('gave-review');
-Route::post('/advisors/{id}',[AdvisorController::class, 'newest']);
+Route::get('/advisors/give-review/{projectId}',[AdvisorController::class, 'newreview'])->name('gave-review');
+Route::post('/advisors/{projectId}',[AdvisorController::class, 'newest'])->name('done-it');
 Route::get('/advisors/review-team/{projectId}',[AdvisorController::class, 'target'])->name('see-review');
-// Route::post('/see/{id}',[AdvisorController::class, 'pyramids']);
 });
 // End of Internal Advisors Space
 
