@@ -9,11 +9,11 @@
     <h1>Welcome to the Syndicate System </h1>
     <p>You are an User </p>
 
-    <form action="{{ route('delete-review', ['id' => 6]) }}" method="get">
+    <form action="{{ route('delete-review', ['id' => 7]) }}" method="get">
         <button type="submit">Delete Review of their user</button>
     </form>
 
-    <form action="{{  route('editing-review', ['id' => 5]) }}" method="get">
+    <form action="{{  route('editing-review', ['id' => 7]) }}" method="get">
     <button type="submit">Edit the Review User</button>
     </form>
     

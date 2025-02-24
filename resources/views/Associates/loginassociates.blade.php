@@ -9,7 +9,7 @@
     <h1>You are an Associate</h1>
    
 
-    <form action="{{ route('tradetoadv', ['id' => 2]) }}" method="get">
+    <form action="{{ route('tradetoadv', ['id' => 4]) }}" method="get">
         <button type="submit">Swap User to Internal Advisor</button>
     </form>
     

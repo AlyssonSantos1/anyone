@@ -13,7 +13,7 @@
         <button type="submit">Create New User</button>
     </form>
 
-    <form action="{{ route('executive.editing', ['id' => 1]) }}" method="get">
+    <form action="{{ route('executive.editing', ['id' => 4]) }}" method="get">
     <button type="submit">Edit User</button>
     </form>
 

@@ -46,7 +46,7 @@ Route::group(['middleware' =>['executive']], function(){
 Route::get('/executives/create',[ExecutiveController::class, 'create'])->name('executive.create');
 Route::post('/executives',[ExecutiveController::class, 'store']);
 Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition'])->name('executive.editing');
-Route::put('/executive/edited/',[ExecutiveController::class, 'changed']);
+Route::put('/edit/{id}',[ExecutiveController::class, 'changed']);
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive-build');
 Route::post('/executive-build',[ExecutiveController::class, 'congrats']);
 Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
@@ -86,7 +86,7 @@ Route::group(['middleware' =>['user']], function(){
 Route::get('/user/delete-review/{id}',[UserController::class, 'trash'])->name('delete-review');
 Route::put('/deleted/{id}',[Usercontroller::class, 'turndown']);
 Route::get('/user/edit-review/{id}',[UserController::class, 'edited'])->name('editing-review');
-Route::put('/user/edited-review/{id}',[Usercontroller::class, 'change'])->name('editedbyuser');
+Route::put('/edited/{id}',[Usercontroller::class, 'change']);
 });
 // End of users space
 

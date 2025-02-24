@@ -29,7 +29,13 @@
         <input type="text" placeholder="Role" name="role_user" required>
         <br><br>
         <label for="">Hierarchy</label>
-        <input type="text" placeholder="Hierarchy" name="hierarchy_user" required>
+        <select name="hierarchy_user" required>
+            <option value="executive">Executive</option>
+            <option value="manager">Manager</option>
+            <option value="internaladvisor">InternalAdvisor</option>
+            <option value="associate">Associate</option>
+            <option value="user">User</option>
+        </select>
         <br><br>
         <label for="">Inserted Project User</label>
         <input type="text" placeholder="insertedproject" name="insertedproject_user" required>

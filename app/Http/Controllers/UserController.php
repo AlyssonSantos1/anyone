@@ -22,7 +22,7 @@ class UserController extends Controller
             $member->update([
                 "personalreviews" => null
     
-            ]);        
+            ]);          
 
         return 'The Personal Reviews Are deleted';
 
@@ -30,39 +30,28 @@ class UserController extends Controller
 
 
     public function trash(Request $request, int $id){  
-        $member = Member::findorFail($id);
-        // return view('Associates.TradeMembers.swap', compact('member'));     
+        $member = Member::findorFail($id);     
         return view('Users.Exclusion.deleteusers', compact('member'));
     }
 
 
-    // public function change (Request $request, int $id){   
-    //     $user = Member::findOrFail($id);
-    //        $user->update([
-    //             "personalreviews" =>$request->personalreviews_user,
-                
-    //         ]);
-        
-            
-    // }
-
-    // public function edited (Request $request, int $id){   
-    //     $user = Member::all();
-    //     return view('Users.EditUser.editeduser');            
-
-    // }
-    
     public function change (Request $request, int $id){
-        $member = Member::findorFail($id);
-        $member->update([
-            
-            "personalreviews" =>$request->personalreviews_user,
-            "squad_id" =>$request->squad_id              
 
+        $request->validate([
+            'personalreviews' => 'required|string|max:255',
         ]);
-    
-        return 'The Member has been edited';
 
+        $member =  Member::findorFail($id);     
+
+        $personalReviews = $request->input('personalreviews');
+
+
+        if ($personalReviews !== null) {
+            $member->update([
+                'personalreviews' => $personalReviews,
+            ]);
+        }
+        return 'The Personal Review Edited!';
     }
 
     public function edited (Request $request, int $id){
