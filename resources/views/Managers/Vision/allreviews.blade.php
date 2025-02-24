@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{  route('everything')  }}" method="POST">
+    <form action="/manager-all" method="POST">
         
         <label for="">TeamReviews</label>
         <input type="text" placeholder="ReviewsofTeam" name="reviewsofsquad" >

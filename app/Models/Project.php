@@ -18,11 +18,6 @@ class project extends Model
         
     }
 
-    public function squads(): Hasmany
-    {
-        return $this->belongsToMany(Squad::class, 'projectsquad');
-    }
-
     public function squads(): BelongstoMany
     {
         return $this->belongsToMany(Squad::class, 'project_squad');

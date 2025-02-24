@@ -34,9 +34,11 @@ class ManagerController extends Controller
 
     public function catch (Request $request){
        
-        Member::edit([
+        Member::find([
             "reviews" =>$request->reviews_project,
-            "personalreviews" =>$request->personalreviews_personal
+            "personalreviews" =>$request->personalreviews_personal,
+            "reviews" =>$request->reviews_project
+
             
         ]);
 
