@@ -56,7 +56,7 @@ Route::get('executive/{squad_id}/review-authors',[ExecutiveController::class, 'g
 // Managers Route
 Route::group(['middleware' =>['manager']], function(){
 Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('temporarytrade');
-Route::put('/manager/traded/{id}',[ManagerController::class, 'trading']);
+Route::put('/trade/{id}',[ManagerController::class, 'trading']);
 Route::get('/manager/seeallreviews',[ManagerController::class, 'catch'])->name('manager-all');
 Route::get('/manager/seeallreviews',[ManagerController::class, 'found'])->name('manager-all');
 });

@@ -20,13 +20,15 @@ class ManagerController extends Controller
 
         ]);
 
+        return 'The Manager are swap for internal advisor temporary';
+
     }
 
     
 
     public function traded(Request $request, int $id){
         $member = Member::findorFail($id);
-        return view('Managers.Traded.swaprole', compact('member'));
+        return view('Managers.Traded.changing', compact('member'));
     }
 
 

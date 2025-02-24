@@ -20,5 +20,10 @@ class Squad extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function projects(): BelongstoMany
+    {
+        return $this->belongsToMany(Squad::class, 'project_squad');
+    }
     
 }

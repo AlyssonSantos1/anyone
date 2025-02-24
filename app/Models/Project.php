@@ -22,5 +22,11 @@ class project extends Model
     {
         return $this->belongsToMany(Squad::class, 'projectsquad');
     }
+
+    public function squads(): BelongstoMany
+    {
+        return $this->belongsToMany(Squad::class, 'project_squad');
+    }
+    
     
 }
