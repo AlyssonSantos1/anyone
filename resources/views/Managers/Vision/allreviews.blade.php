@@ -6,9 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/manager-all" method="POST">
+    <form action="{{ route('manager-all', ['projectId' => 3, 'userId' => 4]) }}" method="POST">
+        <div>
+            <h3>Personal Reviews: </h3>
+            <p>{{ $personalReviews ? $personalReviews : 'No personal reviews'}} </p>
+        </div>
+
+        <div>
+            <h3>Team Reviews: </h3>
+            <p>{{ $teamReviews ? $teamReviews : 'No team reviews'}} </p>
+        </div>
+
+        <div>
+            <h3>Project Reviews: </h3>
+            <p>{{ $projectReviews ? $projectReviews : 'No project reviews'}} </p>
+        </div>
+
+
         
-        <label for="">TeamReviews</label>
+        <!-- <label for="">TeamReviews</label>
         <input type="text" placeholder="ReviewsofTeam" name="reviewsofsquad" >
         <br><br>
         <label for="">PersonalReviews</label>
@@ -17,7 +33,7 @@
         <label for="">ReviewsofProject</label>
         <input type="text" placeholder="ReviewsofProject" name="reviews_project">
         <br><br><br>
-        <button type="submit">See</button>
+        <button type="submit">See</button> -->
     </form>
 </body>
 </html>
