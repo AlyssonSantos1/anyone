@@ -22,10 +22,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    if(!session()->has('user_id')) {
-        return redirect()->route('login');
-    }
-    return redirect()->route('welcome');
+    return view('welcome');
 });
 
 //Login authenticator 
