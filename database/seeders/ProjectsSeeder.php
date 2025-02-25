@@ -16,7 +16,7 @@ class ProjectsSeeder extends Seeder
     {
         Project::Create([
             "projectname" => 'Save the Planet',
-            "managername" => 'Shawn Gibson',
+            "manager" => 'Shawn Gibson',
             "numberofmembers" => '10',
             "goals" => 'Create a new Software to help the project',
             "description" => 'The project consists of developing software in Python to map endangered animals',

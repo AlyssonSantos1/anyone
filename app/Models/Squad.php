@@ -9,7 +9,7 @@ class Squad extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["teammanager", "numberofmembers", "role", "hierarchy", "currentproject", "reviewsofsquad"];
+    protected $fillable = ["teammanager", "numberofmembers", "projectfocus", "reviewsofsquad", "nameofwriterreview"];
 
     public function user(): BelongsTo
     {

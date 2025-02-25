@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Squad;
 
 class SquadsSeeder extends Seeder
 {
@@ -15,9 +16,8 @@ class SquadsSeeder extends Seeder
         Squad::create([
             "teammanager" => 'Ashley Cooker',
             "numberofmembers" => '11',
-            "role" => 'Software Engineer',
-            "hierarchy" => 'Associate',
-            "currentproject" => 'The future of chatgpt',
+            "projectfocus" => 'How to found the Create an Eficient Software about the IA',
+            "nameofwriterreview" => 'The associate',
             "reviewsofsquad" =>'The squad is excelent'
         ]);
     }
