@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->string('manager')->nullable(); 
-            $table->string('projectreviews')->nullable(); 
-            $table->string('authorreview')->nullable(); 
+        Schema::table('squads', function (Blueprint $table) {
+            $table->string('projectfocus')->nullable()->change();  
         });
     }
 
@@ -23,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn(['manager', 'projectreviews', 'authorreview']);
+        Schema::table('squads', function (Blueprint $table) {
+            $table->string('projectfocus')->nullable(false)->change();
         });
     }
-
 };

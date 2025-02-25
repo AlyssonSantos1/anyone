@@ -135,9 +135,28 @@ class ExecutiveController extends Controller
         
         return response()->json($authorreview);
 
-        }  
+    }
+
+    public function construction (Request $request){
+
+        Squad::create([
+            'teammanager'=>$request->teammanager_team,
+            'numberofmembers'=>$request->numberofmembers_team,
+            'projectfocus'=>$request->projectfocus_team,
+            'reviewsofsquad'=>$request->reviewsofsquad_team,
+            'nameofwriterreview'=>$request->nameofwriterreview_team,
+
+        ]);
+
+        return 'The Squad are Created';
+
 
     }
+
+    public function tower (Request $request){
+        return view('Executive.BuildTeams.build');
+    }
+}
 
     
         
