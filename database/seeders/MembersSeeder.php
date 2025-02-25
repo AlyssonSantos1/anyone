@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Member;
 
 class MembersSeeder extends Seeder
 {
@@ -12,6 +13,14 @@ class MembersSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Member::Create([
+            "name" => 'Josef White',
+            "email" => 'jwhite@email.com',
+            "role" => 'Devops Engineer',
+            "hierarchy" => 'InternalAdvisor', 
+            "insertedproject" => 'The North Pole and your future',
+            "personalreviews"=> 'Josef It is an excelent teammate',
+            "ownerofreview"=> 'The Internal Advisor'
+        ]);
     }
 }

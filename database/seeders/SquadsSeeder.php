@@ -12,6 +12,13 @@ class SquadsSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Squad::create([
+            "teammanager" => 'Ashley Cooker',
+            "numberofmembers" => '11',
+            "role" => 'Software Engineer',
+            "hierarchy" => 'Associate',
+            "currentproject" => 'The future of chatgpt',
+            "reviewsofsquad" =>'The squad is excelent'
+        ]);
     }
 }
