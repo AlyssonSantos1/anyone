@@ -44,21 +44,7 @@ class AssociatesController extends Controller
             'member' => $member
         ]);
 
-
-       
-
     }
-
-    
-
-        // $member = Member::find($request->user_id); 
-       
-        //     Member::find([
-        //         "reviews" =>$request->reviews_project,
-        //         "personalreviews" =>$request->personalreviews_personal
-                
-        //     ]);
-        // }
 
     public function swan(Request $request){
         return view('Associates.ProjectThemselves.associates');
