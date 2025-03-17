@@ -24,7 +24,7 @@
     </form>
     <br><br>
 
-    <form action="{{ route('executive.review-authors', ['squad_id' => 1,'project_id' => 2]) }}" method="get">
+    <form action="{{ route('executive.review-authors') }}" method="get">
     <button type="submit">See Authors</button>
     </form>
     <br><br>

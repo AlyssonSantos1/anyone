@@ -48,7 +48,8 @@ Route::get('/executive/project-build',[ExecutiveController::class, 'newproject']
 Route::post('/executive-build',[ExecutiveController::class, 'congrats']);
 Route::get('/executives/new',[ExecutiveController::class, 'tower'])->name('build');
 Route::post('/built',[ExecutiveController::class, 'construction']);
-Route::get('executive/{squad_id}/{project_id}',[ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
+Route::get('/get-review-author', [ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
+
 });
 //End of Executive
 

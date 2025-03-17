@@ -102,39 +102,27 @@ class ExecutiveController extends Controller
     }
         
 
-    public function getReviewAuthors ($squad_id)
-        {
-
-            $squad = Squad::find($squad_id);
+    public function getReviewAuthors(Request $request)
+    {
+        if (!$request->has('project_id')) {
             
-            
-            if (!$squad) {
-
-                return response()->json(['message' => 'Squad not found'], 404);
-
-            }
-
-            $project = $squad->projects;
-                
-            $author = [];
-
-            foreach ($projects as $project) {
-
-                $reviews = $project->reviews;
-
-            foreach ($reviews as $review) {
-                $author[] = [
-                    'projectname' => $project->projectname, 
-                    'authorreview' => $review->user->name,    
-                    'author_id' => $review->author->id,    
-
-                ];
-            
-            }
+            $projects = Project::all();
+            return view('Executive.ProjectReviews.allreviews', compact('projects'));
         }
-        
-        return response()->json($authorreview);
+    
+        $projectId =  $request->input('project_id');
+        $project = Project::find($projectId);
 
+        if (!$projectId) {
+            return 'Project not found'; 
+        }
+
+        if ($project->authorreview) {
+            return 'Author of the review: ' . $project->authorreview;
+        }
+
+        return 'Author not found';
+        
     }
 
     public function construction (Request $request){

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('numberofmembers');
             $table->string('projectfocus')->nullable();
             $table->string('reviewsofsquad');
-            $table->string('nameofwriterreview')->name();
             $table->timestamps();
         });
     }

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('projectname')->nullable();
-            $table->string('manager')->nullable()->change();
+            $table->string('manager')->nullable();
             $table->string('numberofmembers');
             $table->string('goals');
             $table->string('description');
-            $table->string('projectreviews')->nullable()->change();
-            $table->string('authorreview')->nullable()->change();
+            $table->string('projectreviews')->nullable();
+            $table->string('authorreview')->nullable();
             $table->timestamps();
         });
     }
