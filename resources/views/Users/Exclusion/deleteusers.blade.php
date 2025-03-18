@@ -6,15 +6,17 @@
     <title>Users Area</title>
 </head>
 <body>
-    <form action="/deleted/{{ $member->id }}" method="POST">
-        @csrf
-        @method("PUT")            
-        <label for=""> Delete Review Yourself</label>
-        <input type="text" placeholder="ID" name="id_user" value="{{ old('personalreviews_user', $member->personalreviews) }}" required>
-        <br><br><br>
-        <button type="submit">Delete</button>
-    </form>
-    
+    <h1>Welcome to the Syndicate System </h1>
+    <p><strong>Your Review:</strong></p>
+    <form action="{{ route('delete-review', ['id' => $member->id]) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <input type="text" id="personalreviews" name="personalreviews" value="{{ old('personalreviews', $member->personalreviews) }}" required>
+    <br><br>
+    <button type="submit">Delete Your Review</button>
+</form>
+
+
 
 </body>
 </html>

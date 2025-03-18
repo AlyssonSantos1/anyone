@@ -15,9 +15,7 @@ use App\Models\Squad;
 class UserController extends Controller
 {
     public function turndown (Request $request, int $id){
-        $member =  Member::findorFail($id);     
-
-        $hierarchy = $request->input('hierarchy_user') ?: null;
+        $member = Member::findOrFail($id);    
 
             $member->update([
                 "personalreviews" => null
@@ -29,7 +27,7 @@ class UserController extends Controller
     }
 
 
-    public function trash(Request $request, int $id){  
+    public function trash(Request $request, $id){  
         $member = Member::findorFail($id);     
         return view('Users.Exclusion.deleteusers', compact('member'));
     }

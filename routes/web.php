@@ -81,8 +81,8 @@ Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->nam
 
 // user default space
 Route::group(['middleware' =>['user']], function(){
-Route::get('/user/delete-review/{id}',[UserController::class, 'trash'])->name('delete-review');
-Route::put('/deleted/{id}',[Usercontroller::class, 'turndown']);
+Route::get('/delete-review/{id}', [UserController::class, 'trash'])->name('getting-review');
+Route::delete('/deleted/{id}', [UserController::class, 'turndown'])->name('delete-review');
 Route::get('/user/edit-review/{id}',[UserController::class, 'edited'])->name('editing-review');
 Route::put('/edited/{id}',[Usercontroller::class, 'change']);
 });

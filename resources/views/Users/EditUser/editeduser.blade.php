@@ -13,7 +13,6 @@
     <input type="text" id="personalreviews" name="personalreviews" value="{{ old('personalreviews', $member->personalreviews) }}" required>
     <br><br><br>
     <button type="submit">Edit User</button>
-</form>
-
+    </form>
 </body>
 </html>
