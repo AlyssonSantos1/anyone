@@ -41,18 +41,12 @@ class AdvisorController extends Controller
 
     }
 
-    public function target(Request $request, int $projectId)
+    public function target(Request $request)
     {
-        
-        $projectReviews = Project::where('id', $projectId)->first(['projectreviews']);
+       
+        $projects = Project::all();
 
-        $projectReviews = $projectReviews ? $projectReviews->projectreviews : 'No project reviews';
-
-        return view('InternalAdvisors.seereviews.projectreview',[
-            'projectReviews' => $projectReviews
-            
-        ]);
-
+        return view('InternalAdvisors.seereviews.projectreview', compact('projects'));
     }
         
 }

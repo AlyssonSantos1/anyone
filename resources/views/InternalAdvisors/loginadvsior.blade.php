@@ -10,12 +10,12 @@
     <p>You are an internal Advisor </p>
 
     @if(session('user_id'))
-    <form action="{{ route('give-review') }}" method="get">
+    <form action="{{ route('giving') }}" method="get">
         <button type="submit">Give Review</button>
     </form>
 
-    <form action="{{ route('editing-review', ['id' => session('user_id')]) }}" method="get">
-    <button type="submit">See Team Reviews</button>
+    <form action="{{ route('vision') }}" method="get">
+    <button type="submit">See Project Review</button>
     </form>
     @else
     <p>You need to be logged in to perform this action.</p>
