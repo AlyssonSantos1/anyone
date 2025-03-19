@@ -63,9 +63,9 @@ Route::get('/seeallreviews/{projectId}/{userId}',[ManagerController::class, 'cat
 
 // Routes by Internal Advisorss can acess by  in the Company
 Route::group(['middleware' =>['internaladvisor']], function(){
-Route::get('/advisors/give-review/{projectId}',[AdvisorController::class, 'newreview'])->name('gave-review');
-Route::post('/advisors/{projectId}',[AdvisorController::class, 'newest'])->name('done-it');
-Route::get('/advisors/review-team/{projectId}',[AdvisorController::class, 'target'])->name('see-review');
+Route::get('/advisors/give-review', [AdvisorController::class, 'newreview'])->name('give-review');
+Route::post('/advisors', [AdvisorController::class, 'newest'])->name('gived');
+Route::get('/advisors/review-team/{id}',[AdvisorController::class, 'target'])->name('see-review');
 });
 // End of Internal Advisors Space
 
@@ -82,7 +82,7 @@ Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->nam
 // user default space
 Route::group(['middleware' =>['user']], function(){
 Route::get('/delete-review/{id}', [UserController::class, 'trash'])->name('getting-review');
-Route::delete('/deleted/{id}', [UserController::class, 'turndown'])->name('delete-review');
+Route::post('/deleted/{id}', [UserController::class, 'turndown'])->name('delete-review');
 Route::get('/user/edit-review/{id}',[UserController::class, 'edited'])->name('editing-review');
 Route::put('/edited/{id}',[Usercontroller::class, 'change']);
 });

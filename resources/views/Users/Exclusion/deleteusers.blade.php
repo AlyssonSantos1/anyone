@@ -10,7 +10,7 @@
     <p><strong>Your Review:</strong></p>
     <form action="{{ route('delete-review', ['id' => $member->id]) }}" method="POST">
     @csrf
-    @method('DELETE')
+    @method('POST')
     <input type="text" id="personalreviews" name="personalreviews" value="{{ old('personalreviews', $member->personalreviews) }}" required>
     <br><br>
     <button type="submit">Delete Your Review</button>

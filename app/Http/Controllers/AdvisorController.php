@@ -14,32 +14,30 @@ use App\Models\Squad;
 class AdvisorController extends Controller
 {
 
-    public function newreview ($projectId)
+    public function newreview (Request $request)
     {
-        $project = Project::find($projectId);
-
-        if (!$project){
-            return 'Project not Found!';
-        }
-       return view('InternalAdvisors.WriteReview.givereviews', compact('project'));
+        $projects = Project::all();
+        return view('InternalAdvisors.WriteReview.givereviews', compact('projects'));
     }
 
 
-    public function newest (Request $request, int $projectId){ 
+    public function newest (Request $request){ 
         
         $request->validate([
-            'review' => 'required|string|max:800'
+            'projectreviews' => 'required|string|max:800',
+             'project_id' => 'required|exists:projects,id'
         ]);
         
-        $project = Project::find($projectId);
+        $project = Project::findOrFail($request->project_id);
 
-        $existingReviews = $project->projectReviews ?? '';
-        $newReview = $existingReviews . "\n" . $request->review;
+        $projectReviews = $request->input('projectreviews');
+        if ($projectReviews !== null){
+            $project->projectreviews = $projectReviews;
+            $project->save();
+        }
 
-        $project->projectReviews = $newReview;
-        $project->save();
-
-        return 'The Review is Writed';
+       
+        return 'The Review is created!';
 
     }
 

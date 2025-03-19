@@ -6,16 +6,20 @@
     <title>Welcome to the Syndicate System </title>
 </head>
 <body>
-    <h1>You are an Internal Advisor </h1>
-   
+<h1>Welcome to the Syndicate System </h1>
+    <p>You are an internal Advisor </p>
 
-    <form action="{{  route('gave-review', ['projectId' => 3]) }}" method="get">
+    @if(session('user_id'))
+    <form action="{{ route('give-review') }}" method="get">
         <button type="submit">Give Review</button>
     </form>
 
-    <form action="{{  route('see-review', ['projectId' => 3]) }}" method="get">
-    <button type="submit">See the review's of the Team</button>
+    <form action="{{ route('editing-review', ['id' => session('user_id')]) }}" method="get">
+    <button type="submit">See Team Reviews</button>
     </form>
+    @else
+    <p>You need to be logged in to perform this action.</p>
+    @endif
     
 </body>
 </html>
