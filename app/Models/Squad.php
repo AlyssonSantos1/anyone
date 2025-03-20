@@ -10,20 +10,17 @@ class Squad extends Model
     use HasFactory;
 
     protected $fillable = ["teammanager", "numberofmembers", "projectfocus", "reviewsofsquad", "nameofwriterreview"];
+   
 
-    public function user(): BelongsTo
+    public function projects()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsToMany(Project::class, 'project_member_squad');
     }
-
-    public function comments(): Hasmany
+    
+    public function members()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Member::class);  // Relaciona os membros com a squad
     }
-
-    public function projects(): BelongstoMany
-    {
-        return $this->belongsToMany(Squad::class, 'project_squad');
-    }
+    
     
 }

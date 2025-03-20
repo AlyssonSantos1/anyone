@@ -1,33 +1,41 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Advisors Space</title>
+    <title>Document</title>
 </head>
 <body>
-    <form action="{{  route('catch-review')  }}" method="POST">
-        @csrf
-        <label for="">PersonalReviews</label>
-        <input type="text" placeholder="personalreviews" name="personalreviews_user">
-        <br><br>
-        <label for="">ReviewsofTeam</label>
-        <input type="text" placeholder="ReviewsofTeam" name="aaaa">
-        <br><br><br>
-        <button type="submit">Send</button>
-    </form>
-    
+    @if(isset($reviews) && !empty($reviews))
+        @foreach($reviews as $review)
+            <div class="project">
+                <h3>{{ $review['project']->projectname }}</h3>
+                <p><strong>Project Goals:</strong> {{ $review['project']->goals }}</p>
+                <p><strong>Description:</strong> {{ $review['project']->description }}</p>
+
+                {{-- Verifica se há avaliação do projeto --}}
+                @if($review['projectReviews'])
+                    <h4>Project Review:</h4>
+                    <p>{{ $review['projectReviews'] }}</p>
+                @else
+                    <p>No review available for this project.</p>
+                @endif
+
+                {{-- Verifica se há avaliações de membros e exibe --}}
+                @if(count($review['membersReviews']) > 0)
+                    <h4>Member Reviews:</h4>
+                    @foreach($review['membersReviews'] as $memberReview)
+                        {{-- Exibe avaliação do membro ou mensagem padrão se não houver avaliação --}}
+                        <p>{{ $memberReview ?? 'No review available.' }}</p>
+                    @endforeach
+                @else
+                    <p>No member reviews available.</p>
+                @endif
+            </div>
+        @endforeach
+    @else
+        <p>You are not associated with any projects or there are no reviews available.</p>
+    @endif
+
 </body>
-</html> -->
-
-<form action="{{ route('reviewtheirteam') }}" method="POST">
-    @csrf
-    <label for="">Project ID</label>
-    <input type="text" name="project_id" value="{{ old('project_id') }}" required>
-    <br><br>
-
-    <label for="">User ID</label>
-    <input type="text" name="user_id" value="{{ old('user_id') }}" required>
-    <br><br>
-
-</form>
+</html>

@@ -6,24 +6,34 @@
     <title>Create New Team </title>
 </head>
 <body>
-    <form action="/built" method="POST">        
-        @csrf
-        <label for="">Name of the Manager </label>
-        <input type="text" placeholder="teammanager" name="teammanager_team" required>
-        <br><br>
-        <label for="">Numberofmembers</label>
-        <input type="text" placeholder="numberofmembers" name="numberofmembers_team" required>
-        <br><br>
-        <label for="">Focus Of this Project</label>
-        <input type="text" placeholder="projectfocus" name="projectfocus_team" required>
-        <br><br>
-        <label for="">Reviews</label>
-        <input type="text" placeholder="reviewsofsquad" name="reviewsofsquad_team" required>
-        <br><br>
-        <label for="">Author</label>
-        <input type="text" placeholder="nameofwriterreview" name="nameofwriterreview_team" required>
-        <br><br><br>
-        <button type="submit">Send</button>
-    </form>
+<form action="/built" method="POST">               
+    @csrf
+    <label for="teammanager_team">Name of the Manager</label>
+    <select name="teammanager_team" required>
+        <option value="">Select Manager</option>
+        @foreach($managers as $manager)
+            <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+        @endforeach
+    </select>
+    <br><br><br>
+    <label for="numberofmembers_team">Number of Members</label>
+    <input type="number" placeholder="Number of members" name="numberofmembers_team" required>
+    <br><br><br>
+    <label for="projectfocus_team">Focus Of This Project</label>
+    <input type="text" placeholder="Project focus" name="projectfocus_team" required>
+    <br><br>
+    <label for="nameofwriterreview_team">Author</label>
+    <input type="text" placeholder="Name of the writer of the review" name="nameofwriterreview_team" required>
+    <br><br>
+    <label for="members">Select Members (Associates)</label>
+    <select name="members[]" multiple required>
+        @foreach($associates as $associate)
+            <option value="{{ $associate->id }}">{{ $associate->name }}</option>
+        @endforeach
+    </select>
+    <br><br><br>
+
+    <button type="submit">Create Squad</button>
+</form>
 </body>
 </html>

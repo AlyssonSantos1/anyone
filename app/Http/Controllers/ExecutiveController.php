@@ -127,7 +127,20 @@ class ExecutiveController extends Controller
 
     public function construction (Request $request){
 
-        Squad::create([
+        $teammanager = Member::find($request->teammanager_team);
+        if (!$teammanager || $teammanager->hierarchy !== 'manager') {
+            return response()->json(['error' => 'The team manager must be a manager.'], 400);
+        }
+
+        $members = $request->members; 
+        foreach ($members as $memberId) {
+            $member = Member::find($memberId);
+            if (!$member || $member->hierarchy !== 'associate') {
+                return response()->json(['error' => "Member with ID {$memberId} must be an associate."], 400);
+            }
+        }
+
+        $squad = Squad::create([
             'teammanager'=>$request->teammanager_team,
             'numberofmembers'=>$request->numberofmembers_team,
             'projectfocus'=>$request->projectfocus_team,
@@ -136,13 +149,18 @@ class ExecutiveController extends Controller
 
         ]);
 
+        $squad->members()->sync($members);
+
         return 'The Squad are Created';
 
 
     }
 
     public function tower (Request $request){
-        return view('Executive.BuildTeams.build');
+
+        $managers = Member::where('hierarchy', 'manager')->get();
+        $associates = Member::where('hierarchy', 'associates')->get();
+        return view('Executive.BuildTeams.build', compact('managers', 'associates'));
     }
 }
 

@@ -74,8 +74,7 @@ Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('
 Route::group(['middleware' =>['associate']], function(){
 Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'map'])->name('tradetoadv');
 Route::put('/traded/{id}',[AssociatesController::class, 'swapuser']);
-Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('catch-review');
-Route::post('/associates/reviews',[AssociatesController::class, 'glasses'])->name('reviewtheirteam');
+Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('catch');
 });
 // End of associates area
 

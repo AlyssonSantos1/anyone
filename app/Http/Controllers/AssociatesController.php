@@ -31,23 +31,45 @@ class AssociatesController extends Controller
         return view('Associates.TradeMembers.swap', compact('member'));
     }
 
-    public function glasses (Request $request){
-        $project = Project::find($request->project_id);
-        $member = Member::find($request->user_id);
-
-        if (!$project || !$member) {
-            return 'User or Project not found';
-        }
-        
-        return view('Associates.ProjectThemselves.associates', [
-            'project' => $project,
-            'member' => $member
-        ]);
-
-    }
-
+   
     public function swan(Request $request){
-        return view('Associates.ProjectThemselves.associates');
+
+        $userId = session('user_id');
+        
+        $member = Member::where('id', $userId)
+                ->where('hierarchy', 'associate') 
+                ->first();
+
+        if (!$member) {
+            return 'Member Not found or member not an advisor';
+        }
+
+        $projects = $member->projects;
+
+
+        if ($projects->isEmpty()) {
+            $projects = collect();
+        }
+
+        $squads = $member->squad;
+
+        dd($projects->toArray(), $squads);
+
+        $reviews = [];  
+
+        foreach ($projects as $project) {
+            $projectReviews = $project->projectreviews; 
+            $membersReviews = $project->members->map(function ($member) {
+                return $member->personalreviews; 
+            });
+
+            $reviews[] = [
+                'project' => $project,
+                'projectReviews' => $projectReviews,
+                'membersReviews' => $membersReviews,
+            ];
+        }
+            return view('Associates.ProjectThemselves.associates', compact('reviews'));
     }
 
 

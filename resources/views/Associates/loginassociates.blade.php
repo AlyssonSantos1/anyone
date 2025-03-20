@@ -6,17 +6,17 @@
     <title>Welcome to the Syndicate System</title>
 </head>
 <body>
-    <h1>You are an Associate</h1>
-   
+    {{-- associates-dashboard.blade.php --}}
+    <p>You are an Associate</p>
 
-    <form action="{{ route('tradetoadv', ['id' => 4]) }}" method="get">
-        <button type="submit">Swap User to Internal Advisor</button>
-    </form>
-    
+    @if(session('user_id'))
+        <p>You are logged</p>
+        <form action="{{ route('catch') }}" method="get">
+            <button type="submit">Click to See Reviews</button>
+        </form>
+    @else
+        <p>You need to be logged in to perform this action.</p>
+    @endif
 
-    <form action="{{ route('catch-review') }}" method="get">
-    <button type="submit">See All reviews</button>
-    </form>
-    
 </body>
 </html>

@@ -11,16 +11,14 @@ class project extends Model
 
     protected $fillable = ["projectname", "manager", "numberofmembers", "goals", "description", "projectreviews", "authorreview" ];
 
-
-    public function reviews(): BelongsTo
+    public function members()
     {
-        return $this->hasMany(Review::class);
-        
+        return $this->belongsToMany(Member::class, 'project_member_squad', 'project_id', 'member_id');
     }
-
-    public function squads(): BelongstoMany
+    
+    public function squads()
     {
-        return $this->belongsToMany(Squad::class, 'project_squad');
+        return $this->belongsToMany(Squad::class, 'project_member_squad');
     }
     
     
