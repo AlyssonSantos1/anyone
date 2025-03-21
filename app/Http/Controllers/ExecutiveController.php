@@ -135,14 +135,6 @@ class ExecutiveController extends Controller
 
         $members = $request->members; 
 
-        // if (empty($members)){
-        //     return 'No associates Here';
-        // }
-
-        // if (!is_array($members)){
-        //     $members = [$members];
-        // }
-
         foreach ($members as $memberId) {
             $member = Member::find($memberId);
             if (!$member || $member->hierarchy !== 'associate') {
