@@ -25,15 +25,18 @@
     <label for="nameofwriterreview_team">Author</label>
     <input type="text" placeholder="Name of the writer of the review" name="nameofwriterreview_team" required>
     <br><br>
-    <label for="members">Select Members (Associates)</label>
-    <select name="members[]" multiple required>
-        @foreach($associates as $associate)
-            <option value="{{ $associate->id }}">{{ $associate->name }}</option>
-        @endforeach
+    <label for="members_team">Name of the Associate</label>
+    <select name="members[]" required>
+    <option value="">Select Associate</option>
+    @foreach($associates as $associate)
+        <option value="{{ $associate->id }}">{{ $associate->name }}</option>
+    @endforeach
     </select>
-    <br><br><br>
-
-    <button type="submit">Create Squad</button>
+    <br><br>
+    
+    
+    <button type="submit">Create New Squad</button>
+    
 </form>
 </body>
 </html>

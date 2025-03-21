@@ -159,7 +159,8 @@ class ExecutiveController extends Controller
     public function tower (Request $request){
 
         $managers = Member::where('hierarchy', 'manager')->get();
-        $associates = Member::where('hierarchy', 'associates')->get();
+        $associates = Member::where('hierarchy', 'associate')->get();
+;
         return view('Executive.BuildTeams.build', compact('managers', 'associates'));
     }
 }
