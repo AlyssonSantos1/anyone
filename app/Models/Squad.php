@@ -19,7 +19,7 @@ class Squad extends Model
     
     public function members()
     {
-        return $this->hasMany(Member::class);  // Relaciona os membros com a squad
+        return $this->belongstoMany(Member::class, 'member_squad');  
     }
     
     

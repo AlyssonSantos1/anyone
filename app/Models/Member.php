@@ -13,7 +13,7 @@ class Member extends Model
 
     public function squad()
     {
-        return $this->belongsTo(Squad::class); 
+        return $this->belongsToMany(Squad::class, 'member_squad'); 
     }
 
     public function projects()

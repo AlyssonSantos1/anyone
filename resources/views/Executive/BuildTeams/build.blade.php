@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Team </title>
+    <title>Create New Squad </title>
 </head>
 <body>
 <form action="/built" method="POST">               
@@ -22,8 +22,8 @@
     <label for="projectfocus_team">Focus Of This Project</label>
     <input type="text" placeholder="Project focus" name="projectfocus_team" required>
     <br><br>
-    <label for="nameofwriterreview_team">Author</label>
-    <input type="text" placeholder="Name of the writer of the review" name="nameofwriterreview_team" required>
+    <label for="reviewsofsquad_team">Reviews of Squad</label>
+    <input type="text" placeholder="Reviews of the Squad" name="reviewsofsquad_team" required>
     <br><br>
     <label for="members_team">Choice Associates to the Project</label>
     <select name="members[]" required multiple size="5" style="width: 100%; height: auto;">
