@@ -9,18 +9,30 @@ class Member extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["squad_id", "name", "email", "role", "hierarchy", "insertedproject", "personalreviews", "ownerofreview"];
-
-    public function squad()
-    {
-        return $this->belongsToMany(Squad::class, 'member_squad'); 
-    }
+    protected $fillable = [
+        'name', 
+        'email', 
+        'role', 
+        'hierarchy', 
+        'insertedproject', 
+        'personalreviews', 
+        'ownerofreview'
+    ];
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_member_squad', 'member_id', 'project_id');
+        return $this->belongsToMany(Project::class, 'member_project')
+            ->withPivot('role') 
+            ->withTimestamps(); 
     }
 
-}   
+    public function squads()
+    {
+        return $this->belongsToMany(Squad::class, 'member_squad')
+        ->withPivot('role') 
+        ->withTimestamps(); 
+    }
 
-
+    
+    
+}

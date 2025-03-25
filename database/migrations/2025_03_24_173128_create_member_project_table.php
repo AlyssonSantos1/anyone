@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member_squad', function (Blueprint $table) {
+        Schema::create('member_project', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained()->onDelete('cascade');
-            $table->foreignId('squad_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+            $table->foreignId('member_id')->constrained()->onDelete('cascade'); 
+            $table->foreignId('project_id')->constrained()->onDelete('cascade'); 
+            $table->enum('role', ['manager', 'associate']);
+            $table->timestamps(); 
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member_squad');
+        Schema::dropIfExists('member_project');
     }
 };

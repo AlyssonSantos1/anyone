@@ -53,7 +53,6 @@ class AssociatesController extends Controller
 
         $squads = $member->squad;
 
-        dd($projects->toArray(), $squads);
 
         $reviews = [];  
 

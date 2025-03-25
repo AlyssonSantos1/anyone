@@ -9,18 +9,18 @@ class Squad extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["teammanager", "numberofmembers", "projectfocus", "reviewsofsquad", "nameofwriterreview"];
-   
+    protected $fillable = [
+        'teammanager', 
+        'numberofmembers', 
+        'reviewsofsquad', 
+        'nameofwriterreview'
+    ];
 
-    public function projects()
+    public function members()    
     {
-        return $this->belongsToMany(Project::class, 'project_member_squad');
+        return $this->belongsToMany(Squad::class, 'member_squad')
+        ->withPivot('role') 
+        ->withTimestamps(); 
     }
-    
-    public function members()
-    {
-        return $this->belongstoMany(Member::class, 'member_squad');  
-    }
-    
     
 }

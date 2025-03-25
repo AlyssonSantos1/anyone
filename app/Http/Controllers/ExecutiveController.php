@@ -68,39 +68,47 @@ class ExecutiveController extends Controller
 
     public function newproject (Request $request){
        {
-        $project = Project::all();
-        return view('Executive.BuildNewProjects.newproject', compact('project'));
+        $managers = Member::where('hierarchy', 'manager')->get();
+        $associates = Member::where('hierarchy', 'associate')->get();
+        return view('Executive.BuildNewProjects.newproject', compact('managers', 'associates'));
        }
     }
 
-    public function congrats (Request $request){            
-        $request->validate([
-            'projectname_project' => 'required|string',
-            'manager_project' => 'required|string',
-            'numberofmembers_project' => 'required|string',
-            'goals_project' => 'required|string',
-            'description_project' => 'required|string',
-            'reviews_project' => 'nullable|string',
-            'authorreview_project' => 'nullable|string',
+    public function congrats (Request $request){ 
+
         
+        $teammanager = Member::find($request->teammanager_team);
+        if (!$teammanager || $teammanager->hierarchy !== 'manager') {
+            return response()->json(['error' => 'The team manager must be a manager.'], 400);
+        }
+        
+
+        
+        $project = Project::create([
+            "projectname" =>$request->projectname_project,
+            "manager" =>$request->manager_project,
+            "numberofmembers" =>$request->numberofmembers_project,
+            "goals" =>$request->goals_project,
+            "description" =>$request->description_project,
+            "reviews" =>$request->reviews_project,
+            "authorreview" =>$request->authorreview_project
+
         ]);
 
-
-            Project::create([
-                "projectname" =>$request->projectname_project,
-                "manager" =>$request->manager_project,
-                "numberofmembers" =>$request->numberofmembers_project,
-                "goals" =>$request->goals_project,
-                "description" =>$request->description_project,
-                "reviews" =>$request->reviews_project,
-                "authorreview" =>$request->authorreview_project
+        $project->members()->attach($teammanager->id, ['role' => 'manager']);
+       
+        $associates = Member::where('hierarchy', 'associate')->get();
     
-            ]);         
-            
-            return 'The Project has been created';
-            
+        foreach ($associates as $member) {
+            $project->members()->attach($member->id, ['role' => 'associate']);
+        }
+
+
+        return 'The Project has been created';
+
     }
-        
+   
+   
 
     public function getReviewAuthors(Request $request)
     {
@@ -126,23 +134,12 @@ class ExecutiveController extends Controller
     }
 
     public function construction (Request $request){
-        
 
         $teammanager = Member::find($request->teammanager_team);
         if (!$teammanager || $teammanager->hierarchy !== 'manager') {
             return response()->json(['error' => 'The team manager must be a manager.'], 400);
         }
-
-        $members = $request->members; 
-
-        foreach ($members as $memberId) {
-            $member = Member::find($memberId);
-            if (!$member || $member->hierarchy !== 'associate') {
-                return response()->json(['error' => "Member with ID {$memberId} must be an associate."], 400);
-            }
-
-        }
-
+        
         $squad = Squad::create([
             'teammanager'=>$request->teammanager_team,
             'numberofmembers'=>$request->numberofmembers_team,
@@ -151,12 +148,26 @@ class ExecutiveController extends Controller
 
         ]);
 
-        $squad->members()->sync($members);
+        $squad->members()->attach($teammanager->id, ['role' => 'manager']);
+       
+        $associates = Member::where('hierarchy', 'associate')->get();
+    
+        foreach ($associates as $member) {
+            $project->members()->attach($member->id, ['role' => 'associate']);
+        }
+        
+        $projects = Project::paginate(10);
 
+        $projects = Project::all();
+
+        foreach ($projects as $project) {
+            $squad->projects()->attach($project->id);
+        }
+        
         return 'The Squad are Created';
 
-
     }
+    
 
     public function tower (Request $request){
 
