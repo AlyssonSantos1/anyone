@@ -19,6 +19,7 @@ class Member extends Model
         'ownerofreview'
     ];
 
+    
     public function projects()
     {
         return $this->belongsToMany(Project::class, 'member_project')
@@ -32,7 +33,6 @@ class Member extends Model
         ->withPivot('role') 
         ->withTimestamps(); 
     }
-
     
     
 }

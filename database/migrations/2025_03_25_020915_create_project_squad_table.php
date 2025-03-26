@@ -10,18 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {        
         Schema::create('project_squad', function (Blueprint $table) {
-            $table->id(); 
-            $table->foreignId('squad_id') 
-                  ->constrained() 
-                  ->onDelete('cascade'); 
-
+            $table->id();
             $table->foreignId('project_id')
-                  ->constrained() 
-                  ->onDelete('cascade'); 
-
-           
+                ->constrained()
+                ->onDelete('cascade');
+            $table->foreignId('squad_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

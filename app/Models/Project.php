@@ -25,5 +25,4 @@ class Project extends Model
             ->withPivot('role') 
             ->withTimestamps(); 
     }
-    
 }
