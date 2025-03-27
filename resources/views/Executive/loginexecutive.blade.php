@@ -29,7 +29,7 @@
     </form>
     <br><br>
 
-    <form action="{{ route('build') }}" method="get">
+    <form action="{{ route('team-build') }}" method="get">
         <button type="submit">Create New Squad</button>
     </form>
     <br><br>

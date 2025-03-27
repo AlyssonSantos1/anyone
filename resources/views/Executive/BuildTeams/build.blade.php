@@ -6,8 +6,10 @@
     <title>Create New Squad </title>
 </head>
 <body>
-    <form action="/built" method="POST">               
+<form action="/group" method="POST" id="squadForm">
     @csrf
+
+    <!-- Seleção do Manager -->
     <label for="teammanager_team">Name of the Manager</label>
     <select name="teammanager_team" required>
         <option value="">Select Manager</option>
@@ -16,155 +18,187 @@
         @endforeach
     </select>
     <br><br>
+    
+    <!-- Campo de Review do Squad -->
     <label for="reviewsofsquad_team">Reviews of Squad</label>
     <input type="text" placeholder="Reviews of the Squad" name="reviewsofsquad_team" required>
     <br><br>
+
+    <!-- Seleção de Associates (Múltiplos) -->
     <label for="members_team">Choose Associates for the Squad</label>
-    <select name="members[]" required multiple size="5" style="width: 100%; height: auto;">
+    <select id="members_select" name="members[]" size="5" style="width: 100%; height: auto;">
         @foreach($associates as $associate)
             <option value="{{ $associate->id }}">{{ $associate->name }}</option>
         @endforeach
     </select>
-    <button type="button" id="addAssociatesButton">Confirm Associates</button> 
-    <div id="selectedAssociates" style="margin-top: 20px;"></div>
+    <button type="button" id="confirm_associate_btn" onclick="addAssociate()">Confirm Associate</button>
+    <ul id="selected_associates_list"></ul> <!-- Lista de associates confirmados -->
     <br><br>
+
+    <!-- Seleção de Projects (Múltiplos) -->
     <label for="projects_team">Escolha os Projetos para o Squad</label>
-    <select name="projectnames[]" required multiple size="5" style="width: 100%; height: auto;">
+    <select id="projects_select" name="projectnames[]" size="5" style="width: 100%; height: auto;">
         @foreach($projectnames as $projectname)
             <option value="{{ $projectname }}">{{ $projectname }}</option>
         @endforeach
     </select>
-    <button type="button" id="addProjectsButton">Confirm Project</button>
+    <button type="button" id="confirm_project_btn" onclick="addProject()">Confirm Project</button>
+    <ul id="selected_projects_list"></ul> <!-- Lista de projetos confirmados -->
     <br><br>
-    <div id="selectedProjects" style="margin-top: 20px;"></div>
-    </div>
 
-    <script>
+    <button type="submit">Confirm Selection</button>
+</form>
 
-    document.getElementById('addAssociatesButton').addEventListener('click', function() {
-        let selectedAssociates = document.querySelector('select[name="members[]"]').selectedOptions;
-        let selectedList = document.getElementById('selectedAssociates');
-        let addedAssociates = [];
+<script>
+    // Função para adicionar Associate confirmado à lista
+    function addAssociate() {
+        var selectElement = document.getElementById("members_select");
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        if (selectedOption) {
+            var selectedAssociateId = selectedOption.value;
+            var selectedAssociateName = selectedOption.text;
 
-        for (let i = 0; i < selectedAssociates.length; i++) {
-            let associateName = selectedAssociates[i].text;
-            let associateId = selectedAssociates[i].value;
+            // Verifica se o Associate já foi adicionado
+            if (!document.getElementById("associate_" + selectedAssociateId)) {
+                var li = document.createElement("li");
+                li.id = "associate_" + selectedAssociateId;
+                li.textContent = selectedAssociateName;
+                li.setAttribute("data-id", selectedAssociateId);
+                
+                var removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.onclick = function() { removeItem('associate', selectedAssociateId); };
+                li.appendChild(removeButton);
 
-            if (![...selectedList.children].some(div => div.textContent.includes(associateName))) {
-                let associateDiv = document.createElement('div');
-                associateDiv.textContent = associateName;
-                associateDiv.classList.add('associate-item');
-                associateDiv.setAttribute('data-id', associateId);
-
-                selectedList.appendChild(associateDiv);
-                selectedAssociates[i].disabled = true;  
+                document.getElementById("selected_associates_list").appendChild(li);
             }
         }
+    }
 
-        if (addedAssociates.length > 0) {
-            alert('Associates added to the squad');
-        } else {
-            alert('Please select at least one associate');
-        }
-    });
+    // Função para adicionar Project confirmado à lista
+    function addProject() {
+        var selectElement = document.getElementById("projects_select");
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        if (selectedOption) {
+            var selectedProjectId = selectedOption.value;
+            var selectedProjectName = selectedOption.text;
 
-    document.getElementById('addProjectsButton').addEventListener('click', function() {
-        let selectedProjects = document.querySelector('select[name="projectnames[]"]').selectedOptions;
-        let selectedList = document.getElementById('selectedProjects');
-        let addedProjects = [];
+            // Verifica se o Project já foi adicionado
+            if (!document.getElementById("project_" + selectedProjectId)) {
+                var li = document.createElement("li");
+                li.id = "project_" + selectedProjectId;
+                li.textContent = selectedProjectName;
+                li.setAttribute("data-id", selectedProjectId);
+                
+                var removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.onclick = function() { removeItem('project', selectedProjectId); };
+                li.appendChild(removeButton);
 
-        for (let i = 0; i < selectedProjects.length; i++) {
-            let projectName = selectedProjects[i].text;
-            let projectId = selectedProjects[i].value;
-
-            if (![...selectedList.children].some(div => div.textContent.includes(projectName))) {
-                let projectDiv = document.createElement('div');
-                projectDiv.textContent = projectName;
-                projectDiv.classList.add('project-item');
-                projectDiv.setAttribute('data-id', projectId);
-
-                selectedList.appendChild(projectDiv);
-                selectedProjects[i].disabled = true;  
+                document.getElementById("selected_projects_list").appendChild(li);
             }
         }
+    }
 
-        if (addedProjects.length > 0) {
-            alert('Projects added to the squad');
-        } else {
-            alert('Please select at least one project');
+    // Função para remover item da lista
+    function removeItem(type, id) {
+        var li = document.getElementById(type + "_" + id);
+        li.remove();
+
+        // Remove do campo hidden para envio no formulário
+        if (type === 'associate') {
+            var index = document.querySelector("select[name='members[]']").selectedOptions;
+            // Adiciona novamente a opção de Associate ao select
+            document.querySelector("select[name='members[]']").querySelector("option[value='" + id + "']").disabled = false;
+        } else if (type === 'project') {
+            document.querySelector("select[name='projectnames[]']").querySelector("option[value='" + id + "']").disabled = false;
         }
-    });
+    }
 </script>
 
+</form>
 
-    <button type="submit">Create New Squad</button>
+<style>
+    /* Definir o fundo amarelado para todo o formulário */
+    body {
+        background-color: #f4e1a1; /* Cor de fundo amarelo mostarda */
+        font-family: Arial, sans-serif;
+        color: #333; /* Cor do texto */
+    }
 
-    <style>
-      
-        label {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
+    /* Estilizar o formulário */
+    #squadForm {
+        background-color: #fff8e1; /* Cor de fundo clara para o formulário */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 60%;
+        margin: auto;
+    }
 
-        select[name="teammanager_team"], select[name="members[]"], select[name="projectnames[]"] {
-            font-size: 14px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            height: auto;
-            background-color: #f9f9f9;  
-            margin-bottom: 10px;
-        }
+    /* Estilizar os labels */
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+    }
 
-        select[name="members[]"] {
-            height: 150px; 
-        }
+    /* Estilizar os campos de entrada */
+    input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
 
-        .btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
+    /* Estilo dos botões */
+    button {
+        background-color: #f9a825; /* Cor de fundo amarela mostarda para os botões */
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+    /* Efeito de hover nos botões */
+    button:hover {
+        background-color: #f57f17; /* Cor mais escura no hover */
+    }
 
-        #selectedAssociates div {
-            background-color: #f2f2f2;
-            padding: 8px;
-            margin-bottom: 5px;
-            border-radius: 4px;
-            font-size: 14px;
-            display: inline-block;
-            margin-right: 5px;
-        }
+    /* Estilo da lista de associates e projects */
+    ul {
+        padding-left: 20px;
+    }
 
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #d3d3d3;  
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
+    li {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
 
-        .form-container {
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-    </style>
-    
+    /* Estilo do botão de remover */
+    .remove_associate_btn, .remove_project_btn {
+        background-color: #d32f2f; /* Cor vermelha para o botão de remover */
+        color: white;
+        border: none;
+        padding: 4px 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+
+    /* Efeito de hover no botão de remover */
+    .remove_associate_btn:hover, .remove_project_btn:hover {
+        background-color: #c62828;
+    }
+</style>
+
+
 </body>
 </html>

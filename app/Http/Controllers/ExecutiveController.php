@@ -135,6 +135,10 @@ class ExecutiveController extends Controller
     public function construction (Request $request){
 
         $validated = $request->validate([
+            'teammanager_team' => 'required|exists:members,id', 
+            'reviewsofsquad_team' => 'required|string',
+            'members' => 'required|array',
+            'members.*' => 'exists:members,id',
             'projectnames' => 'required|array', 
             'projectnames.*' => 'exists:projects,projectname', 
         ]);
@@ -146,36 +150,28 @@ class ExecutiveController extends Controller
         
         $squad = Squad::create([
             'teammanager'=>$request->teammanager_team,
-            'numberofmembers'=>$request->numberofmembers_team,
-            'projectfocus'=>$request->projectfocus_team,
             'reviewsofsquad'=>$request->reviewsofsquad_team,
 
-        ]);
+        ]);  
 
-        $squad->members()->attach($teammanager->id, ['role' => 'manager']);
+        $squad->members()->attach($teammanager->member_id, ['role' => 'manager']);
        
         $associates = Member::where('hierarchy', 'associate')->get();    
         foreach ($associates as $member) {
-            $project->members()->attach($member->id, ['role' => 'associate']);
+            $squad->members()->attach($member->member_id, ['role' => 'associate']);
         }
 
-        // $projects = Project::all();
-
-        // $project = Project::where('projectname', $projectname)->first(); 
-        // foreach ($project as $proj) {
-        //     $proj->projects()->attach($proj->id);
-        // }
-        //     return 'The Squad are Created';
         $projectnames = $request->projectnames;
         foreach ($projectnames as $projectname) {
             $project = Project::where('projectname', $projectname)->first(); 
-            if($project){
+            if ($project) {
                 $squad->projects()->attach($project->id);
-            } else {
-                return 'project not found';
             }
-        
+                foreach ($squad->members as $member) {
+                    $project->members()->attach($member->id, ['role' => 'associate']); 
+                }
         }
+        
             return 'The Squad are Created';
     }
     

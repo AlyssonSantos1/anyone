@@ -46,8 +46,8 @@ Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition'])->n
 Route::put('/edit/{id}',[ExecutiveController::class, 'changed']);
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive-build');
 Route::post('/executive-new',[ExecutiveController::class, 'congrats']);
-Route::get('/executives/new',[ExecutiveController::class, 'tower'])->name('build');
-Route::post('/built',[ExecutiveController::class, 'construction']);
+Route::get('/new-squad',[ExecutiveController::class, 'tower'])->name('team-build');
+Route::post('/group',[ExecutiveController::class, 'construction']);
 Route::get('/get-review-author', [ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
 
 });
