@@ -11,7 +11,7 @@
     @csrf
     <label for="projectname_project">Project Name</label>
     <input type="text" placeholder="Enter the project name" name="projectname_project" required>
-    <br><br>
+    <br>
     <label for="teammanager_team">Name of the Manager</label>
     <select name="teammanager_team" required>
         <option value="">Select Manager</option>
@@ -19,32 +19,30 @@
             <option value="{{ $manager->id }}">{{ $manager->name }}</option>
         @endforeach
     </select>
-    <br><br>
+    <br>
     <label for="numberofmembers_project">Number of Members in Project</label>
     <input type="number" placeholder="Number of members" name="numberofmembers_project" required>
-    <br><br>
+    <br>
     <label for="goals_project">Project Goals</label>
     <input type="text" placeholder="Project Goals" name="goals_project" required>
-    <br><br>
+    <br>
     <label for="description_project">Project Description</label>
     <input type="text" placeholder="Description of the project" name="description_project" required>
-    <br><br>
+    <br>
     <label for="reviews_project">Project Reviews</label>
     <input type="text" placeholder="Reviews of the project" name="reviews_project" required>
-    <br><br>
+    <br>
     <label for="authorreview_project">Author of the Review</label>
     <input type="text" placeholder="Author of Review" name="authorreview_project" required>
-    <br><br>
+    <br>
     <label for="members_project">Choose Associates for the Project</label>
     <select name="members[]" required multiple size="5" style="width: 100%; height: auto;">
         @foreach($associates as $associate)
             <option value="{{ $associate->id }}">{{ $associate->name }}</option>
         @endforeach
     </select>
-    <br><br>
-
+    <br>
     <button type="button" id="addAssociatesButton">Add Associates</button>
-
     <div id="selectedAssociates" style="margin-top: 20px;">
     </div>
 
@@ -79,69 +77,78 @@
         }
     });
 </script>
-
     <button type="submit">Create New Project</button>
-
     <style>
-    label {
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 5px;
-        display: block;
-    }
-
-    select[name="teammanager_team"], select[name="members[]"] {
-        font-size: 14px;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 100%;
-        height: auto;
-        background-color: #f9f9f9;
-        margin-bottom: 10px;
-    }
-
-    select[name="members[]"] {
-        height: 150px;
-    }
-
-    .btn {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: background-color 0.3s;
-    }
-
-    .btn:hover {
-        background-color: #0056b3;
-    }
-
-    #selectedAssociates div {
-        background-color: #f2f2f2;
-        padding: 8px;
-        margin-bottom: 5px;
-        border-radius: 4px;
-        font-size: 14px;
-        display: inline-block;
-        margin-right: 5px;
+    body {
+        background-color: #e8f5e9; /* Cor de fundo suave verde */
+        font-family: Arial, sans-serif;
+        color: #333; /* Cor do texto */
     }
 
     form {
-        max-width: 600px;
-        margin: 0 auto;
+        background-color: #c8e6c9; /* Cor de fundo do formulário verde suave */
+        padding: 20px; /* Diminui o padding interno do formulário */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 60%;
+        margin: auto;
     }
 
-    .form-container {
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #f9f9f9;
+    label {
+        font-size: 14px; /* Diminui o tamanho da fonte do label */
+        font-weight: bold;
+        margin-bottom: 6px; /* Diminui o espaço abaixo do label */
+        display: block;
+        color: #333;
     }
-    </style>
+
+    input, select, button {
+        width: 100%;
+        padding: 8px; /* Diminui o padding para reduzir a altura dos campos */
+        margin-bottom: 12px; /* Diminui o espaço entre os campos */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px; /* Diminui o tamanho da fonte dentro dos campos */
+    }
+
+    input[type="text"], input[type="number"] {
+        color: #555;
+    }
+
+    select {
+        color: #555;
+        background-color: #fff;
+    }
+
+    button {
+        background-color: #388e3c; /* Cor do botão verde */
+        border: none;
+        cursor: pointer;
+        font-size: 14px; /* Diminui o tamanho da fonte do botão */
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #2c6b31; /* Cor do botão ao passar o mouse verde mais escuro */
+    }
+
+    .remove_associate_btn, .remove_project_btn {
+        background-color: #d32f2f; /* Cor do botão de remoção */
+        color: white;
+        border: none;
+        padding: 4px 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 12px; /* Diminui o tamanho da fonte do botão de remoção */
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+
+    .remove_associate_btn:hover, .remove_project_btn:hover {
+        background-color: #c62828; /* Cor do botão de remoção ao passar o mouse */
+    }
+</style>
 </body>
 </html>
