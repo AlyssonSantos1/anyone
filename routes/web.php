@@ -42,8 +42,8 @@ Route::get('/user-dashboard', [LoginController::class, 'userDashboard'])->name('
 Route::group(['middleware' =>['executive']], function(){
 Route::get('/executives/create',[ExecutiveController::class, 'create'])->name('executive.create');
 Route::post('/executives',[ExecutiveController::class, 'store']);
-Route::get('/executive/editing/{id}',[ExecutiveController::class, 'edition'])->name('executive.editing');
-Route::put('/edit/{id}',[ExecutiveController::class, 'changed']);
+Route::get('/executive/editing',[ExecutiveController::class, 'edition'])->name('executive.editing');
+Route::put('/edit',[ExecutiveController::class, 'changed'])->name('Done-Deal');;
 Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive-build');
 Route::post('/executive-new',[ExecutiveController::class, 'congrats']);
 Route::get('/new-squad',[ExecutiveController::class, 'tower'])->name('team-build');

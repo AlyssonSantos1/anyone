@@ -8,13 +8,14 @@
 <body>
     <p>You are an Executive!</p>
 
+    
    
     <form action="{{ route('executive.create') }}" method="get">
         <button type="submit">Create New User</button>
     </form>
     <br><br>
 
-    <form action="{{ route('executive.editing', ['id' => 4]) }}" method="get">
+    <form action="{{ route('executive.editing') }}" method="get">
     <button type="submit">Edit User</button>
     </form>
     <br><br>

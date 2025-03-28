@@ -35,18 +35,22 @@ class ExecutiveController extends Controller
      
     }
 
-    public function edition (Request $request, int $id){
-        {
-        $member = Member::findorFail($id);
-        return view('Executive.EditMembers.changeduser', compact('member'));     
-        } 
-      
-    }
-        
+    public function edition (Request $request)
+    {
+        $members = Member::all();
+
+        $member = null;
+        if ($request->has('id') && $request->id){
+
+            $member = Member::findorFail($request->id);
+           
+        }
+        return view('Executive.EditMembers.changeduser', compact('members','member'));  
+    }         
     
 
-    public function changed(Request $request, int $id){
-            $member = Member::findorFail($id);
+    public function changed(Request $request){
+            $member = Member::findorFail($request->id);
             $member->update([
                 "name" =>$request->name_user,
                 "email" =>$request->email_user,
@@ -54,16 +58,12 @@ class ExecutiveController extends Controller
                 "hierarchy" =>$request->hierarchy_user,
                 "insertedproject" =>$request->insertedproject_user,
                 "personalreviews" =>$request->personalreviews_user,
-                "ownerofreview" =>$request->ownerofreview_user,
-                "squad_id" =>$request->squad_id              
+                "ownerofreview" =>$request->ownerofreview_user,            
     
             ]);
         
             return 'The Member has been edited';
 
-        
-        
-           
     }
 
     public function newproject (Request $request){
