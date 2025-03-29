@@ -70,7 +70,8 @@ class ExecutiveController extends Controller
        {
         $managers = Member::where('hierarchy', 'manager')->get();
         $associates = Member::where('hierarchy', 'associate')->get();
-        return view('Executive.BuildNewProjects.newproject', compact('managers', 'associates'));
+        $internaladvisors = Member::whereRaw('LOWER(hierarchy) = ?', ['internaladvisor'])->get();
+        return view('Executive.BuildNewProjects.newproject', compact('managers', 'associates', 'internaladvisors'));
        }
     }
 
@@ -95,12 +96,18 @@ class ExecutiveController extends Controller
         ]);
 
         $project->members()->attach($teammanager->id, ['role' => 'manager']);
+
+        $internaladvisor = Member::where('hierarchy', 'internaladvisor')->first();
+        if ($internaladvisor) {
+            $project->members()->attach($internaladvisor->id, ['role' => 'internaladvisor']);
+        }
        
         $associates = Member::where('hierarchy', 'associate')->get();
     
         foreach ($associates as $member) {
             $project->members()->attach($member->id, ['role' => 'associate']);
         }
+
 
 
         return 'The Project has been created';

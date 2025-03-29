@@ -55,8 +55,8 @@ Route::get('/get-review-author', [ExecutiveController::class, 'getReviewAuthors'
 
 // Managers Route
 Route::group(['middleware' =>['manager']], function(){
-Route::get('/manager/trade-member/{id}',[ManagerController::class, 'traded'])->name('temporarytrade');
-Route::put('/trade/{id}',[ManagerController::class, 'trading']);
+Route::get('/manager/trade-member',[ManagerController::class, 'traded'])->name('temporarytrade');;
+Route::put('/trade',[ManagerController::class, 'trading'])->name('traded');
 Route::get('/seeallreviews/{projectId}/{userId}',[ManagerController::class, 'catch'])->name('manager-all');
 });
 //End of Managers Area 

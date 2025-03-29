@@ -12,23 +12,39 @@ use App\Models\Project;
 class ManagerController extends Controller
 
 {
-    public function trading (Request $request, int $id){
-        $member = Member::findorFail($id);
-        $member->update([
-           "hierarchy" =>$request->hierarchy_user,
-            "insertedproject" =>$request->insertedproject_user,
+    public function trading (Request $request){
 
-        ]);
+        $project = Project::find($request->project_id);
+        if (!$project){
+            return 'project not found';
+        }
 
-        return 'The Manager are swap for internal advisor temporary';
+        $manager = Member::where('hierarchy', 'manager')->first();
+        if (!$manager) {
+            return 'Manager';
+        }
+
+        $projectMember = $project->members()->where('member_id', $manager->id)->first();
+        if ($projectMember){
+            return 'The Manager is not associate with this project';
+        }
+
+        $project->members()->updateExistingPivot($manager->id, ['role' => 'internaladvisor']);
+
+        return 'Manager now are turned as an Internal Advisor on this Project';
 
     }
 
     
 
-    public function traded(Request $request, int $id){
-        $member = Member::findorFail($id);
-        return view('Managers.Traded.changing', compact('member'));
+    public function traded(Request $request){
+
+        $manager = Member::where('id', $id)->where('hierarchy', 'manager')->first();
+        if (!$manager || $manager->hierarchy !== 'manager') {
+            return 'You are not authorized to make this';
+        }
+        $projects = project::all();
+        return view('Managers.Traded.changing', compact('projects'));
     }
 
 
