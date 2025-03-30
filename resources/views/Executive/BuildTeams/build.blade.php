@@ -6,40 +6,44 @@
     <title>Create New Squad </title>
 </head>
 <body>
-    <form action="/group" method="POST" id="squadForm">
-        @csrf
+<form action="/group" method="POST" id="squadForm">
+    @csrf
 
-        <label for="teammanager_team">Name of the Manager</label>
-        <select name="teammanager_team" required>
-            <option value="">Select Manager</option>
-            @foreach($managers as $manager)
-                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-            @endforeach
-        </select>
-        <br><br>
-        <label for="reviewsofsquad_team">Reviews of Squad</label>
-        <input type="text" placeholder="Reviews of the Squad" name="reviewsofsquad_team" required>
-        <br><br>
-        <label for="members_team">Choose Associates for the Squad</label>
-        <select id="members_select" name="members[]" size="5" style="width: 100%; height: auto;">
-            @foreach($associates as $associate)
-                <option value="{{ $associate->id }}">{{ $associate->name }}</option>
-            @endforeach
-        </select>
-        <button type="button" id="confirm_associate_btn" onclick="addAssociate()">Confirm Associate</button>
-        <ul id="selected_associates_list"></ul>
-        <br><br>
-        <label for="projects_team">Escolha os Projetos para o Squad</label>
-        <select id="projects_select" name="projectnames[]" size="5" style="width: 100%; height: auto;">
-            @foreach($projectnames as $projectname)
-                <option value="{{ $projectname }}">{{ $projectname }}</option>
-            @endforeach
-        </select>
-        <button type="button" id="confirm_project_btn" onclick="addProject()">Confirm Project</button>
-        <ul id="selected_projects_list"></ul> <!-- Lista de projetos confirmados -->
-        <br><br>
-        <button type="submit">Confirm Selection</button>
-    </form>
+    <label for="teammanager_team">Name of the Manager</label>
+    <select name="teammanager_team" required>
+        <option value="">Select Manager</option>
+        @foreach($managers as $manager)
+            <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+        @endforeach
+    </select>
+    <br><br>
+
+    <label for="reviewsofsquad_team">Reviews of Squad</label>
+    <input type="text" placeholder="Reviews of the Squad" name="reviewsofsquad_team" required>
+    <br><br>
+
+    <label for="members_team">Choose Associates for the Squad</label>
+    <select id="members_select" name="members[]" size="5" style="width: 100%; height: auto;" required>
+        @foreach($associates as $associate)
+            <option value="{{ $associate->id }}">{{ $associate->name }}</option>
+        @endforeach
+    </select>
+    <button type="button" id="confirm_associate_btn" onclick="addAssociate()">Confirm Associate</button>
+    <ul id="selected_associates_list"></ul>
+    <br><br>
+
+    <label for="projects_team">Escolha os Projetos para o Squad</label>
+    <select id="projects_select" name="projectnames[]" size="5" style="width: 100%; height: auto;" required>
+        @foreach($projectnames as $projectname)
+            <option value="{{ $projectname }}">{{ $projectname }}</option>
+        @endforeach
+    </select>
+    <button type="button" id="confirm_project_btn" onclick="addProject()">Confirm Project</button>
+    <ul id="selected_projects_list"></ul> 
+    <br><br>
+
+    <button type="submit">Confirm Selection</button>
+</form>
 
     <script>
         function addAssociate() {
@@ -49,7 +53,6 @@
                 var selectedAssociateId = selectedOption.value;
                 var selectedAssociateName = selectedOption.text;
 
-                // Verifica se o Associate já foi adicionado
                 if (!document.getElementById("associate_" + selectedAssociateId)) {
                     var li = document.createElement("li");
                     li.id = "associate_" + selectedAssociateId;
