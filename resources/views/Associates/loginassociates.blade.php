@@ -18,5 +18,10 @@
         <p>You need to be logged in to perform this action.</p>
     @endif
 
+    <form action="{{ route('tradetoadv') }}" method="get">
+        <button type="submit">Swap User to Internal Advisor</button>
+    </form>
+
+
 </body>
 </html>

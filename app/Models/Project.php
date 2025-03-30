@@ -25,4 +25,9 @@ class Project extends Model
             ->withPivot('role') 
             ->withTimestamps(); 
     }
+
+    public function squads()
+    {
+        return $this->belongsToMany(Squad::class, 'project_squad');
+    }
 }

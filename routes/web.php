@@ -57,7 +57,7 @@ Route::get('/get-review-author', [ExecutiveController::class, 'getReviewAuthors'
 Route::group(['middleware' =>['manager']], function(){
 Route::get('/manager/trade-member',[ManagerController::class, 'traded'])->name('temporarytrade');;
 Route::put('/trade',[ManagerController::class, 'trading'])->name('traded');
-Route::get('/seeallreviews/{projectId}/{userId}',[ManagerController::class, 'catch'])->name('manager-all');
+Route::get('/seeallreviews',[ManagerController::class, 'catch'])->name('manager-all');
 });
 //End of Managers Area 
 
@@ -72,8 +72,8 @@ Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('
 
 // Routes Only can acess by Associates in the Company
 Route::group(['middleware' =>['associate']], function(){
-Route::get('/associates/swap-role/{id}',[AssociatesController::class, 'map'])->name('tradetoadv');
-Route::put('/traded/{id}',[AssociatesController::class, 'swapuser']);
+Route::get('/associates/swap-role',[AssociatesController::class, 'map'])->name('tradetoadv');
+Route::put('/swap-role',[AssociatesController::class, 'swapuser'])->name('swap-positions');
 Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('catch');
 });
 // End of associates area

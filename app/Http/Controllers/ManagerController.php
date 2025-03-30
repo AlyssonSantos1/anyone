@@ -21,7 +21,7 @@ class ManagerController extends Controller
 
         $manager = Member::where('hierarchy', 'manager')->first();
         if (!$manager) {
-            return 'Manager';
+            return 'Manager not Found';
         }
 
         $projectMember = $project->members()->where('member_id', $manager->id)->first();
@@ -39,7 +39,7 @@ class ManagerController extends Controller
 
     public function traded(Request $request){
 
-        $manager = Member::where('id', $id)->where('hierarchy', 'manager')->first();
+        $manager = Member::where('hierarchy', 'manager')->first();
         if (!$manager || $manager->hierarchy !== 'manager') {
             return 'You are not authorized to make this';
         }
@@ -48,22 +48,51 @@ class ManagerController extends Controller
     }
 
 
-    public function catch (Request $request, int $projectId, int $userId){
+    public function catch (Request $request){
         
-        $personalReviews = Member::where('id', $userId)->first(['personalreviews']);
-        $teamReviews = Squad::where('id', $userId)->first(['reviewsofsquad']);
-        $projectReviews = Project::where('id', $projectId)->first(['projectreviews']);
+        $userId = session('user_id');
 
+        if (!$userId) {
+            return 'User not Found';
+        }
+        
+        $manager = Member::findOrFail($userId);
 
-        $personalReviews =  $personalReviews ? $personalReviews->personalreviews : 'No personal Reviews';
-        $teamReviews = $teamReviews ? $teamReviews->reviewsofsquad : 'No team Reviews';
-        $projectReviews = $projectReviews ? $projectReviews->projectreviews : 'No project reviews';
+        if ($manager->hierarchy !== 'manager') {
+            return 'Manager not Found';
+        }
 
-        return view('Managers.Vision.allreviews',[
-           'personalReviews' => $personalReviews,
-            'teamReviews' => $teamReviews,
-            'projectReviews' => $projectReviews
-            
+        $projects = $manager->projects;
+
+        $squads = $manager->squads;
+
+        $personalReviews = $manager->personalreviews ?: 'No personal reviews';
+
+        $teamReviews = [];
+
+        foreach ($squads as $squad) {
+            $reviews[] = [
+                'type' => 'Squad',
+                'name' => $squad->name,
+                'reviews' => $squadReviews ?: 'No squad reviews'
+            ];
+        }
+
+        $reviews = [];
+
+        foreach($projects as $project){
+            $projectReviews = $project->reviews;
+            $reviews[] = [
+                'type' => 'project',
+                'name' => $project->name,
+                'reviews' => $projectReviews ?: 'No project reviews'
+            ];
+        }
+       
+        return view('Managers.Vision.allreviews', [
+            'reviews' => $reviews,
+            'personalReviews' => $personalReviews,
+            'teamreviews' => $teamReviews
         ]);
 
     }

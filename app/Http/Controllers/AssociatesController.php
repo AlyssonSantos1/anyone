@@ -11,26 +11,39 @@ use App\Models\Squad;
 
 class AssociatesController extends Controller
 {
-    public function swapuser (Request $request, int $id){
-        $member =  Member::findorFail($id);     
+    public function swapuser (Request $request){
 
-        $hierarchy = $request->input('hierarchy_user') ?: null;
+        $project = Project::find($request->project_id);
+        if (!$project){
+            return 'project not found';
+        }
 
-            $member->update([
-                "name" =>$request->name_user,
-                "hierarchy" =>$request->hierarchy_user,
+        $associate = Member::where('hierarchy', 'associate')->first();
+        if (!$associate) {
+            return 'Manager not Found';
+        }
+
+        $projectMember = $project->members()->where('member_id', $associate->id)->first();
+        if ($projectMember){
+            return 'The Associate is not associate with this project';
+        }
+
+        $project->members()->updateExistingPivot($associate->id, ['role' => 'internaladvisor']);
+
+        return 'Associate now are turned as an Internal Advisor in these Project';
+
     
-            ]);
-        
-        return 'The member are swap of the hierarchy to temporary internal advisor in the project';
-        
     }
 
-    public function map (Request $request, int $id){
-        $member = Member::findorFail($id);
-        return view('Associates.TradeMembers.swap', compact('member'));
+    public function map (Request $request){
+        
+        $associate = Member::where('hierarchy', 'associate')->first();
+        if (!$associate || $associate->hierarchy !== 'associate') {
+            return 'You are not authorized to make this trade';
+        }
+        $projects = project::all();
+        return view('Associates.TradeMembers.swap', compact('projects'));
     }
-
    
     public function swan(Request $request){
 
