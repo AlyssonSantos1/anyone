@@ -49,51 +49,46 @@ class ManagerController extends Controller
 
 
     public function catch (Request $request){
-        
-        $userId = session('user_id');
-
-        if (!$userId) {
-            return 'User not Found';
-        }
-        
-        $manager = Member::findOrFail($userId);
-
-        if ($manager->hierarchy !== 'manager') {
-            return 'Manager not Found';
-        }
-
-        $projects = $manager->projects;
-
-        $squads = $manager->squads;
-
-        $personalReviews = $manager->personalreviews ?: 'No personal reviews';
-
-        $teamReviews = [];
-
-        foreach ($squads as $squad) {
-            $reviews[] = [
-                'type' => 'Squad',
-                'name' => $squad->name,
-                'reviews' => $squadReviews ?: 'No squad reviews'
-            ];
-        }
-
-        $reviews = [];
-
-        foreach($projects as $project){
-            $projectReviews = $project->reviews;
-            $reviews[] = [
-                'type' => 'project',
-                'name' => $project->name,
-                'reviews' => $projectReviews ?: 'No project reviews'
-            ];
-        }
        
-        return view('Managers.Vision.allreviews', [
-            'reviews' => $reviews,
-            'personalReviews' => $personalReviews,
-            'teamreviews' => $teamReviews
-        ]);
+            $userId = session('user_id');
+            
+            $member = Member::where('id', $userId)
+                    ->where('hierarchy', 'manager') 
+                    ->first();
+    
+            if (!$member) {
+                return 'Member Not found or member not an advisor';
+            }
+    
+            $projects = $member->projects;
+    
+    
+            if ($projects->isEmpty()) {
+                $projects = collect();
+            }
+    
+            $squads = $member->squad;
+    
+    
+            $reviews = [];  
+    
+            foreach ($projects as $project) {
+                $projectReviews = $project->projectreviews; 
+                $membersReviews = $project->members->map(function ($member) {
+                    return $member->personalreviews; 
+                });
+
+                $personalReviews = $member->personalreviews;
+    
+                $reviews[] = [
+                    'project' => $project,
+                    'projectReviews' => $projectReviews,
+                    'membersReviews' => $membersReviews,
+                    'personalReviews' => $personalReviews
+                ];
+            }
+                return view('Managers.Vision.allreviews', compact('reviews'));
+    
 
     }
 

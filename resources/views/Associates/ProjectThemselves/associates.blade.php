@@ -13,7 +13,7 @@
                 <p><strong>Project Goals:</strong> {{ $review['project']->goals }}</p>
                 <p><strong>Description:</strong> {{ $review['project']->description }}</p>
 
-                {{-- Verifica se há avaliação do projeto --}}
+                
                 @if($review['projectReviews'])
                     <h4>Project Review:</h4>
                     <p>{{ $review['projectReviews'] }}</p>
@@ -21,7 +21,7 @@
                     <p>No review available for this project.</p>
                 @endif
 
-                {{-- Verifica se há avaliações de membros e exibe --}}
+                
                 @if(count($review['membersReviews']) > 0)
                     <h4>Member Reviews:</h4>
                     @foreach($review['membersReviews'] as $memberReview)

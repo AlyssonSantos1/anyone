@@ -6,7 +6,6 @@
     <title>Welcome to the Syndicate System</title>
 </head>
 <body>
-    {{-- associates-dashboard.blade.php --}}
     <p>You are an Associate</p>
 
     @if(session('user_id'))
