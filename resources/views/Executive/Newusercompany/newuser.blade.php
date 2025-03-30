@@ -7,58 +7,57 @@
 </head>
 
 <body>  
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
 
-    @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
 
-    <form action="/executives" method="POST">
-        @csrf
-        <label for="">Name </label>
-        <input type="text" placeholder="Enter your name" name="name_user" required>
-        <br>
-        <label for="">E-mail</label>
-        <input type="text" placeholder="Enter your hierarchy" name="email_user" required>
-        <br>
-        <label for="">Role</label>
-        <input type="text" placeholder="Role" name="role_user" required>
-        <br>
-        <label for="">Hierarchy</label>
-        <select name="hierarchy_user" required>
-            <option value="executive">Executive</option>
-            <option value="manager">Manager</option>
-            <option value="internaladvisor">InternalAdvisor</option>
-            <option value="associate">Associate</option>
-            <option value="user">User</option>
-        </select>
-        <br>
-        <label for="">Inserted Project User</label>
-        <input type="text" placeholder="insertedproject" name="insertedproject_user" required>
-        <br>
-        <label for="">Personal Reviews</label>
-        <input type="text" placeholder="personalreviews" name="personalreviews_user" required>
-        <br>
-        <label for="">Owner of Review</label>
-        <input type="text" placeholder="ownerofreview" name="ownerofreview_user" required>
-        <br>
-        <label for="">Squad</label>
-        <input type="text" placeholder="Squadid" name="squad_id" required>
-        <br><br>
-        <button type="submit">Send</button>
-    </form>
+<form action="/executives" method="POST">
+    @csrf
+    <label for="name_user">Name</label>
+    <input type="text" placeholder="Enter your name" name="name_user" required>
+    <br>
+    <label for="email_user">E-mail</label>
+    <input type="email" placeholder="Enter your email" name="email_user" required>
+    <br>
+    <label for="role_user">Role</label>
+    <input type="text" placeholder="Role" name="role_user" required>
+    <br>
+    <label for="hierarchy_user">Hierarchy</label>
+    <select name="hierarchy_user" required>
+        <option value="">Select Hierarchy</option>  
+        <option value="executive">Executive</option>
+        <option value="manager">Manager</option>
+        <option value="internaladvisor">InternalAdvisor</option>
+        <option value="associate">Associate</option>
+        <option value="user">User</option>
+    </select>
+    <br>
+    <label for="insertedproject_user">Inserted Project User</label>
+    <input type="text" placeholder="insertedproject" name="insertedproject_user" required>
+    <br>
+    <label for="personalreviews_user">Personal Reviews</label>
+    <input type="text" placeholder="personalreviews" name="personalreviews_user" required>
+    <br>
+    <label for="ownerofreview_user">Owner of Review</label>
+    <input type="text" placeholder="ownerofreview" name="ownerofreview_user" required>
+    <br>
+    <button type="submit">Send</button>
+</form>
+
 
     <style>
     body {
-        background-color: #e1bee7; /* Cor de fundo suave roxa */
+        background-color: #e1bee7;
         font-family: Arial, sans-serif;
-        color: #333; /* Cor do texto */
+        color: #333;
     }
 
     form {
-        background-color: #f3e5f5; /* Cor de fundo do formulário roxa suave */
+        background-color: #f3e5f5;
         padding: 30px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -94,7 +93,7 @@
     }
 
     button {
-        background-color: #8e24aa; /* Cor do botão roxa */
+        background-color: #8e24aa; 
         border: none;
         cursor: pointer;
         font-size: 16px;
@@ -103,7 +102,7 @@
     }
 
     button:hover {
-        background-color: #7b1fa2; /* Cor do botão ao passar o mouse roxa mais escura */
+        background-color: #7b1fa2;
     }
 
     ul {
@@ -116,7 +115,7 @@
     }
 
     .remove_associate_btn, .remove_project_btn {
-        background-color: #d32f2f; /* Cor do botão de remoção */
+        background-color: #d32f2f;
         color: white;
         border: none;
         padding: 4px 8px;
@@ -128,7 +127,7 @@
     }
 
     .remove_associate_btn:hover, .remove_project_btn:hover {
-        background-color: #c62828; /* Cor do botão de remoção ao passar o mouse */
+        background-color: #c62828; 
     }
 </style>
 

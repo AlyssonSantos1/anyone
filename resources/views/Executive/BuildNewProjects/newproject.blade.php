@@ -6,53 +6,77 @@
     <title>Create New Project By Executive Only</title>
 </head>
 <body>
-    <form action="/executive-new" method="POST">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete="off">        
-        @csrf
-        <label for="projectname_project">Project Name</label>
-        <input type="text" placeholder="Enter the project name" name="projectname_project" required>
-        <br>
-        <label for="teammanager_team">Name of the Manager</label>
-        <select name="teammanager_team" required>
-            <option value="">Select Manager</option>
-            @foreach($managers as $manager)
-                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-            @endforeach
-        </select>
-        <br>
-        <label for="numberofmembers_project">Number of Members in Project</label>
-        <input type="number" placeholder="Number of members" name="numberofmembers_project" required>
-        <br>
-        <label for="goals_project">Project Goals</label>
-        <input type="text" placeholder="Project Goals" name="goals_project" required>
-        <br>
-        <label for="description_project">Project Description</label>
-        <input type="text" placeholder="Description of the project" name="description_project" required>
-        <br>
-        <label for="reviews_project">Project Reviews</label>
-        <input type="text" placeholder="Reviews of the project" name="reviews_project" required>
-        <br>
-        <label for="authorreview_project">Author of the Review</label>
-        <input type="text" placeholder="Author of Review" name="authorreview_project" required>
-        <br>
-        <label for="members_project">Choose Associates for the Project</label>
-        <select name="members[]" required multiple size="5" style="width: 100%; height: auto;">
-            @foreach($associates as $associate)
-                <option value="{{ $associate->id }}">{{ $associate->name }}</option>
-            @endforeach
-        </select>
-        <br>
-        <label for="internaladvisor">Choose Internal Advisor for the Project</label>
-        <select name="internaladvisor" required>
+<form action="/executive-new" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete="off">        
+    @csrf
+
+    <!-- Campo para o nome do projeto -->
+    <label for="projectname_project">Project Name</label>
+    <input type="text" placeholder="Enter the project name" name="projectname_project" required>
+    <br>
+
+    <!-- Campo para selecionar o gerente -->
+    <label for="teammanager_team">Name of the Manager</label>
+    <select name="teammanager_team" required>
+        <option value="">Select Manager</option>
+        @foreach($managers as $manager)
+            <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+        @endforeach
+    </select>
+    <br>
+
+    <!-- Campo para o número de membros do projeto -->
+    <label for="numberofmembers_project">Number of Members in Project</label>
+    <input type="number" placeholder="Number of members" name="numberofmembers_project" required>
+    <br>
+
+    <!-- Campo para as metas do projeto -->
+    <label for="goals_project">Project Goals</label>
+    <input type="text" placeholder="Project Goals" name="goals_project" required>
+    <br>
+
+    <!-- Campo para a descrição do projeto -->
+    <label for="description_project">Project Description</label>
+    <input type="text" placeholder="Description of the project" name="description_project" required>
+    <br>
+
+    <!-- Campo para a avaliação do projeto -->
+    <label for="reviews_project">Project Reviews</label>
+    <input type="text" placeholder="Reviews of the project" name="reviews_project" required>
+    <br>
+
+    <!-- Campo para o autor da avaliação -->
+    <label for="authorreview_project">Author of the Review</label>
+    <input type="text" placeholder="Author of Review" name="authorreview_project" required>
+    <br>
+
+    <!-- Campo para selecionar os associados do projeto -->
+    <label for="members_project">Choose Associates for the Project</label>
+    <select name="members[]" required multiple size="5" style="width: 100%; height: auto;">
+        @foreach($associates as $associate)
+            <option value="{{ $associate->id }}">{{ $associate->name }}</option>
+        @endforeach
+    </select>
+    <br>
+
+    <!-- Campo para selecionar o conselheiro interno -->
+    <label for="internaladvisor">Choose Internal Advisor for the Project</label>
+    <select name="internaladvisor" required>
         <option value="">Select Internal Advisor</option>
-            @foreach($internaladvisors as $advisor)
-                <option value="{{ $advisor->id }}">{{ $advisor->name }}</option>
-            @endforeach
-        </select>
-        <br>
-        <button type="button" id="addAssociatesButton">Add Associates</button>
-        <div id="selectedAssociates" style="margin-top: 20px;">
-        </div>
+        @foreach($internaladvisors as $advisor)
+            <option value="{{ $advisor->id }}">{{ $advisor->name }}</option>
+        @endforeach
+    </select>
+    <br>
+
+    <!-- Botão para adicionar associados -->
+    <button type="button" id="addAssociatesButton">Add Associates</button>
+
+    <!-- Área para exibir associados selecionados -->
+    <div id="selectedAssociates" style="margin-top: 20px;">
+    </div>
+
+    <br>
 
         <script>
         document.getElementById('addAssociatesButton').addEventListener('click', function() {
