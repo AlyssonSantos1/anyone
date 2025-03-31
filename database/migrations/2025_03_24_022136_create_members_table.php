@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('role');
-            $table->string('hierarchy')->nullable();
-            $table->string('insertedproject')->nullable();
-            $table->string('personalreviews')->nullable();
-            $table->string('ownerofreview')->nullable();
+            $table->string('hierarchy');
+            $table->string('insertedproject');
+            $table->string('personalreviews');
+            $table->string('ownerofreview');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
     <div class="alert alert-danger">{{ session('error') }}</div>
 @endif
 
-<form action="/executives" method="POST">
+<form action="/executives" method="POST" onsubmit="return validateForm()">
     @csrf
     <label for="name_user">Name</label>
     <input type="text" placeholder="Enter your name" name="name_user" required>
@@ -28,7 +28,7 @@
     <br>
     <label for="hierarchy_user">Hierarchy</label>
     <select name="hierarchy_user" required>
-        <option value="">Select Hierarchy</option>  
+        <option value="">Select Hierarchy</option>
         <option value="executive">Executive</option>
         <option value="manager">Manager</option>
         <option value="internaladvisor">InternalAdvisor</option>
@@ -48,6 +48,16 @@
     <button type="submit">Send</button>
 </form>
 
+<script>
+function validateForm() {
+    var hierarchy = document.querySelector('select[name="hierarchy_user"]');
+    if (hierarchy.value === "") {
+        alert("Please select a hierarchy.");
+        return false;
+    }
+    return true; 
+}
+</script>
 
     <style>
     body {

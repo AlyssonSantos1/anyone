@@ -17,19 +17,28 @@ class ExecutiveController extends Controller
     }
     
     public function store (Request $request){
+
+        $validatedData = $request->validate([
+            'name_user' => 'required|string',
+            'email_user' => 'required|email|unique:members,email', 
+            'role_user' => 'required|string',
+            'hierarchy_user' => 'required|string', 
+            'insertedproject_user' => 'required|string',
+            'personalreviews_user' => 'required|string', 
+            'ownerofreview_user' => 'required|string', 
+        ]);
+
             Member::create([
-                "name" =>$request->name_user,
-                "email" =>$request->email_user,
-                "role" =>$request->role_user,
-                "hierarchy" =>$request->hierarchy_user,
-                "insertedproject" =>$request->insertedproject_user,
-                "personalreviews" =>$request->personalreviews_user,
-                "ownerofreview" =>$request->ownerofreview_user, 
-                "squad_id" =>$request->squad_id          
-                
-    
+                'name' => $validatedData['name_user'], 
+                'email' => $validatedData['email_user'], 
+                'role' => $validatedData['role_user'], 
+                'hierarchy' => $validatedData['hierarchy_user'], 
+                'insertedproject' => $validatedData['insertedproject_user'], 
+                'personalreviews' => $validatedData['personalreviews_user'], 
+                'ownerofreview' => $validatedData['ownerofreview_user'], 
+                        
             ]);
-           
+            
     
             return 'The User Has been created';
      
@@ -68,8 +77,8 @@ class ExecutiveController extends Controller
 
     public function newproject (Request $request){
        {
-        $managers = Member::where('hierarchy', 'manager')->get();
-        $associates = Member::where('hierarchy', 'associate')->get();
+        $managers = Member::whereRaw('LOWER(hierarchy) = ?', ['manager'])->get();
+        $associates = Member::whereRaw('LOWER(hierarchy) = ?', ['associate'])->get();
         $internaladvisors = Member::whereRaw('LOWER(hierarchy) = ?', ['internaladvisor'])->get();
         return view('Executive.BuildNewProjects.newproject', compact('managers', 'associates', 'internaladvisors'));
        }
@@ -78,10 +87,19 @@ class ExecutiveController extends Controller
     public function congrats (Request $request){ 
        
         $teammanager = Member::find($request->teammanager_team);
-        if (!$teammanager || $teammanager->hierarchy !== 'manager') {
+        if (!$teammanager || strtolower($teammanager->hierarchy) !== 'manager') {
             return response()->json(['error' => 'The team manager must be a manager.'], 400);
         }
         
+        $validatedData = $request->validate([
+            'projectname_project' => 'required|string', 
+            'manager_project' => 'required|string',  
+            'numberofmembers_project' => 'required|integer', 
+            'goals_project' => 'required|string',  
+            'description_project' => 'required|string', 
+            'reviews_project' => 'required|string', 
+            'authorreview_project' => 'required|string', 
+        ]);
 
         
         $project = Project::create([
@@ -97,12 +115,12 @@ class ExecutiveController extends Controller
 
         $project->members()->attach($teammanager->id, ['role' => 'manager']);
 
-        $internaladvisor = Member::where('hierarchy', 'internaladvisor')->first();
+        $internaladvisor = Member::whereRaw('LOWER(hierarchy) = ?', ['internaladvisor'])->first();
         if ($internaladvisor) {
             $project->members()->attach($internaladvisor->id, ['role' => 'internaladvisor']);
         }
        
-        $associates = Member::where('hierarchy', 'associate')->get();
+        $associates = Member::whereRaw('LOWER(hierarchy) = ?', ['associate'])->get();
     
         foreach ($associates as $member) {
             $project->members()->attach($member->id, ['role' => 'associate']);
