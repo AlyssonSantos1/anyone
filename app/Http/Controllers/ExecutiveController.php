@@ -169,7 +169,7 @@ class ExecutiveController extends Controller
         ]);
 
         $teammanager = Member::find($request->teammanager_team);
-        if (!$teammanager || $teammanager->hierarchy !== 'manager') {
+        if (!$teammanager || strtolower($teammanager->hierarchy) !== 'manager') {
             return response()->json(['error' => 'The team manager must be a manager.'], 400);
         }
         
@@ -181,7 +181,7 @@ class ExecutiveController extends Controller
 
         $squad->members()->attach($teammanager->member_id, ['role' => 'manager']);
        
-        $associates = Member::where('hierarchy', 'associate')->get();    
+        $associates = Member::whereRaw('LOWER(hierarchy) = ?', ['associate'])->get(); 
         foreach ($associates as $member) {
             $squad->members()->attach($member->member_id, ['role' => 'associate']);
         }
@@ -203,8 +203,8 @@ class ExecutiveController extends Controller
 
     public function tower (Request $request){
 
-        $managers = Member::where('hierarchy', 'manager')->get();
-        $associates = Member::where('hierarchy', 'associate')->get();
+        $managers = Member::whereRaw('LOWER(hierarchy) = ?', ['manager'])->get();
+        $associates = Member::whereRaw('LOWER(hierarchy) = ?', ['associate'])->get();
         $projectnames = Project::pluck('projectname');
 
         return view('Executive.BuildTeams.build', compact('associates', 'managers', 'projectnames'));
