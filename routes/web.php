@@ -1,14 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExecutiveController;
-use App\Http\Controllers\AdvisorController;
-use App\Http\Controllers\AssociatesController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\UserController;
-// use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\AdvisorController;
+use App\Http\Controllers\AssociatesController;
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,79 +21,74 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-//Login authenticator 
-Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('sucess');
-Route::get('/executive-dashboard', [LoginController::class, 'executiveDashboard'])->name('executive.dashboard');
-Route::get('/manager-dashboard', [LoginController::class, 'managerDashboard'])->name('manager.dashboard');
-Route::get('/internaladvisor-dashboard', [LoginController::class, 'internalAdvisorDashboard'])->name('internaladvisor.dashboard');
-Route::get('/associate-dashboard', [LoginController::class, 'associateDashboard'])->name('associate.dashboard');
-Route::get('/user-dashboard', [LoginController::class, 'userDashboard'])->name('user.dashboard');
-//End of Login
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.submit');
+
+Route::middleware(['auth', 'checkHierarchy:user'])->group(function () {
+    Route::get('/users/index', [UserController::class, 'index'])->name('user.index');
+});
 
 
-
-
-//Executives routesauthenticate with middleware
-Route::group(['middleware' =>['executive']], function(){
-Route::get('/executives/create',[ExecutiveController::class, 'create'])->name('executive.create');
-Route::post('/executives',[ExecutiveController::class, 'store']);
-Route::get('/executive/editing',[ExecutiveController::class, 'edition'])->name('executive.editing');
-Route::put('/edit',[ExecutiveController::class, 'changed'])->name('Done-Deal');;
-Route::get('/executive/project-build',[ExecutiveController::class, 'newproject'])->name('executive-build');
-Route::post('/executive-new',[ExecutiveController::class, 'congrats']);
-Route::get('/new-squad',[ExecutiveController::class, 'tower'])->name('team-build');
-Route::post('/group',[ExecutiveController::class, 'construction']);
+Route::middleware(['auth', 'checkHierarchy:executive'])->group(function () {  
+Route::get('/executive/index', [ExecutiveController::class, 'index'])->name('executive.index');
+Route::get('/executives/create', [ExecutiveController::class, 'create'])->name('executive.create');
+Route::post('/executives', [ExecutiveController::class, 'store']);
+Route::get('/executive/editing', [ExecutiveController::class, 'edition'])->name('executive.editing');
+Route::put('/edit', [ExecutiveController::class, 'changed'])->name('Done-Deal');
+Route::get('/executive/project-build', [ExecutiveController::class, 'newproject'])->name('executive-build');
+Route::post('/executive-new', [ExecutiveController::class, 'congrats']);
+Route::get('/new-squad', [ExecutiveController::class, 'tower'])->name('team-build');
+Route::post('/group', [ExecutiveController::class, 'construction']);
 Route::get('/get-review-author', [ExecutiveController::class, 'getReviewAuthors'])->name('executive.review-authors');
-
 });
-//End of Executive
 
-// Managers Route
-Route::group(['middleware' =>['manager']], function(){
-Route::get('/manager/trade-member',[ManagerController::class, 'traded'])->name('temporarytrade');;
-Route::put('/trade',[ManagerController::class, 'trading'])->name('traded');
-Route::get('/seeallreviews',[ManagerController::class, 'catch'])->name('manager-all');
+Route::middleware(['auth', 'checkHierarchy:manager'])->group(function () {
+    Route::get('/managers/index', [ManagerController::class, 'index'])->name('managers.index');
+    Route::get('/manager/trade-member', [ManagerController::class, 'traded'])->name('temporarytrade');
+    Route::put('/trade', [ManagerController::class, 'trading'])->name('traded');
+    Route::get('/seeallreviews', [ManagerController::class, 'catch'])->name('manager-all');
 });
-//End of Managers Area 
 
-// Routes by Internal Advisorss can acess by  in the Company
-Route::group(['middleware' =>['internaladvisor']], function(){
-Route::get('/advisors/give-review', [AdvisorController::class, 'newreview'])->name('giving');
-Route::post('/advisors', [AdvisorController::class, 'newest'])->name('gived');
-Route::get('/advisors/review-team',[AdvisorController::class, 'target'])->name('vision');
+Route::middleware(['auth', 'checkHierarchy:associate'])->group(function () {
+    Route::get('/associate/index', [AssociatesController::class, 'index'])->name('associates.index');
+    Route::get('/associates/swap-role', [AssociatesController::class, 'map'])->name('tradetoadv');
+    Route::put('/swap-role', [AssociatesController::class, 'swapuser'])->name('swap-positions');
+    Route::get('/associates/review-team', [AssociatesController::class, 'swan'])->name('complete');
 });
-// End of Internal Advisors Space
 
-
-// Routes Only can acess by Associates in the Company
-Route::group(['middleware' =>['associate']], function(){
-Route::get('/associates/swap-role',[AssociatesController::class, 'map'])->name('tradetoadv');
-Route::put('/swap-role',[AssociatesController::class, 'swapuser'])->name('swap-positions');
-Route::get('/associates/review-team',[AssociatesController::class, 'swan'])->name('catch');
+Route::middleware(['auth', 'checkHierarchy:internaladvisor'])->group(function () {
+    Route::get('/internaladvisors', [AdvisorController::class, 'index'])->name('internaladvisor.index');
+    Route::post('/advisors', [AdvisorController::class, 'newest'])->name('gived');
+    Route::get('/advisors/review-team', [AdvisorController::class, 'target'])->name('vision');
+    Route::get('/advisors/give-review', [AdvisorController::class, 'newreview'])->name('giving');
 });
-// End of associates area
 
-// user default space
-Route::group(['middleware' =>['user']], function(){
-Route::get('/delete-review/{id}', [UserController::class, 'trash'])->name('getting-review');
-Route::post('/deleted/{id}', [UserController::class, 'turndown'])->name('delete-review');
-Route::get('/user/edit-review/{id}',[UserController::class, 'edited'])->name('editing-review');
-Route::put('/edited/{id}',[Usercontroller::class, 'change']);
+
+Route::middleware(['auth', 'checkHierarchy:user'])->group(function () {
+    Route::get('/users/index', [UserController::class, 'index'])->name('user.index');
+    Route::get('/delete-review/{id}', [UserController::class, 'trash'])->name('getting-review');
+    Route::post('/deleted/{id}', [UserController::class, 'turndown'])->name('delete-review');
+    Route::get('/user/edit-review/{id}', [UserController::class, 'edited'])->name('editing-review');
+    Route::put('/edited/{id}', [UserController::class, 'change']);
 });
-// End of users space
+
+Route::middleware(['auth', 'checkHierarchy:user'])->group(function () {
+    Route::get('/users/index', [UserController::class, 'index'])->name('user.index');
+    Route::get('/delete-review', [UserController::class, 'trash'])->name('getting-review');
+    Route::post('/deleted', [UserController::class, 'turndown'])->name('delete-review');
+    Route::get('/user/edit-review', [UserController::class, 'edited'])->name('editing-review');
+    Route::put('/edited', [UserController::class, 'change']);
+});
 
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-
-
-
-
-
-
-
-
+require __DIR__.'/auth.php';

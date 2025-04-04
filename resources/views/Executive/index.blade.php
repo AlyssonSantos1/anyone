@@ -8,6 +8,7 @@
 <body>
     <p>You are an Executive!</p>
 
+    <s>Please Select one option</s>
     
    
     <form action="{{ route('executive.create') }}" method="get">

@@ -12,26 +12,37 @@ use App\Models\Project;
 class ManagerController extends Controller
 
 {
+    public function index()
+    {
+        return view('Managers.index');
+    }
+
+    
     public function trading (Request $request){
+
+        $user = auth()->user();
+
+        if ($user->hierarchy !== 'manager') {
+            return 'You are not a manager to make this trade';
+
+        }
 
         $project = Project::find($request->project_id);
         if (!$project){
             return 'project not found';
         }
 
-        $manager = Member::where('hierarchy', 'manager')->first();
-        if (!$manager) {
-            return 'Manager not Found';
+
+        $projectMember = $project->members()->where('member_id', $user->id)->first();
+
+        if ($projectMember && $projectMember->pivot->role === 'internaladvisor') {
+            return 'You are a new Internal Advisor in this project'; 
         }
 
-        $projectMember = $project->members()->where('member_id', $manager->id)->first();
-        if ($projectMember){
-            return 'The Manager is not associate with this project';
-        }
+        $project->members()->attach($user->id, ['role' => 'internaladvisor']);
 
-        $project->members()->updateExistingPivot($manager->id, ['role' => 'internaladvisor']);
+        return 'Manager now are turned as an Internal Advisor in these Project Temporarily';
 
-        return 'Manager now are turned as an Internal Advisor on this Project';
 
     }
 
@@ -39,11 +50,14 @@ class ManagerController extends Controller
 
     public function traded(Request $request){
 
-        $manager = Member::where('hierarchy', 'manager')->first();
-        if (!$manager || $manager->hierarchy !== 'manager') {
-            return 'You are not authorized to make this';
+        $user = auth()->user();
+
+        if (!$user || $user->hierarchy !== 'manager') {
+            return 'You are not authorized to make this trade';
         }
-        $projects = project::all();
+       
+        $projects = Project::all();
+
         return view('Managers.Traded.changing', compact('projects'));
     }
 

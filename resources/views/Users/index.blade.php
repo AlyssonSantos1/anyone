@@ -9,17 +9,18 @@
     <h1>Welcome to the Syndicate System </h1>
     <p>You are an User </p>
 
-    @if(session('user_id'))
-    <form action="{{ route('getting-review', ['id' => session('user_id')]) }}" method="get">
-        <button type="submit">Delete Review of their user</button>
+    @if(auth()->check()) 
+    <form action="{{ route('getting-review') }}" method="get">
+        @csrf
+        <button type="submit">Delete Review of your user</button>
     </form>
 
-    <form action="{{ route('editing-review', ['id' => session('user_id')]) }}" method="get">
-    <button type="submit">Edit the Review User</button>
+    <form action="{{ route('editing-review') }}" method="get">
+        @csrf
+        <button type="submit">Edit your Review</button>
     </form>
-    @else
+@else
     <p>You need to be logged in to perform this action.</p>
-    @endif
-    
+@endif
 </body>
 </html>

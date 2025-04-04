@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class ExecutiveController extends Controller
 {
+    public function index()
+    {
+        return view('Executive.index');
+    }
     public function create (Request $request)      
     {
         return view('Executive.Newusercompany.newuser');
@@ -21,6 +25,7 @@ class ExecutiveController extends Controller
         $validatedData = $request->validate([
             'name_user' => 'required|string',
             'email_user' => 'required|email|unique:members,email', 
+            'password_user' => 'required|string|confirmed|min:8',
             'role_user' => 'required|string',
             'hierarchy_user' => 'required|string', 
             'insertedproject_user' => 'required|string',
@@ -30,7 +35,8 @@ class ExecutiveController extends Controller
 
             Member::create([
                 'name' => $validatedData['name_user'], 
-                'email' => $validatedData['email_user'], 
+                'email' => $validatedData['email_user'],
+                'password' => Hash::make($validatedData['password_user']), 
                 'role' => $validatedData['role_user'], 
                 'hierarchy' => $validatedData['hierarchy_user'], 
                 'insertedproject' => $validatedData['insertedproject_user'], 

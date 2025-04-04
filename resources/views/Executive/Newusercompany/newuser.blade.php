@@ -7,14 +7,6 @@
 </head>
 
 <body>  
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
-
-@if(session('error'))
-    <div class="alert alert-danger">{{ session('error') }}</div>
-@endif
-
 <form action="/executives" method="POST" onsubmit="return validateForm()">
     @csrf
     <label for="name_user">Name</label>
@@ -22,6 +14,12 @@
     <br>
     <label for="email_user">E-mail</label>
     <input type="email" placeholder="Enter your email" name="email_user" required>
+    <br>
+    <label for="password_user">Password</label>
+    <input type="password" placeholder="Enter your password" name="password_user" required>
+    <br>
+    <label for="password_confirmation_user">Confirm Password</label>
+    <input type="password" placeholder="Confirm your password" name="password_confirmation_user" required>
     <br>
     <label for="role_user">Role</label>
     <input type="text" placeholder="Role" name="role_user" required>

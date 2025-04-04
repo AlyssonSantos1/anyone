@@ -6,22 +6,26 @@
     <title>Trade to Internal Advisor temporary</title>
 </head>
 <body>
-        <!-- Formulário que envia os dados com o método PUT -->
+    @if($projects->isEmpty())
+        <p>You are not manager with any projects.</p>
+    @else
+        <p>Select a Proj
+            ect to take Temporary internaladvisor</p>
+
         <form action="{{ route('traded') }}" method="POST">
-    @csrf
-    @method('PUT')
+            @csrf
+            @method('PUT')
 
-    <!-- Dropdown para selecionar o projeto -->
-    <label for="project_id">Select Project:</label>
-    <select name="project_id" id="project_id">
-        @foreach($projects as $project)
-            <option value="{{ $project->id }}">{{ $project->projectname }}</option>
-        @endforeach
-    </select>
-
-    <!-- Botão para fazer a troca -->
-    <button type="submit">Swap to Internal Advisor</button>
-
+            <label for="project">Choose a project:</label>
+            <select name="project_id" id="project">
+                @foreach($projects as $project)
+                    <option value="{{ $project->id }}">{{ $project->projectname }}</option>
+                @endforeach
+            </select>
+            
+            <button type="submit">Proceed with Trade</button>
+        </form>
+    @endif
 
 <style>
         body {

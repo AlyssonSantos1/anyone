@@ -67,11 +67,9 @@ class Kernel extends HttpKernel
     ];
 
     protected $routeMiddleware = [
-        'executive' => \App\Http\Middleware\CheckExecutive::class,
-        'manager' => \App\Http\Middleware\CheckManager::class,
-        'internaladvisor' => \App\Http\Middleware\CheckInternalAdvisors::class,
-        'associate' => \App\Http\Middleware\CheckAssociates::class,
-        'user' => \App\Http\Middleware\CheckUsers::class,
+       'auth' => \App\Http\Middleware\Authenticate::class,
+       'checkHierarchy' => \App\Http\Middleware\CheckHierarchy::class,
+       'redirectIfAuthenticated' => \App\Http\Middleware\RedirectIfAuthenticated::class,
 
     ];
 }

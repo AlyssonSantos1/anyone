@@ -14,8 +14,14 @@ use App\Models\Squad;
 
 class UserController extends Controller
 {
-    public function turndown (Request $request, int $id){
-        $member = Member::findOrFail($id);    
+    public function index()
+    {
+        return view('Users.index');
+    }
+
+
+    public function turndown (Request $request){
+        $member = auth()->user();   
 
             $member->update([
                 "personalreviews" => null
@@ -27,19 +33,18 @@ class UserController extends Controller
     }
 
 
-    public function trash(Request $request, $id){  
-        $member = Member::findorFail($id);     
+    public function trash(Request $request){  
+        $member = auth()->user();  
         return view('Users.Exclusion.deleteusers', compact('member'));
     }
 
 
-    public function change (Request $request, int $id){
-
+    public function change (Request $request){
         $request->validate([
             'personalreviews' => 'required|string|max:255',
         ]);
 
-        $member =  Member::findorFail($id);     
+        $member = auth()->user();     
 
         $personalReviews = $request->input('personalreviews');
 
@@ -52,9 +57,9 @@ class UserController extends Controller
         return 'The Personal Review Edited!';
     }
 
-    public function edited (Request $request, int $id){
+    public function edited (Request $request){
         {
-        $member = Member::findorFail($id);
+        $member = auth()->user();
         return view('Users.EditUser.editeduser', compact('member'));     
         } 
       

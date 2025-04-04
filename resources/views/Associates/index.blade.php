@@ -6,16 +6,12 @@
     <title>Welcome to the Syndicate System</title>
 </head>
 <body>
-    <p>You are an Associate</p>
+    <p>You are an Associate</p>    
+    <p>You are logged</p>
 
-    @if(session('user_id'))
-        <p>You are logged</p>
-        <form action="{{ route('catch') }}" method="get">
-            <button type="submit">Click to See Reviews</button>
-        </form>
-    @else
-        <p>You need to be logged in to perform this action.</p>
-    @endif
+    <form action="{{ route('complete') }}" method="get">
+        <button type="submit">Click to See Reviews</button>
+    </form>
 
     <form action="{{ route('tradetoadv') }}" method="get">
         <button type="submit">Swap User to Internal Advisor</button>

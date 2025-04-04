@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class Member extends Authenticatable
 {
-    use HasFactory;
+    use Notifiable;
+
+    protected $table = 'members';
+
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'name', 
@@ -16,8 +22,11 @@ class Member extends Model
         'hierarchy', 
         'insertedproject', 
         'personalreviews', 
-        'ownerofreview'
+        'ownerofreview',
+        'password'
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
 
     
     public function projects()
@@ -32,6 +41,11 @@ class Member extends Model
         return $this->belongsToMany(Squad::class, 'member_squad')
         ->withPivot('role') 
         ->withTimestamps(); 
+    }
+
+    public function member()
+    {
+        return $this->hasOne(Member::class);
     }
     
     

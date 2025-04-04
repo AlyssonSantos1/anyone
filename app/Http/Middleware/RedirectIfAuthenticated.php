@@ -17,14 +17,36 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
+        if ($request->is('login') || $request->is('login*')) {
+            return $next($request); 
+        }
+    
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if (session()->has('member')) {
+                    $member = session('member');
+
+                switch (strtolower(trim($member))) {
+                    case 'executive':
+                        return redirect()->route('executive.index');
+                    case 'manager':
+                        return redirect()->route('managers.index');
+                    case 'internaladvisor':
+                        return redirect()->route('internaladvisor.index');
+                    case 'associate':
+                        return redirect()->route('associates.index');
+                    case 'user':
+                        return redirect()->route('user.index');
+                    default:
+                        return redirect('/');
+                }
+            } else {
+                return redirect('/');        
             }
         }
-
+    }
         return $next($request);
     }
 }
