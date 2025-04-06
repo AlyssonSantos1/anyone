@@ -69,6 +69,7 @@ class AssociatesController extends Controller
         $projects = $user->projects;  
         $squads = $user->squads;
 
+
         if ($projects->isEmpty() && $squads->isEmpty()) {
             return 'You are not associated with any projects or squads.';
         }
@@ -76,13 +77,10 @@ class AssociatesController extends Controller
         $reviews = [];  
 
         foreach ($projects as $project) {
-
             $projectReviews = $project->projectreviews;
-
             $membersReviews = $project->members->map(function ($member) {
                 return $member->personalreviews;
-            });
-               
+            });               
             $reviews[] = [
                 'project' => $project,
                 'projectReviews' => $projectReviews,

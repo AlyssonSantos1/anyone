@@ -7,55 +7,48 @@
 </head>
 
 <body>  
-<form action="/executives" method="POST" onsubmit="return validateForm()">
-    @csrf
-    <label for="name_user">Name</label>
-    <input type="text" placeholder="Enter your name" name="name_user" required>
-    <br>
-    <label for="email_user">E-mail</label>
-    <input type="email" placeholder="Enter your email" name="email_user" required>
-    <br>
-    <label for="password_user">Password</label>
-    <input type="password" placeholder="Enter your password" name="password_user" required>
-    <br>
-    <label for="password_confirmation_user">Confirm Password</label>
-    <input type="password" placeholder="Confirm your password" name="password_confirmation_user" required>
-    <br>
-    <label for="role_user">Role</label>
-    <input type="text" placeholder="Role" name="role_user" required>
-    <br>
-    <label for="hierarchy_user">Hierarchy</label>
-    <select name="hierarchy_user" required>
-        <option value="">Select Hierarchy</option>
-        <option value="executive">Executive</option>
-        <option value="manager">Manager</option>
-        <option value="internaladvisor">InternalAdvisor</option>
-        <option value="associate">Associate</option>
-        <option value="user">User</option>
-    </select>
-    <br>
-    <label for="insertedproject_user">Inserted Project User</label>
-    <input type="text" placeholder="insertedproject" name="insertedproject_user" required>
-    <br>
-    <label for="personalreviews_user">Personal Reviews</label>
-    <input type="text" placeholder="personalreviews" name="personalreviews_user" required>
-    <br>
-    <label for="ownerofreview_user">Owner of Review</label>
-    <input type="text" placeholder="ownerofreview" name="ownerofreview_user" required>
-    <br>
-    <button type="submit">Send</button>
-</form>
+<form action="/executive" method="POST">
+        @csrf
 
-<script>
-function validateForm() {
-    var hierarchy = document.querySelector('select[name="hierarchy_user"]');
-    if (hierarchy.value === "") {
-        alert("Please select a hierarchy.");
-        return false;
-    }
-    return true; 
-}
-</script>
+        <label for="name_user">Name</label>
+        <input type="text" placeholder="Enter your name" name="name_user" required>
+
+        <label for="email_user">E-mail</label>
+        <input type="email" placeholder="Enter your email" name="email_user" required>
+
+        <label for="password_user">Password</label>
+        <input type="password" placeholder="Enter your password" name="password_user" required>
+
+        <label for="password_confirmation_user">Confirm Password</label>
+        <input type="password" placeholder="Confirm your password" name="password_confirmation_user" required>
+
+        <label for="role_user">Role</label>
+        <input type="text" placeholder="Enter your role" name="role_user" required>
+
+        <label for="hierarchy_user">Hierarchy</label>
+        <select name="hierarchy_user" required>
+            <option value="">Select Hierarchy</option>
+            <option value="executive">Executive</option>
+            <option value="manager">Manager</option>
+            <option value="internaladvisor">InternalAdvisor</option>
+            <option value="associate">Associate</option>
+            <option value="user">User</option>
+        </select>
+
+       =
+        <label for="insertedproject_user">Inserted Project</label>
+        <input type="text" placeholder="Insert the project" name="insertedproject_user" required>
+
+        <label for="personalreviews_user">Personal Reviews</label>
+        <input type="text" placeholder="Enter personal reviews" name="personalreviews_user" required>
+
+       
+        <label for="ownerofreview_user">Owner of Review</label>
+        <input type="text" placeholder="Owner of the review" name="ownerofreview_user" required>
+
+     
+        <button type="submit">Create User</button>
+    </form>
 
     <style>
     body {

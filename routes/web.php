@@ -27,15 +27,11 @@ Route::get('/', function () {
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.submit');
 
-Route::middleware(['auth', 'checkHierarchy:user'])->group(function () {
-    Route::get('/users/index', [UserController::class, 'index'])->name('user.index');
-});
-
 
 Route::middleware(['auth', 'checkHierarchy:executive'])->group(function () {  
-Route::get('/executive/index', [ExecutiveController::class, 'index'])->name('executive.index');
 Route::get('/executives/create', [ExecutiveController::class, 'create'])->name('executive.create');
-Route::post('/executives', [ExecutiveController::class, 'store']);
+Route::post('/executive', [ExecutiveController::class, 'store'])->name('executive.store');
+Route::get('/executive/index', [ExecutiveController::class, 'index'])->name('executive.index');
 Route::get('/executive/editing', [ExecutiveController::class, 'edition'])->name('executive.editing');
 Route::put('/edit', [ExecutiveController::class, 'changed'])->name('Done-Deal');
 Route::get('/executive/project-build', [ExecutiveController::class, 'newproject'])->name('executive-build');

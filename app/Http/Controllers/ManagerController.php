@@ -64,25 +64,18 @@ class ManagerController extends Controller
 
     public function catch (Request $request){
        
-            $userId = session('user_id');
+            $user = auth()->user();
             
-            $member = Member::where('id', $userId)
-                    ->where('hierarchy', 'manager') 
-                    ->first();
-    
-            if (!$member) {
-                return 'Member Not found or member not an advisor';
+            if (!$user || $user->hierarchy !== 'manager'){
+                return 'Member not found or member not an manager';
             }
-    
-            $projects = $member->projects;
-    
-    
-            if ($projects->isEmpty()) {
-                $projects = collect();
-            }
-    
-            $squads = $member->squad;
-    
+
+            $projects = $user->projects;
+            $squads = $user->squads;
+
+            if ($projects->isEmpty() && $squads->isEmpty()) {
+                return 'You are not inside any project or squad';
+            }    
     
             $reviews = [];  
     
@@ -92,7 +85,11 @@ class ManagerController extends Controller
                     return $member->personalreviews; 
                 });
 
-                $personalReviews = $member->personalreviews;
+                $personalReviews = $project->members->map(function($member) use($user) {
+                    if ($member->id == $user->id ){
+                        return $member->personalreviews;
+                    }
+                });
     
                 $reviews[] = [
                     'project' => $project,
