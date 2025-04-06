@@ -211,23 +211,17 @@ class ExecutiveController extends Controller
 
         }
 
-        $validated = $request->validate([
-            'teammanager_team' => 'required|exists:members,id', 
-            'reviewsofsquad_team' => 'required|string',
-            'members' => 'required|array',
-            'members.*' => 'exists:members,id',
-            'projectnames' => 'required|array', 
-            'projectnames.*' => 'exists:projects,projectname', 
-        ]);
+        $teammanager_id = $request->input('teammanager_team');
+        $reviewsofsquad = $request->input('reviewsofsquad_team');
 
-        $teammanager = Member::find($request->teammanager_team);
+        $teammanager = Member::find($teammanager_id);
         if (!$teammanager || strtolower($teammanager->hierarchy) !== 'manager') {
             return response()->json(['error' => 'The team manager must be a manager.'], 400);
         }
         
         $squad = Squad::create([
-            'teammanager'=>$request->teammanager_team,
-            'reviewsofsquad'=>$request->reviewsofsquad_team,
+            'teammanager'=> $teammanager->name,
+            'reviewsofsquad'=>$reviewsofsquad,
 
         ]);  
 
