@@ -39,7 +39,7 @@
         }
 
         .form-container {
-            background: linear-gradient(145deg, #b97f57, #8a5930); /* Gradiente de bronze */
+            background: linear-gradient(145deg, #b97f57, #8a5930);
             border-radius: 15px;
             padding: 30px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3), inset 0px 0px 15px rgba(255, 215, 0, 0.5);
@@ -57,7 +57,7 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 2px solid #8a5930; /* Borda bronze */
+            border: 2px solid #8a5930;
             border-radius: 8px;
             background-color: #2f2f2f;
             color: white;

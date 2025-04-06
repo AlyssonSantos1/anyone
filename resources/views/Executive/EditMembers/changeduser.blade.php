@@ -59,69 +59,69 @@
 
 <style>
     body {
-        background-color: #a1a7b3; /* Cinza metálico claro com brilho prateado */
+        background-color: #a1a7b3; 
         font-family: Arial, sans-serif;
         color: #333; 
     }
 
     form {
-        background-color: #c2c7d0; /* Cinza prateado mais suave */
+        background-color: #c2c7d0;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 50%; /* Ajuste da largura do formulário */
+        width: 50%;
         margin: auto;
     }
 
     label {
         font-size: 16px;
         font-weight: bold;
-        margin-bottom: 5px; /* Reduzi ainda mais a margem */
+        margin-bottom: 5px;
         display: block;
-        color: #555; /* Cinza escuro para o texto */
+        color: #555;
     }
 
     input, select, button {
         width: 100%;
-        max-width: 350px; /* Limita a largura para algo mais controlado */
-        padding: 8px; /* Diminuí o padding para reduzir a altura */
-        margin-bottom: 8px; /* Diminuí a margem entre os campos */
-        border: 1px solid #999; /* Borda prateada */
+        max-width: 350px;
+        padding: 8px;
+        margin-bottom: 8px;
+        border: 1px solid #999; 
         border-radius: 4px;
         box-sizing: border-box;
-        background-color: #e3e6eb; /* Cinza claro com brilho prateado */
+        background-color: #e3e6eb; 
         color: #333;
-        height: 35px; /* Diminuí a altura das caixas de texto */
+        height: 35px;
     }
 
     button {
-        background-color: #b0bec5; /* Cinza prateado para o botão */
+        background-color: #b0bec5; 
         border: none;
         cursor: pointer;
         font-size: 16px;
         font-weight: bold;
         transition: background-color 0.3s ease;
         color: #fff;
-        height: 40px; /* Ajuste de altura do botão */
+        height: 40px; 
     }
 
     button:hover {
-        background-color: #90a4ae; /* Cinza mais escuro para o hover */
+        background-color: #90a4ae;
     }
 
     ul {
         padding-left: 20px;
-        margin-top: 10px; /* Ajuste da margem para um espaçamento adequado */
+        margin-top: 10px; 
     }
 
     li {
         font-size: 16px;
         margin-bottom: 5px;
-        color: #555; /* Texto em cinza escuro */
+        color: #555; 
     }
 
     .remove_associate_btn, .remove_project_btn {
-        background-color: #757575; /* Botões com fundo cinza escuro */
+        background-color: #757575;
         color: white;
         border: none;
         padding: 4px 8px;
@@ -133,7 +133,7 @@
     }
 
     .remove_associate_btn:hover, .remove_project_btn:hover {
-        background-color: #616161; /* Escurece no hover */
+        background-color: #616161;
     }
 </style>
 

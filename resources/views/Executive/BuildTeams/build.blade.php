@@ -47,7 +47,6 @@
 
 
 <script>
-    // Função para adicionar um membro selecionado à lista
     function addAssociate() {
         var select = document.getElementById('members_select');
         var selectedAssociate = select.options[select.selectedIndex];
@@ -59,8 +58,7 @@
             list.appendChild(li);
         }
     }
-
-    // Função para adicionar um projeto selecionado à lista
+    
     function addProject() {
         var select = document.getElementById('projects_select');
         var selectedProject = select.options[select.selectedIndex];
