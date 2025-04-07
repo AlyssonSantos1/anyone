@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Syndicate</title>
+
+    <link rel="stylesheet" href="{{ asset('css/flatly.users.css') }}">
 </head>
 <body>
     <h1>Welcome to the Syndicate System </h1>

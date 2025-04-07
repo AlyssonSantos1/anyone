@@ -31,8 +31,7 @@ class ExecutiveController extends Controller
             return 'You are not an executive to make this action';
 
         }
-
-
+        
         $name = $request->input('name_user');
         $email = $request->input('email_user');
         $password = $request->input('password_user');

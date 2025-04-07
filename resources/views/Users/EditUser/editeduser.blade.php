@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users Space</title>
+
+    <link rel="stylesheet" href="{{ asset('css/users.min.css') }}">
 </head>
 <body>
     <form action="/edited/{{ $member->id }}" method="POST">

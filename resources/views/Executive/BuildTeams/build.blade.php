@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Squad </title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.executive.css') }}">
+
+
 </head>
 <body>
 <form action="/group" method="POST" id="squadForm">
