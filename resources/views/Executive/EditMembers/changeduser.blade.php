@@ -14,11 +14,11 @@
         }
 
         form {
-            background-color: #fff; /* Fundo branco para o formulário */
+            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 60%; /* Largura ajustada */
+            width: 60%;
             margin: auto;
             max-width: 600px;
         }
