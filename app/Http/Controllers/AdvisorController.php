@@ -47,9 +47,7 @@ class AdvisorController extends Controller
 
     public function target(Request $request)
     {
-       
         $projects = Project::all();
-
         return view('InternalAdvisors.seereviews.projectreview', compact('projects'));
     }
         

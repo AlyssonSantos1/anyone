@@ -75,8 +75,8 @@
 <body>
 
     <h1>Welcome to the Syndicate System</h1>
-    <p>You are an Associate</p>    
-    <p>You are logged in</p>
+    <p>Associate Area</p>    
+   
 
     <form action="{{ route('complete') }}" method="get">
         <button type="submit">Click to See Reviews</button>
