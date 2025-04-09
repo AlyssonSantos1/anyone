@@ -58,8 +58,8 @@ Route::middleware(['auth', 'checkHierarchy:associate'])->group(function () {
 Route::middleware(['auth', 'checkHierarchy:internaladvisor'])->group(function () {
     Route::get('/internaladvisors', [AdvisorController::class, 'index'])->name('internaladvisor.index');
     Route::post('/advisors', [AdvisorController::class, 'newest'])->name('gived');
-    Route::get('/advisors/review-team', [AdvisorController::class, 'target'])->name('vision');
     Route::get('/advisors/give-review', [AdvisorController::class, 'newreview'])->name('giving');
+    Route::get('/advisors/review-team', [AdvisorController::class, 'target'])->name('vision');
 });
 
 

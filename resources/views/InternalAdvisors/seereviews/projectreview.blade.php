@@ -11,7 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e6f2ff; /* Azul claro */
+            background-color: #e6f2ff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,12 +31,12 @@
         h1 {
             font-size: 28px;
             margin-bottom: 20px;
-            color: #2c3e50; /* Cor escura para o título */
+            color: #2c3e50;
         }
 
         label {
             font-size: 16px;
-            color: #34495e; /* Cor escura para o texto do label */
+            color: #34495e;
             margin-bottom: 8px;
             display: block;
             text-align: left;
@@ -48,20 +48,20 @@
             margin-top: 8px;
             border: 1px solid #bdc3c7;
             border-radius: 8px;
-            background-color: #f1f8ff; /* Azul claro para o fundo */
+            background-color: #f1f8ff;
             color: #34495e;
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
 
         select:focus, textarea:focus {
-            border-color: #e67e22; /* Laranja no foco */
+            border-color: #e67e22;
             outline: none;
-            background-color: #ffffff; /* Fundo branco no foco */
+            background-color: #ffffff;
         }
 
         button {
-            background-color: #e67e22; /* Laranja */
+            background-color: #e67e22;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -74,12 +74,12 @@
         }
 
         button:hover {
-            background-color: #f39c12; /* Laranja mais claro no hover */
+            background-color: #f39c12;
             transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #e67e22; /* Laranja mais forte no clique */
+            background-color: #e67e22;
             transform: translateY(2px);
         }
 
@@ -110,9 +110,9 @@
         <!-- Verificação de hierarquia -->
         @if(auth()->check() && strtolower(auth()->user()->hierarchy) == 'internaladvisor')
             <!-- Formulário para ver as reviews -->
-            <form action="{{ route('vision') }}" method="get" class="form-group">
+            <form id="projectForm" class="form-group">
                 <label for="project">Choose a Project to View:</label>
-                <select name="project_id" id="project" onchange="this.form.submit()">
+                <select name="project_id" id="project" onchange="fetchReview()">
                     <option value="">Select a Project</option>
                     @foreach($projects as $project)
                         <option value="{{ $project->id }}" {{ request('project_id') == $project->id ? 'selected' : '' }}>
@@ -123,20 +123,38 @@
             </form>
 
             <!-- Exibir informações do projeto selecionado -->
-            @if($selectedProject = \App\Models\Project::find(request('project_id')))
-                @if($selectedProject->projectreviews)
-                    <div class="review-content">
-                        <h3>Review for {{ $selectedProject->projectname }}:</h3>
-                        <p>{{ $selectedProject->projectreviews }}</p>
-                    </div>
-                @else
-                    <p class="alert">No review found for this project.</p>
-                @endif
-            @endif
+            <div id="review-container">
+                <!-- A revisão será carregada aqui via AJAX -->
+            </div>
 
         @else
             <p class="alert">You need to be logged in as an Internal Advisor to view project reviews.</p>
         @endif
     </div>
+
+    <script>
+        // Função AJAX para buscar a revisão sem alterar a URL
+        function fetchReview() {
+            const projectId = document.getElementById('project').value;
+
+            if (projectId) {
+                // Envia a requisição AJAX para o controlador
+                fetch(`/advisors/review-team?project_id=${projectId}`, {
+                    method: 'GET',
+                })
+                .then(response => response.text()) // Recebe a resposta como texto (HTML)
+                .then(data => {
+                    // Insere o conteúdo da revisão no container
+                    document.getElementById('review-container').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching review:', error);
+                });
+            } else {
+                // Limpa o conteúdo se nenhum projeto for selecionado
+                document.getElementById('review-container').innerHTML = '';
+            }
+        }
+    </script>
 </body>
 </html>
