@@ -107,9 +107,7 @@
         <h1>Welcome to the Syndicate System</h1>
         <p>You are an Internal Advisor</p>
 
-        <!-- Verificação de hierarquia -->
         @if(auth()->check() && strtolower(auth()->user()->hierarchy) == 'internaladvisor')
-            <!-- Formulário para ver as reviews -->
             <form id="projectForm" class="form-group">
                 <label for="project">Choose a Project to View:</label>
                 <select name="project_id" id="project" onchange="fetchReview()">
@@ -122,9 +120,8 @@
                 </select>
             </form>
 
-            <!-- Exibir informações do projeto selecionado -->
             <div id="review-container">
-                <!-- A revisão será carregada aqui via AJAX -->
+
             </div>
 
         @else
@@ -133,25 +130,21 @@
     </div>
 
     <script>
-        // Função AJAX para buscar a revisão sem alterar a URL
         function fetchReview() {
             const projectId = document.getElementById('project').value;
 
             if (projectId) {
-                // Envia a requisição AJAX para o controlador
                 fetch(`/advisors/review-team?project_id=${projectId}`, {
                     method: 'GET',
                 })
-                .then(response => response.text()) // Recebe a resposta como texto (HTML)
+                .then(response => response.text()) 
                 .then(data => {
-                    // Insere o conteúdo da revisão no container
                     document.getElementById('review-container').innerHTML = data;
                 })
                 .catch(error => {
                     console.error('Error fetching review:', error);
                 });
             } else {
-                // Limpa o conteúdo se nenhum projeto for selecionado
                 document.getElementById('review-container').innerHTML = '';
             }
         }

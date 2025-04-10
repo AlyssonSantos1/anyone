@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.manager.css') }}">
 
     <style>
-        /* Estilos gerais para o layout */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -16,7 +15,6 @@
             color: #333;
         }
 
-        /* Container do formulário */
         .form-container {
             background: linear-gradient(145deg, #b97f57, #8a5930);
             border-radius: 12px;
@@ -85,7 +83,6 @@
             margin-bottom: 20px;
         }
 
-        /* Estilos de responsividade */
         @media (max-width: 600px) {
             .form-container {
                 padding: 20px;

@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/flatly.users.css') }}">
 
     <style>
-        /* Estilos gerais do layout */
         body {
-            font-family: 'Roboto', sans-serif; /* Usando uma tipografia moderna */
+            font-family: 'Roboto', sans-serif;
             background-color: #f0f2f5;
             margin: 0;
             padding: 0;
@@ -18,27 +17,25 @@
             color: #333;
         }
 
-        /* Estilos do título */
         h1 {
-            color: #2c3e50; /* Azul escuro para título */
+            color: #2c3e50;
             font-size: 32px;
             margin-top: 50px;
             margin-bottom: 20px;
         }
 
         p {
-            color: #555555; /* Texto cinza claro */
+            color: #555555;
             font-size: 18px;
             margin-bottom: 30px;
         }
 
-        /* Estilos para os formulários */
         form {
             margin-top: 20px;
         }
 
         button {
-            background-color: #e74c3c; /* Botões vermelhos */
+            background-color: #e74c3c; 
             color: white;
             border: none;
             padding: 15px 30px;
@@ -50,7 +47,7 @@
         }
 
         button:hover {
-            background-color: #c0392b; /* Cor mais escura no hover */
+            background-color: #c0392b; 
             transform: translateY(-2px);
         }
 
@@ -60,7 +57,7 @@
         }
 
         .alert {
-            background-color: #e74c3c; /* Vermelho para alertas */
+            background-color: #e74c3c;
             color: white;
             padding: 20px;
             font-size: 18px;
@@ -68,7 +65,7 @@
             margin-top: 20px;
         }
 
-        /* Estilos de responsividade */
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 28px;

@@ -60,7 +60,7 @@
 
         input, select {
             width: 100%;
-            max-width: 600px; /* Ajustando a largura dos campos */
+            max-width: 600px; 
             padding: 12px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
@@ -127,7 +127,6 @@
             color: red;
         }
 
-        /* Responsividade */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;

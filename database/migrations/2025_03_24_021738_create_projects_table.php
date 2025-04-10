@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('projectname')->nullable();
             $table->string('manager')->nullable();
             $table->string('numberofmembers');
-            $table->string('goals');
-            $table->string('description');
-            $table->string('projectreviews')->nullable();
+            $table->text('goals');
+            $table->text('description');
+            $table->text('projectreviews')->nullable();
             $table->string('authorreview')->nullable();
             $table->timestamps();
         });

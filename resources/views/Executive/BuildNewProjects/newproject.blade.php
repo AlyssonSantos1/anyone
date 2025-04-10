@@ -8,12 +8,11 @@
 
     <style>
         body {
-            background-color: #f1f8e9; /* Cor de fundo suave para todo o corpo */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte elegante e moderna */
+            background-color: #f1f8e9; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
         }
 
-        /* Formulário centralizado com bordas arredondadas e fundo suave */
         form {
             background-color: #ffffff;
             padding: 30px;
@@ -24,15 +23,14 @@
             max-width: 900px;
         }
 
-        /* Título do formulário com bordas arredondadas */
         h2 {
             font-size: 26px;
             font-weight: bold;
             text-align: center;
-            color: #388e3c; /* Cor de destaque verde */
+            color: #388e3c; 
             background-color: #c8e6c9;
             padding: 10px;
-            border-radius: 10px; /* Borda arredondada */
+            border-radius: 10px; 
             margin-bottom: 25px;
         }
 
@@ -41,7 +39,7 @@
             font-weight: bold;
             margin-bottom: 8px;
             display: block;
-            color: #388e3c; /* Cor verde clara */
+            color: #388e3c;
         }
 
         input, select, button {
@@ -49,7 +47,7 @@
             padding: 12px;
             margin-bottom: 15px;
             border: 1px solid #ddd;
-            border-radius: 8px; /* Borda arredondada */
+            border-radius: 8px; 
             box-sizing: border-box;
             font-size: 16px;
             background-color: #f1f8e9;
@@ -65,18 +63,18 @@
         }
 
         button {
-            background-color: #388e3c; /* Verde com um tom mais forte */
+            background-color: #388e3c; 
             border: none;
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
             padding: 14px;
-            border-radius: 8px; /* Borda arredondada */
+            border-radius: 8px;
             transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #2c6b31; /* Cor mais escura ao passar o mouse */
+            background-color: #2c6b31; 
         }
 
         .associate-item {
@@ -88,7 +86,6 @@
             color: #388e3c;
         }
 
-        /* Botão de remoção de associados */
         .remove_associate_btn {
             background-color: #d32f2f;
             color: white;
@@ -105,7 +102,6 @@
             background-color: #c62828;
         }
 
-        /* Estilo do botão Add Associates */
         #addAssociatesButton {
             background-color: #4caf50;
             border: none;
@@ -125,19 +121,15 @@
 </head>
 <body>
 
-    <!-- Formulário de Criação de Novo Projeto -->
     <form action="/executive-new" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete="off">
         @csrf
         
-        <!-- Título destacado -->
         <h2>Create New Project</h2>
 
-        <!-- Campo de Nome do Projeto -->
         <label for="projectname_project">Project Name</label>
         <input type="text" placeholder="Enter the project name" name="projectname_project" required>
 
-        <!-- Campo de Nome do Gerente -->
         <label for="teammanager_team">Name of the Manager</label>
         <select name="teammanager_team" required>
             <option value="">Select Manager</option>
@@ -146,27 +138,21 @@
             @endforeach
         </select>
 
-        <!-- Número de Membros -->
         <label for="numberofmembers_project">Number of Members in Project</label>
         <input type="number" placeholder="Number of members" name="numberofmembers_project" required>
 
-        <!-- Metas do Projeto -->
         <label for="goals_project">Project Goals</label>
         <input type="text" placeholder="Project Goals" name="goals_project" required>
 
-        <!-- Descrição do Projeto -->
         <label for="description_project">Project Description</label>
         <input type="text" placeholder="Description of the project" name="description_project" required>
 
-        <!-- Avaliações do Projeto -->
         <label for="reviews_project">Project Reviews</label>
         <input type="text" placeholder="Reviews of the project" name="reviews_project" required>
 
-        <!-- Autor da Avaliação -->
         <label for="authorreview_project">Author of the Review</label>
         <input type="text" placeholder="Author of Review" name="authorreview_project" required>
 
-        <!-- Escolher Associados -->
         <label for="members_project">Choose Associates for the Project</label>
         <select name="members[]" required multiple size="5" style="width: 100%; height: auto;">
             @foreach($associates as $associate)
@@ -174,7 +160,6 @@
             @endforeach
         </select>
 
-        <!-- Escolher Conselheiro Interno -->
         <label for="internaladvisor">Choose Internal Advisor for the Project</label>
         <select name="internaladvisor" required>
             <option value="">Select Internal Advisor</option>
@@ -183,15 +168,12 @@
             @endforeach
         </select>
 
-        <!-- Botão para Adicionar Associados -->
         <button type="button" id="addAssociatesButton">Add Associates</button>
         <div id="selectedAssociates" style="margin-top: 20px;"></div>
 
-        <!-- Botão para Submeter o Formulário -->
         <button type="submit">Create New Project</button>
     </form>
 
-    <!-- Script para adicionar associados -->
     <script>
         document.getElementById('addAssociatesButton').addEventListener('click', function() {
             let selectedAssociates = document.querySelector('select[name="members[]"]').selectedOptions;

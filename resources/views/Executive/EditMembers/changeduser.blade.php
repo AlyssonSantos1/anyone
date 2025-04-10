@@ -106,7 +106,6 @@
         </select>
     </form>
 
-    <!-- Edit Member Form -->
     @if(isset($member))
         <form action="{{ route('Done-Deal') }}" method="POST" id="editMemberForm">
             @csrf

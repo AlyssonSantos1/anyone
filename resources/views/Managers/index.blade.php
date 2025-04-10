@@ -7,31 +7,30 @@
     <link rel="stylesheet" href="{{ asset('css/manager.rtl.min.css') }}">
     
     <style>
-        /* Estilos gerais para o layout */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4; /* Cor de fundo clara */
-            color: #333; /* Texto escuro */
+            background-color: #f4f4f4; 
+            color: #333; 
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Alinha os itens ao topo da tela */
+            align-items: flex-start; 
             flex-direction: column;
             height: 100vh;
             text-align: center;
-            padding-top: 40px; /* Espaçamento maior no topo */
+            padding-top: 40px;
         }
 
         h1 {
-            color: #2c3e50; /* Cor escura para o título */
+            color: #2c3e50; 
             margin-bottom: 20px;
-            font-size: 32px; /* Ajustando o tamanho do título */
+            font-size: 32px; 
         }
 
         p {
             font-size: 18px;
-            color: #555555; /* Texto em cinza mais claro */
+            color: #555555;
             margin: 10px 0;
         }
 
@@ -43,7 +42,7 @@
         }
 
         button {
-            background-color: #3498db; /* Azul claro */
+            background-color: #3498db; 
             color: white;
             border: none;
             padding: 12px 30px;
@@ -52,23 +51,22 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            width: 250px; /* Largura fixa para os botões */
+            width: 250px; 
         }
 
         button:hover {
-            background-color: #2980b9; /* Azul mais escuro no hover */
+            background-color: #2980b9; 
             transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #3498db; /* Azul claro novamente no clique */
+            background-color: #3498db; 
             transform: translateY(2px);
         }
 
-        /* Ajuste no layout de espaço para melhorar a legibilidade */
         .container {
             width: 100%;
-            max-width: 600px; /* Largura máxima para o conteúdo */
+            max-width: 600px; 
             margin: 0 auto;
             padding: 20px;
         }

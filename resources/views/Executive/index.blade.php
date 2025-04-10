@@ -7,14 +7,11 @@
     <title>Welcome to the Syndicate System</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <style>
-        /* Ajustando o comprimento dos botões */
         .btn-custom {
-            width: 300px; /* Ajuste o valor conforme necessário para o comprimento dos botões */
+            width: 300px; 
         }
-
-        /* Aumentando o espaço entre o último botão e o rodapé */
         .spacer {
-            margin-bottom: 50px; /* Aumente o valor conforme necessário */
+            margin-bottom: 50px;
         }
     </style>
 </head>
@@ -37,27 +34,22 @@
         @endif
 
         <div class="d-flex flex-column align-items-center gap-3">
-            <!-- Criar Novo Usuário -->
             <form action="{{ route('executive.create') }}" method="get">
                 <button type="submit" class="btn btn-primary btn-custom">Create New User</button>
             </form>
 
-            <!-- Editar Usuário -->
             <form action="{{ route('executive.editing') }}" method="get">
                 <button type="submit" class="btn btn-secondary btn-custom">Edit User</button>
             </form>
 
-            <!-- Criar Novo Projeto -->
             <form action="{{ route('executive-build') }}" method="get">
                 <button type="submit" class="btn btn-success btn-custom">Build New Project</button>
             </form>
 
-            <!-- Ver Autores -->
             <form action="{{ route('executive.review-authors') }}" method="get">
                 <button type="submit" class="btn btn-info btn-custom">See Authors</button>
             </form>
 
-            <!-- Criar Novo Squad -->
             <form action="{{ route('team-build') }}" method="get" class="spacer">
                 <button type="submit" class="btn btn-warning btn-custom">Create New Squad</button>
             </form>

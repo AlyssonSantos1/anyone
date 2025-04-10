@@ -7,66 +7,64 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.manager.css') }}">
 
     <style>
-        /* Estilos gerais para o layout */
+     
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7; /* Cor de fundo branco gelo */
-            color: #333; /* Texto em cinza escuro */
+            background-color: #f7f7f7; 
+            color: #333; 
             line-height: 1.6;
         }
 
         h1, h3, h4 {
-            color: #2c3e50; /* Cor escura para os títulos */
+            color: #2c3e50; 
             margin-bottom: 15px;
-            text-align: left; /* Alinhamento à esquerda */
+            text-align: left;
             font-weight: 600;
         }
 
         p {
             font-size: 16px;
-            color: #555555; /* Texto em cinza claro */
+            color: #555555;
             line-height: 1.6;
             margin-bottom: 15px;
         }
 
-        /* Container principal para o conteúdo */
+
         .content-wrapper {
             max-width: 1200px;
             margin: 40px auto;
-            padding: 0 15px; /* Adiciona padding para os lados */
+            padding: 0 15px; 
         }
 
-        /* Caixas para cada tipo de revisão */
         .project {
-            background-color: #ffffff; /* Fundo branco para cada bloco de projeto */
+            background-color: #ffffff; 
             border-radius: 8px;
             padding: 20px;
             margin: 20px 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
             transition: box-shadow 0.3s ease-in-out;
         }
 
         .project:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao passar o mouse */
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); 
         }
 
-        /* Estilo para as caixas de revisões */
         .review-box {
-            background-color: #f9f9f9; /* Fundo claro para separar as seções */
-            border: 1px solid #ddd; /* Borda suave para as caixas */
+            background-color: #f9f9f9; 
+            border: 1px solid #ddd; 
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
         }
 
         .review-box h4 {
-            background-color: #3498db; /* Azul para destacar os títulos */
+            background-color: #3498db;
             color: white;
             padding: 10px;
             border-radius: 6px;
-            margin: 0 -15px 15px -15px; /* Margem negativa para alinhar o título com as bordas */
+            margin: 0 -15px 15px -15px;
         }
 
         .review-box p {
@@ -74,9 +72,8 @@
             color: #555555;
         }
 
-        /* Estilos para botões de interação */
         button {
-            background-color: #3498db; /* Azul claro */
+            background-color: #3498db;
             color: white;
             border: none;
             padding: 12px 30px;
@@ -88,25 +85,24 @@
         }
 
         button:hover {
-            background-color: #2980b9; /* Azul mais escuro no hover */
+            background-color: #2980b9;
             transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #3498db; /* Azul claro novamente no clique */
+            background-color: #3498db; 
             transform: translateY(2px);
         }
 
-        /* Melhorando a rolagem */
         html, body {
             height: 100%;
             overflow-x: hidden;
         }
 
         .content-wrapper {
-            max-height: calc(100vh - 120px); /* Limita a altura para permitir rolagem */
-            overflow-y: auto; /* Permite rolagem vertical */
-            padding-right: 20px; /* Adiciona um espaço para a barra de rolagem */
+            max-height: calc(100vh - 120px); 
+            overflow-y: auto;
+            padding-right: 20px;
         }
 
     </style>
@@ -122,7 +118,6 @@
                     <p><strong>Project Goals:</strong> {{ $review['project']->goals }}</p>
                     <p><strong>Description:</strong> {{ $review['project']->description }}</p>
 
-                    <!-- Caixa para a revisão do projeto -->
                     <div class="review-box">
                         <h4>Project Review:</h4>
                         @if(!empty($review['projectReviews']))
@@ -132,7 +127,6 @@
                         @endif
                     </div>
 
-                    <!-- Caixa para as revisões dos membros -->
                     <div class="review-box">
                         <h4>Member Reviews:</h4>
                         @if(count($review['membersReviews']) > 0)
@@ -144,7 +138,6 @@
                         @endif
                     </div>
 
-                    <!-- Caixa para as revisões pessoais -->
                     <div class="review-box">
                         <h4>Your Personal Reviews:</h4>
                         @if(count($review['personalReviews']) > 0)

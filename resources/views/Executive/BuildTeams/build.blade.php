@@ -8,16 +8,16 @@
 
     <style>
         body {
-            background-color: #f4f7fa; /* Fundo suave e claro */
+            background-color: #f4f7fa;
             font-family: Arial, sans-serif;
             color: #333;
         }
 
         #squadForm {
-            background-color: #ffffff; /* Fundo branco do formulário */
+            background-color: #ffffff; 
             padding: 30px;
-            border-radius: 12px; /* Borda arredondada */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             width: 65%;
             margin: auto;
             max-width: 800px;
@@ -39,44 +39,40 @@
             color: #555;
         }
 
-        /* Estilos para os inputs e selects */
         input, select, button {
             width: 100%;
             padding: 12px;
             margin-bottom: 15px;
-            border-radius: 8px; /* Borda arredondada */
-            border: 1px solid #ccc; /* Borda suave */
+            border-radius: 8px; 
+            border: 1px solid #ccc; 
             box-sizing: border-box;
             background-color: #f9f9f9;
             color: #333;
             font-size: 16px;
         }
 
-        /* Foco no input e select */
         input:focus, select:focus {
             outline: none;
-            border-color: #4caf50; /* Cor verde ao focar */
+            border-color: #4caf50; 
             background-color: #ffffff;
         }
 
-        /* Estilo para o botão de envio */
         button {
-            background-color: #28a745; /* Cor verde suave */
+            background-color: #28a745; 
             color: white;
             border: none;
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
             padding: 12px;
-            border-radius: 8px; /* Borda arredondada */
+            border-radius: 8px; 
             transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #218838; /* Cor mais escura ao passar o mouse */
+            background-color: #218838;
         }
 
-        /* Estilo para as listas de associados e projetos */
         ul {
             padding-left: 20px;
             margin-top: 10px;
@@ -88,9 +84,8 @@
             color: #555;
         }
 
-        /* Estilo para os botões de remover associados e projetos */
         .remove_associate_btn, .remove_project_btn {
-            background-color: #d32f2f; /* Vermelho */
+            background-color: #d32f2f; 
             color: white;
             border: none;
             padding: 4px 8px;
@@ -105,9 +100,8 @@
             background-color: #c62828;
         }
 
-        /* Estilo para o select */
         select {
-            appearance: auto; /* Seta padrão */
+            appearance: auto; 
             background-color: #f9f9f9;
             color: #333;
         }
@@ -115,12 +109,10 @@
 </head>
 <body>
 
-    <!-- Form to Create New Squad -->
     <form action="/group" method="POST" id="squadForm">
         @csrf
         <h2>Create New Squad</h2>
 
-        <!-- Select Manager -->
         <label for="teammanager_team">Name of the Manager</label>
         <select name="teammanager_team" required>
             <option value="">Select Manager</option>
@@ -129,11 +121,9 @@
             @endforeach
         </select>
 
-        <!-- Squad Reviews -->
         <label for="reviewsofsquad_team">Reviews of Squad</label>
         <input type="text" placeholder="Reviews of the Squad" name="reviewsofsquad_team" required>
 
-        <!-- Choose Associates -->
         <label for="members_team">Choose Associates for the Squad</label>
         <select id="members_select" name="members[]" size="5" required>
             @foreach($associates as $associate)
@@ -143,7 +133,6 @@
         <button type="button" id="confirm_associate_btn" onclick="addAssociate()">Confirm Associate</button>
         <ul id="selected_associates_list"></ul>
 
-        <!-- Choose Projects -->
         <label for="projects_team">Choose Projects for the Squad</label>
         <select id="projects_select" name="projectnames[]" size="5" required>
             @foreach($projectnames as $projectname)
@@ -153,11 +142,9 @@
         <button type="button" id="confirm_project_btn" onclick="addProject()">Confirm Project</button>
         <ul id="selected_projects_list"></ul>
 
-        <!-- Submit Button -->
         <button type="submit">Confirm Selection</button>
     </form>
 
-    <!-- JavaScript to handle list updates -->
     <script>
         function addAssociate() {
             var select = document.getElementById('members_select');

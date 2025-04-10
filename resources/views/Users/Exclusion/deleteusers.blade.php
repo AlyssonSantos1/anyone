@@ -6,7 +6,6 @@
     <title>Users Area</title>
     <link rel="stylesheet" href="{{ asset('css/users.min.css') }}">
     <style>
-        /* Estilos para a página */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f7fa;
@@ -43,19 +42,19 @@
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
-            border: 2px solid #e67e22; /* Cor laranja para a borda */
+            border: 2px solid #e67e22; 
             border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
         }
 
         input[type="text"]:focus {
-            border-color: #d35400; /* Laranja mais escuro para o foco */
+            border-color: #d35400; 
             outline: none;
         }
 
         button {
-            background-color: #e67e22; /* Cor laranja para o botão */
+            background-color: #e67e22; 
             color: white;
             padding: 14px 30px;
             font-size: 18px;
@@ -67,12 +66,12 @@
         }
 
         button:hover {
-            background-color: #d35400; /* Laranja mais escuro ao passar o mouse */
+            background-color: #d35400; 
             transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #e67e22; /* Cor original quando pressionado */
+            background-color: #e67e22; 
             transform: translateY(2px);
         }
     </style>

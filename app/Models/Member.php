@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Authenticatable
 {
     use Notifiable;
+    
+    use HasFactory;
 
     protected $table = 'members';
 

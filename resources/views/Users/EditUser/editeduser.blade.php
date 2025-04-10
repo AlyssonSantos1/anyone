@@ -8,7 +8,7 @@
 
     <style>
         body {
-            font-family: 'Roboto', sans-serif; /* Fonte moderna e legível */
+            font-family: 'Roboto', sans-serif; 
             background-color: #f4f7fa;
             margin: 0;
             padding: 0;
@@ -19,7 +19,7 @@
         }
 
         form {
-            background-color: #ffffff; /* Fundo branco para o formulário */
+            background-color: #ffffff; 
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -29,7 +29,7 @@
         }
 
         h2 {
-            color: #2c3e50; /* Cor escura para o título */
+            color: #2c3e50;
             margin-bottom: 20px;
             font-size: 24px;
         }
@@ -54,12 +54,12 @@
         }
 
         input[type="text"]:focus {
-            border-color: #3498db; /* Azul para quando o campo estiver em foco */
+            border-color: #3498db; 
             outline: none;
         }
 
         button {
-            background-color: #e74c3c; /* Cor vermelha para o botão */
+            background-color: #e74c3c; 
             color: white;
             padding: 12px 30px;
             font-size: 18px;
@@ -71,7 +71,7 @@
         }
 
         button:hover {
-            background-color: #c0392b; /* Cor mais escura quando o botão é clicado */
+            background-color: #c0392b;
             transform: translateY(-2px);
         }
 

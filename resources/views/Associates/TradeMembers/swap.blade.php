@@ -11,7 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f1f5f9; /* Cinza muito claro */
+            background-color: #f1f5f9;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,12 +31,12 @@
         h1 {
             font-size: 28px;
             margin-bottom: 20px;
-            color: #2c3e50; /* Cor escura para o título */
+            color: #2c3e50; 
         }
 
         p {
             font-size: 16px;
-            color: #34495e; /* Cinza escuro */
+            color: #34495e;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -61,13 +61,13 @@
         }
 
         select:focus {
-            border-color: #f39c12; /* Amarelo para foco */
+            border-color: #f39c12; 
             outline: none;
-            background-color: #ffffff; /* Fundo branco no foco */
+            background-color: #ffffff;
         }
 
         button {
-            background-color: #3498db; /* Azul claro */
+            background-color: #3498db; 
             color: white;
             border: none;
             padding: 12px 20px;
@@ -80,17 +80,17 @@
         }
 
         button:hover {
-            background-color: #2980b9; /* Azul mais escuro no hover */
+            background-color: #2980b9; 
             transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #3498db; /* Azul claro no clique */
+            background-color: #3498db;
             transform: translateY(2px);
         }
 
         .alert {
-            background-color: #e74c3c; /* Vermelho suave */
+            background-color: #e74c3c; 
             color: #fff;
             padding: 15px;
             border-radius: 8px;

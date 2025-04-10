@@ -98,24 +98,14 @@
         <h1>Welcome to the Syndicate System</h1>
         <p>You are an Internal Advisor</p>
 
-        <!-- Form 1: Give Review -->
         <form action="{{ route('giving') }}" method="get" class="form-group">
             <button type="submit">Give Review</button>
         </form>
 
-        <!-- Form 2: See Project Review -->
         <form action="{{ route('vision') }}" method="get" class="form-group">
             <button type="submit">See Project Review</button>
         </form>
 
-        <!-- Example: Input Field (for future use) -->
-        <!--
-        <form action="#" method="post">
-            <label for="comment">Your Comment:</label>
-            <textarea id="comment" name="comment"></textarea>
-            <button type="submit">Submit Comment</button>
-        </form>
-        -->
     </div>
 </body>
 </html>

@@ -11,7 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4; /* Cinza claro */
+            background-color: #f4f4f4; 
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -32,18 +32,18 @@
         h3 {
             font-size: 24px;
             margin-bottom: 10px;
-            color: #8e44ad; /* Roxo suave */
+            color: #8e44ad; 
         }
 
         h4 {
             font-size: 20px;
-            color: #f39c12; /* Dourado */
+            color: #f39c12;
             margin-top: 20px;
         }
 
         p {
             font-size: 16px;
-            color: #34495e; /* Cinza escuro */
+            color: #34495e; 
             line-height: 1.6;
             margin-bottom: 12px;
         }
@@ -52,7 +52,7 @@
             margin-bottom: 30px;
             padding: 20px;
             background-color: #ecf0f1;
-            border-left: 5px solid #8e44ad; /* Borda roxa para o projeto */
+            border-left: 5px solid #8e44ad;
             border-radius: 8px;
         }
 
@@ -61,16 +61,16 @@
         }
 
         .no-reviews {
-            color: #e74c3c; /* Vermelho suave para quando não houver revisão */
+            color: #e74c3c; 
         }
 
         .no-reviews-member {
             font-style: italic;
-            color: #bdc3c7; /* Cinza claro para a ausência de revisões */
+            color: #bdc3c7; 
         }
 
         .alert {
-            background-color: #f39c12; /* Dourado para o alerta */
+            background-color: #f39c12; 
             padding: 15px;
             border-radius: 8px;
             margin-top: 20px;

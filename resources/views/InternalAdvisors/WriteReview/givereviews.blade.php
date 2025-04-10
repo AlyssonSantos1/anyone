@@ -11,7 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e6f2ff; /* Azul claro */
+            background-color: #e6f2ff; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,12 +31,12 @@
         h1 {
             font-size: 28px;
             margin-bottom: 20px;
-            color: #2c3e50; /* Cor escura para o título */
+            color: #2c3e50; 
         }
 
         label {
             font-size: 16px;
-            color: #34495e; /* Cor escura para o texto do label */
+            color: #34495e;
             margin-bottom: 8px;
             display: block;
             text-align: left;
@@ -48,20 +48,20 @@
             margin-top: 8px;
             border: 1px solid #bdc3c7;
             border-radius: 8px;
-            background-color: #f1f8ff; /* Azul claro para o fundo */
+            background-color: #f1f8ff;
             color: #34495e;
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
 
         select:focus, textarea:focus {
-            border-color: #2980b9; /* Azul mais forte no foco */
+            border-color: #2980b9; 
             outline: none;
-            background-color: #ffffff; /* Fundo branco no foco */
+            background-color: #ffffff; 
         }
 
         button {
-            background-color: #2980b9; /* Azul forte */
+            background-color: #2980b9;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -74,12 +74,12 @@
         }
 
         button:hover {
-            background-color: #3498db; /* Azul mais claro no hover */
+            background-color: #3498db; 
             transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #2980b9; /* Azul mais forte no clique */
+            background-color: #2980b9;
             transform: translateY(2px);
         }
 

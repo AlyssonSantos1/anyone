@@ -7,13 +7,12 @@
     
 
     <style>
-        /* Usando fonte moderna e limpa */
         body {
-            font-family: 'Arial', sans-serif; /* Fonte mais simples e legíveis */
+            font-family: 'Arial', sans-serif; 
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5; /* Fundo branco suave */
-            color: #333333; /* Cor de texto escuro para boa legibilidade */
+            background-color: #f5f5f5;
+            color: #333333; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,13 +23,13 @@
 
         h1 {
             font-size: 36px;
-            color: #2c3e50; /* Cor escura para o título, mais suave e legível */
+            color: #2c3e50;
             margin-bottom: 20px;
         }
 
         p {
             font-size: 18px;
-            color: #555555; /* Cor do texto para parágrafos, mais suave */
+            color: #555555;
             margin: 10px 0;
         }
 
@@ -39,7 +38,7 @@
         }
 
         button {
-            background-color: #3498db; /* Azul claro para botões */
+            background-color: #3498db; 
             color: white;
             border: none;
             padding: 12px 24px;
@@ -51,18 +50,18 @@
         }
 
         button:hover {
-            background-color: #2980b9; /* Azul mais escuro no hover */
+            background-color: #2980b9; 
             transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #3498db; /* Cor de azul novamente no clique */
+            background-color: #3498db; 
             transform: translateY(2px);
         }
 
         .alert {
-            background-color: #eaf2f8; /* Fundo azul muito claro */
-            color: #2980b9; /* Azul mais forte para o texto */
+            background-color: #eaf2f8; 
+            color: #2980b9; 
             padding: 15px;
             margin-top: 20px;
             border-radius: 8px;
