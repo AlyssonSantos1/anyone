@@ -13,7 +13,7 @@ class SquadsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create('en_US');
+        $faker = Faker::create();
 
         Squad::create([
             'teammanager' => 'John Doe', 

@@ -56,7 +56,7 @@ class ExecutiveController extends Controller
         Member::create([
             'name' => $name,
             'email' => $email,
-            'password' => Hash::make($password),
+            'password' => Hash::make($request->password),
             'role' => $role,
             'hierarchy' => $hierarchy,
             'insertedproject' => $insertedproject,
@@ -128,15 +128,14 @@ class ExecutiveController extends Controller
             return response()->json(['error' => 'The team manager must be a manager.'], 400);
         }
         
-        $validatedData = $request->validate([
-            'projectname_project' => 'required|string', 
-            'manager_project' => 'required|string',  
-            'numberofmembers_project' => 'required|integer', 
-            'goals_project' => 'required|string',  
-            'description_project' => 'required|string', 
-            'reviews_project' => 'required|string', 
-            'authorreview_project' => 'required|string', 
-        ]);
+        $projectname = $request->input('projectname_project');
+        $manager = $request->input('manager_project');
+        $numberofmembers = $request->input('numberofmembers_project');
+        $goals = $request->input('goals_project');
+        $description = $request->input('description_project');
+        $reviews = $request->input('reviews_project');
+        $authorreview = $request->input('authorreview_project');
+        $teammanager_team = $request->input('teammanager_team');
 
         
         $project = Project::create([

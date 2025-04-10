@@ -30,6 +30,11 @@ class Member extends Authenticatable
 
     protected $dates = ['created_at', 'updated_at'];
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
     
     public function projects()
     {
