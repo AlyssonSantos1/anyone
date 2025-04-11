@@ -168,8 +168,6 @@ class ExecutiveController extends Controller
         return 'The Project has been created';
 
     }
-   
-   
 
     public function getReviewAuthors(Request $request)
     {
@@ -199,7 +197,7 @@ class ExecutiveController extends Controller
 
         return 'Author not found';
         
-    }
+    } 
 
     public function construction (Request $request){
 

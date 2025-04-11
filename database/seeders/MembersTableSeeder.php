@@ -26,7 +26,7 @@ class MembersTableSeeder extends Seeder
 
         $members = [
             ['name' => 'Adam', 'email' => 'adam@example.com', 'role' => 'Software Engineer', 'hierarchy' => 'executive', 'insertedproject' => 'IA save the planet', 'personalreviews' => 'Excellent performance', 'ownerofreview' => 'Adam', 'password' => '12345'],
-            ['name' => 'Sam Parks', 'email' => 'samparks@example.com', 'role' => 'Designer', 'hierarchy' => 'manager', 'insertedproject' => 'Fire in La', 'personalreviews' => 'Very creative', 'ownerofreview' => 'Sam Parks', 'password' => '123456'],
+            ['name' => 'Sam Parks', 'email' => 'sparks@example.com', 'role' => 'Designer', 'hierarchy' => 'manager', 'insertedproject' => 'Fire in La', 'personalreviews' => 'Very creative', 'ownerofreview' => 'Sam Parks', 'password' => '123456'],
             ['name' => 'Ryan Dunn', 'email' => 'ryan@example.com', 'role' => 'Tester', 'hierarchy' => 'InternalAdvisor', 'insertedproject' => 'Project Z', 'personalreviews' => 'Good attention to detail', 'ownerofreview' => 'Ryan', 'password' => 'abc123'],
             ['name' => 'Evan Ryley', 'email' => 'evan@example.com', 'role' => 'Developer', 'hierarchy' => 'associate', 'insertedproject' => 'Project A', 'personalreviews' => 'Reliable and efficient', 'ownerofreview' => 'Ryley', 'password' => 'evan123'],
             ['name' => 'Bob Nelson', 'email' => 'bobn@example.com', 'role' => 'Project Manager', 'hierarchy' => 'user', 'insertedproject' => 'Project B', 'personalreviews' => 'Great leadership skills', 'ownerofreview' => 'Bob', 'password' => 'bob123'],

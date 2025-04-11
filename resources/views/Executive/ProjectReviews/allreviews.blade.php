@@ -21,7 +21,7 @@
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             width: 60%;
-            margin: 50px auto;
+            margin: 50px auto 20px;
         }
 
         h2 {
@@ -40,7 +40,7 @@
             margin-bottom: 8px;
         }
 
-        input, select, button {
+        select, button {
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
@@ -50,50 +50,53 @@
             font-size: 16px;
         }
 
-
         select {
-            color: #3e3b3a;
             background-color: #fafafa;
         }
 
         button {
             background-color: #d4af37; 
             color: white;
-            border: none;
-            font-size: 18px;
             font-weight: 600;
-            padding: 14px;
-            border-radius: 10px;
-            cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
 
         button:hover {
             background-color: #b38b27; 
         }
 
-        .remove_associate_btn, .remove_project_btn {
-            background-color: #d32f2f; 
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 6px;
-            margin-left: 10px;
-            transition: background-color 0.3s ease;
+        #author_output {
+            background-color: #fffdf6;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            width: 60%;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 18px;
+            display: none;
+            transition: all 0.3s ease;
         }
 
-        .remove_associate_btn:hover, .remove_project_btn:hover {
-            background-color: #c62828;
+        .loading {
+            font-style: italic;
+            color: #a1887f;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #3e3b3a;
+            font-weight: bold;
         }
     </style>
-
 </head>
 <body>
-    <form action="{{ route('executive.review-authors') }}" method="get">
+
+    <form id="projectForm">
         <h2>Executive Space of Vision</h2>
         
         <label for="project_id">Select a Project</label>
@@ -104,7 +107,55 @@
             @endforeach
         </select>
 
-        <button type="submit">See Authors</button>
+        <button type="submit">See Author</button>
     </form>
+
+    <div id="author_output"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#projectForm').on('submit', function(e) {
+                e.preventDefault();
+
+                const projectId = $('#project_select').val();
+                const output = $('#author_output');
+
+                if (!projectId) {
+                    output
+                        .removeClass('success')
+                        .addClass('error')
+                        .html('Please select a project.')
+                        .fadeIn();
+                    return;
+                }
+
+                output
+                    .removeClass('error success')
+                    .addClass('loading')
+                    .html('Loading author...')
+                    .fadeIn();
+
+                $.ajax({
+                    url: "{{ route('executive.review-authors') }}",
+                    method: 'GET',
+                    data: { project_id: projectId },
+                    success: function(response) {
+                        output
+                            .removeClass('loading error')
+                            .addClass('success')
+                            .html(response);
+                    },
+                    error: function() {
+                        output
+                            .removeClass('loading success')
+                            .addClass('error')
+                            .html('An error occurred while fetching the review author.');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
