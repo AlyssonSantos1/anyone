@@ -120,32 +120,33 @@ class ExecutiveController extends Controller
 
         if ($user->hierarchy !== 'executive') {
             return 'You are not an executive to make this action';
-
         }
+
+        $teammanagerId = $request->input('teammanager_team');
+
+        $teammanager = Member::find($teammanagerId);
                
         $teammanager = Member::find($request->teammanager_team);
         if (!$teammanager || strtolower($teammanager->hierarchy) !== 'manager') {
             return response()->json(['error' => 'The team manager must be a manager.'], 400);
         }
-        
+
         $projectname = $request->input('projectname_project');
-        $manager = $request->input('manager_project');
         $numberofmembers = $request->input('numberofmembers_project');
         $goals = $request->input('goals_project');
         $description = $request->input('description_project');
         $reviews = $request->input('reviews_project');
         $authorreview = $request->input('authorreview_project');
-        $teammanager_team = $request->input('teammanager_team');
-
-        
+                
         $project = Project::create([
-            "projectname" =>$request->projectname_project,
-            "manager" =>$request->manager_project,
-            "numberofmembers" =>$request->numberofmembers_project,
-            "goals" =>$request->goals_project,
-            "description" =>$request->description_project,
-            "reviews" =>$request->reviews_project,
-            "authorreview" =>$request->authorreview_project
+            "projectname" => $projectname,
+            "manager" => $teammanager->name,
+            "numberofmembers" => $numberofmembers,
+            "goals" => $goals,
+            "description" => $description,
+            "reviews" => $reviews,
+            "authorreview" => $authorreview,
+            "projectreviews" => $reviews 
 
         ]);
 
