@@ -9,9 +9,6 @@ use Faker\Factory as Faker;
 
 class MembersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $faker = Faker::create('en_US');
@@ -38,7 +35,7 @@ class MembersTableSeeder extends Seeder
         ];
 
         foreach ($members as $member) {
-            $member['password'] = Hash::make($member['password']); 
+            $member['password'] = Hash::make($member['password']);
             Member::create($member);
         }
 
